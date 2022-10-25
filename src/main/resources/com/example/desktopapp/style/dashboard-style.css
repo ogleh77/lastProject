@@ -1,0 +1,60 @@
+.dash-pane {
+    -fx-pref-height: 800;
+    -fx-pref-width: 1300;
+    -fx-background-color: #f6f1f1;
+    /*-fx-background-color: white;*/
+}
+
+.top-pane {
+    -fx-background-color: #328ca8;
+    -fx-pref-height: 37;
+}
+
+.center-pane {
+    -fx-pref-width: 1120;
+}
+
+.side-pane {
+    -fx-background-color: #328ca8;
+    -fx-pref-width: 200;
+}
+
+.menu:hover {
+    -fx-background-color: #4EAD61;
+    -fx-cursor: hand;
+}
+
+.btn-menu {
+    -fx-background-color: #328ca8;
+    -fx-pref-width: 171;
+    -fx-pref-height: 116;
+    -fx-text-fill: #e3dddd;
+    -fx-border-radius: 10;
+}
+
+.side-btn {
+    -fx-pref-width: 176;
+    -fx-pref-height: 46;
+    -fx-background-color: #328ca8;
+    -fx-text-fill: #efe7e7;
+}
+
+
+.side-btn:hover {
+    -fx-background-color: #4EAD61;
+    -fx-cursor: hand;
+}
+
+.btn-menu:hover {
+    -fx-background-color: #4EAD61;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-pref-width: 171;
+    -fx-pref-height: 116;
+}
+
+.noti-circle {
+    -fx-background-color: red;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+}

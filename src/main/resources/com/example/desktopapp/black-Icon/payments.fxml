@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" styleClass="reg-pane" stylesheets="@../style/registration-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="166.0" fitWidth="233.0" layoutX="78.0" layoutY="576.0" pickOnBounds="true" AnchorPane.bottomAnchor="13.0">
+         <image>
+            <Image url="@../icons/undraw_Plain_credit_card_re_c07w.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="firstName" layoutX="67.0" layoutY="188.0" prefHeight="35.0" prefWidth="233.0" promptText="e.g mohamed " />
+      <TextField fx:id="lastName" layoutX="67.0" layoutY="256.0" prefHeight="35.0" prefWidth="233.0" promptText="e.g saeed" />
+      <TextField fx:id="phone" layoutX="67.0" layoutY="391.0" prefHeight="35.0" prefWidth="233.0" promptText="e.g (063)XXX-XXX" />
+      <JFXRadioButton fx:id="male" layoutX="438.0" layoutY="360.0" text="Male" />
+      <JFXRadioButton fx:id="female" layoutX="547.0" layoutY="359.0" text="Female" AnchorPane.rightAnchor="379.0" />
+      <Label layoutX="68.0" layoutY="163.0" prefHeight="16.0" prefWidth="90.0" text="first name" textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="367.0" prefHeight="16.0" prefWidth="90.0" text="phone" textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="232.0" prefHeight="16.0" prefWidth="90.0" text="middle name" textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="420.0" layoutY="327.0" text="gender" textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="shift" layoutX="68.0" layoutY="459.0" prefHeight="34.0" prefWidth="233.0" promptText="choose shift" styleClass="shift-combo-btn" />
+      <Label layoutX="69.0" layoutY="434.0" text="Shift" textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="421.0" layoutY="244.0" text="payment date" textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="expPicker" layoutX="420.0" layoutY="268.0" prefHeight="36.0" prefWidth="233.0" promptText="dd-mm-yyyy" />
+      <TextField fx:id="weight" layoutX="69.0" layoutY="524.0" prefHeight="36.0" prefWidth="128.0" promptText="initial weight" />
+      <Label layoutX="70.0" layoutY="501.0" text="weight" textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="boxChooser" layoutX="206.0" layoutY="526.0" prefHeight="34.0" prefWidth="140.0" promptText="coose vip box" styleClass="combo-btn" />
+      <VBox fx:id="imagePane" layoutX="421.0" layoutY="482.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fx:id="imgView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../icons/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpeg" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow height="35.66" radius="15.864999999999998" spread="0.77" width="29.8">
+               <color>
+                  <Color red="0.7763158082962036" green="0.7367811799049377" blue="0.7367811799049377" />
+               </color>
+            </DropShadow>
+         </effect>
+      </VBox>
+      <JFXButton buttonType="RAISED" layoutX="770.0" layoutY="420.0" prefHeight="40.0" prefWidth="128.0" styleClass="btn-save" text="Save" textFill="#d0cbcb" AnchorPane.bottomAnchor="295.0" AnchorPane.rightAnchor="96.0">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="773.0" layoutY="488.0" prefHeight="40.0" prefWidth="120.0" styleClass="btn-reset" text="Reset" textFill="WHITE" AnchorPane.bottomAnchor="227.0" AnchorPane.rightAnchor="101.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="451.0" layoutY="654.0" prefHeight="40.0" prefWidth="140.0" styleClass="btn-upload" text="change image" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
+      <StackPane layoutX="-8.0" layoutY="-5.0" prefHeight="150.0" prefWidth="994.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="994.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/jordan-whitfield-sm3Ub_IJKQg-unsplash.jpg" />
+               </image>
+            </ImageView>
+            <Label prefHeight="28.0" prefWidth="233.0" text="PAYMENT FORM" textFill="#e8eeec">
+               <font>
+                  <Font name="Arial Black" size="19.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets right="600.0" top="70.0" />
+               </StackPane.margin>
+            </Label>
+            <Label prefHeight="24.0" prefWidth="563.0" text="Buuxi dhamaan macluumadkan hoos ku xusan date ka systemka ayaa ku filan " textFill="#b9c9c4">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets right="270.0" top="110.0" />
+               </StackPane.margin>
+            </Label>
+            <Label prefHeight="24.0" prefWidth="140.0" text="tar: 21-10-2022" textFill="#e8eeec">
+               <font>
+                  <Font name="Arial Black" size="16.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets left="700.0" top="70.0" />
+               </StackPane.margin>
+            </Label>
+         </children>
+      </StackPane>
+      <TextField fx:id="lastName1" layoutX="68.0" layoutY="324.0" prefHeight="35.0" prefWidth="233.0" promptText="e.g oogle" />
+      <Label layoutX="67.0" layoutY="300.0" prefHeight="16.0" prefWidth="90.0" text="last name" textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextArea layoutX="738.0" layoutY="189.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label layoutX="738.0" layoutY="164.0" prefHeight="16.0" prefWidth="90.0" text="comment " textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXCheckBox layoutX="440.0" layoutY="409.0" text="poxing" />
+      <TextField fx:id="lastName2" layoutX="420.0" layoutY="187.0" prefHeight="35.0" prefWidth="113.0" promptText="\$12" />
+      <Label layoutX="420.0" layoutY="163.0" prefHeight="16.0" prefWidth="90.0" text="amount paid" textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="boxChooser1" layoutX="547.0" layoutY="186.0" prefHeight="34.0" prefWidth="140.0" promptText="paid by" styleClass="combo-btn" />
+   </children>
+   <effect>
+      <DropShadow height="12.11" radius="5.555" spread="0.01" width="12.11">
+         <color>
+            <Color red="0.8289473652839661" green="0.7867324352264404" blue="0.7867324352264404" />
+         </color>
+      </DropShadow>
+   </effect>
+   <padding>
+      <Insets top="10.0" />
+   </padding>
+</AnchorPane>
