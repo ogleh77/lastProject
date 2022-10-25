@@ -46,7 +46,7 @@ public class DashboardController extends Commons implements Initializable {
 
     @FXML
     void RegistrationHandler(ActionEvent event) throws IOException {
-        FXMLLoader loader = openWindow("/com/example/desktopapp/views/registrations.fxml", borderPane, sidePane, menuHbox, topProfile);
+        FXMLLoader loader = openWindow("/com/example/desktopapp/views/reg.fxml", borderPane, sidePane, menuHbox, topProfile);
 
     }
 
