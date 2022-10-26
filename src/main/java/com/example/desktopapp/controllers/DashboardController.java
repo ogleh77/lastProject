@@ -3,6 +3,7 @@ package com.example.desktopapp.controllers;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideOutLeft;
 import com.example.desktopapp.genrals.Commons;
+import com.example.desktopapp.models.CustomerDAO;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +19,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 
 public class DashboardController extends Commons implements Initializable {
     @FXML
@@ -37,6 +40,7 @@ public class DashboardController extends Commons implements Initializable {
     private boolean visible;
     private double startX;
     private double startY;
+    CustomerDAO customerDAO = new CustomerDAO();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,6 +67,13 @@ public class DashboardController extends Commons implements Initializable {
     @FXML
     void paymentHandler(ActionEvent event) throws IOException {
         FXMLLoader loader = openWindow("/com/example/desktopapp/views/payments.fxml", borderPane, sidePane, menuHbox, topProfile);
+
+    }
+
+    @FXML
+    void singlePaymentHandler(ActionEvent event) throws SQLException {
+        System.out.println(customerDAO.fetchAll().get(0));
+
 
     }
 

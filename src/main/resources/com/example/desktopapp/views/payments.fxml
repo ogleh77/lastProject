@@ -7,7 +7,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -20,56 +19,19 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" styleClass="reg-pane" stylesheets="@../style/registration-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desktopapp.controllers.PaymentController">
     <children>
-        <ImageView fitHeight="166.0" fitWidth="233.0" layoutX="78.0" layoutY="576.0" pickOnBounds="true" AnchorPane.bottomAnchor="13.0">
+        <ImageView fitHeight="166.0" fitWidth="233.0" layoutX="81.0" layoutY="520.0" pickOnBounds="true" AnchorPane.bottomAnchor="57.0">
             <image>
                 <Image url="@../icons/undraw_Plain_credit_card_re_c07w.png" />
             </image>
         </ImageView>
-        <TextField fx:id="firstName" disable="true" layoutX="67.0" layoutY="188.0" prefHeight="35.0" prefWidth="233.0" promptText="e.g mohamed " />
-        <TextField fx:id="middleName" disable="true" layoutX="67.0" layoutY="256.0" prefHeight="35.0" prefWidth="233.0" promptText="e.g saeed" />
-        <TextField fx:id="phone" disable="true" layoutX="67.0" layoutY="391.0" prefHeight="35.0" prefWidth="233.0" promptText="e.g (063)XXX-XXX" />
-        <JFXRadioButton fx:id="male" disable="true" layoutX="410.0" layoutY="614.0" text="Male" />
-        <JFXRadioButton fx:id="female" disable="true" layoutX="548.0" layoutY="612.0" text="Female" AnchorPane.rightAnchor="378.0" />
-        <Label layoutX="68.0" layoutY="163.0" prefHeight="16.0" prefWidth="90.0" text="first name" textFill="#9e9898">
+        <Label layoutX="469.0" layoutY="198.0" text="exp date" textFill="#9e9898">
             <font>
-                <Font name="Arial Bold" size="14.0" />
+                <Font name="Arial Bold" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="67.0" layoutY="367.0" prefHeight="16.0" prefWidth="90.0" text="phone" textFill="#9e9898">
-            <font>
-                <Font name="Arial Bold" size="14.0" />
-            </font>
-        </Label>
-        <Label layoutX="68.0" layoutY="232.0" prefHeight="16.0" prefWidth="90.0" text="middle name" textFill="#9e9898">
-            <font>
-                <Font name="Arial Bold" size="14.0" />
-            </font>
-        </Label>
-        <Label layoutX="412.0" layoutY="579.0" text="gender" textFill="#9e9898">
-            <font>
-                <Font name="Arial Bold" size="14.0" />
-            </font>
-        </Label>
-        <ComboBox fx:id="shift" disable="true" layoutX="68.0" layoutY="459.0" prefHeight="34.0" prefWidth="233.0" promptText="choose shift" styleClass="shift-combo-btn" />
-        <Label layoutX="69.0" layoutY="434.0" text="Shift" textFill="#9e9898">
-            <font>
-                <Font name="Arial Bold" size="14.0" />
-            </font>
-        </Label>
-        <Label layoutX="408.0" layoutY="159.0" text="exp date" textFill="#9e9898">
-            <font>
-                <Font name="Arial Bold" size="14.0" />
-            </font>
-        </Label>
-        <DatePicker fx:id="expDate" layoutX="407.0" layoutY="183.0" prefHeight="36.0" prefWidth="233.0" promptText="dd-mm-yyyy" />
-        <TextField fx:id="weight" disable="true" layoutX="69.0" layoutY="524.0" prefHeight="36.0" prefWidth="128.0" promptText="initial weight" />
-        <Label layoutX="70.0" layoutY="501.0" text="weight" textFill="#9e9898">
-            <font>
-                <Font name="Arial Bold" size="14.0" />
-            </font>
-        </Label>
-        <ComboBox fx:id="boxChooser" disable="true" layoutX="206.0" layoutY="526.0" prefHeight="34.0" prefWidth="140.0" promptText="coose vip box" styleClass="combo-btn" />
-        <VBox fx:id="imagePane" layoutX="732.0" layoutY="284.0" style="-fx-background-color: white;">
+        <DatePicker fx:id="expDate" layoutX="584.0" layoutY="190.0" prefHeight="36.0" prefWidth="261.0" promptText="dd-mm-yyyy" />
+        <ComboBox fx:id="boxChooser" disable="true" layoutX="697.0" layoutY="325.0" prefHeight="34.0" prefWidth="140.0" promptText="coose vip box" styleClass="combo-btn" />
+        <VBox fx:id="imagePane" layoutX="610.0" layoutY="399.0" style="-fx-background-color: white;">
             <children>
             <ImageView fx:id="imgView1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true">
                <image>
@@ -85,12 +47,12 @@
                 </DropShadow>
             </effect>
         </VBox>
-        <JFXButton buttonType="RAISED" layoutX="768.0" layoutY="469.0" onAction="#saveHandler" prefHeight="40.0" prefWidth="128.0" styleClass="btn-save" text="Save" textFill="#d0cbcb" AnchorPane.bottomAnchor="239.0" AnchorPane.rightAnchor="98.0">
+        <JFXButton buttonType="RAISED" layoutX="760.0" layoutY="607.0" onAction="#saveHandler" prefHeight="40.0" prefWidth="128.0" styleClass="btn-save" text="Save" textFill="#d0cbcb" AnchorPane.bottomAnchor="86.0" AnchorPane.rightAnchor="106.0">
             <font>
                 <Font name="Arial Black" size="12.0" />
             </font>
         </JFXButton>
-        <JFXButton buttonType="RAISED" layoutX="768.0" layoutY="532.0" prefHeight="40.0" prefWidth="120.0" styleClass="btn-reset" text="Reset" textFill="WHITE" AnchorPane.bottomAnchor="176.0" AnchorPane.rightAnchor="98.0">
+        <JFXButton buttonType="RAISED" layoutX="532.0" layoutY="607.0" prefHeight="40.0" prefWidth="120.0" styleClass="btn-reset" text="Reset" textFill="WHITE" AnchorPane.bottomAnchor="86.0" AnchorPane.rightAnchor="334.0">
             <font>
                 <Font size="15.0" />
             </font>
@@ -102,27 +64,19 @@
                 </ImageView>
          </graphic>
         </JFXButton>
-        <StackPane layoutX="-8.0" layoutY="-5.0" prefHeight="150.0" prefWidth="994.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <StackPane layoutX="-8.0" layoutY="-5.0" prefHeight="130.0" prefWidth="994.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <ImageView fitHeight="150.0" fitWidth="994.0" pickOnBounds="true">
+                <ImageView fitHeight="130.0" fitWidth="994.0" pickOnBounds="true">
                     <image>
                         <Image url="@../images/jordan-whitfield-sm3Ub_IJKQg-unsplash.jpg" />
                     </image>
                 </ImageView>
-                <Label prefHeight="28.0" prefWidth="233.0" text="PAYMENT FORM" textFill="#e8eeec">
+                <Label prefHeight="29.0" prefWidth="191.0" text="PAYMENT FORM" textFill="#e8eeec">
                     <font>
-                        <Font name="Arial Black" size="19.0" />
+                        <Font name="Arial Black" size="20.0" />
                     </font>
                     <StackPane.margin>
                         <Insets right="600.0" top="70.0" />
-                    </StackPane.margin>
-                </Label>
-                <Label prefHeight="24.0" prefWidth="563.0" text="Buuxi dhamaan macluumadkan hoos ku xusan date ka systemka ayaa ku filan " textFill="#b9c9c4">
-                    <font>
-                        <Font name="Arial" size="16.0" />
-                    </font>
-                    <StackPane.margin>
-                        <Insets right="270.0" top="110.0" />
                     </StackPane.margin>
                 </Label>
                 <Label prefHeight="24.0" prefWidth="140.0" text="tar: 21-10-2022" textFill="#e8eeec">
@@ -135,29 +89,51 @@
                 </Label>
             </children>
         </StackPane>
-        <TextField fx:id="lastName" disable="true" layoutX="68.0" layoutY="324.0" prefHeight="35.0" prefWidth="233.0" promptText="e.g oogle" />
-        <Label layoutX="67.0" layoutY="300.0" prefHeight="16.0" prefWidth="90.0" text="last name" textFill="#9e9898">
+        <JFXCheckBox fx:id="poxing" layoutX="595.0" layoutY="333.0" text="poxing" textFill="#4f5b53">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font></JFXCheckBox>
+        <TextField fx:id="amountPaid" layoutX="584.0" layoutY="254.0" prefHeight="35.0" prefWidth="113.0" promptText="\$12" />
+        <Label layoutX="467.0" layoutY="262.0" prefHeight="20.0" prefWidth="108.0" text="amount paid" textFill="#9e9898">
             <font>
-                <Font name="Arial Bold" size="14.0" />
+                <Font name="Arial Bold" size="16.0" />
             </font>
         </Label>
-        <TextArea fx:id="txtComment" layoutX="407.0" layoutY="355.0" prefHeight="200.0" prefWidth="200.0" />
-        <Label layoutX="407.0" layoutY="330.0" prefHeight="16.0" prefWidth="90.0" text="comment " textFill="#9e9898">
-            <font>
-                <Font name="Arial Bold" size="14.0" />
-            </font>
-        </Label>
-        <JFXCheckBox fx:id="poxing" layoutX="410.0" layoutY="664.0" text="poxing" />
-        <TextField fx:id="amountPaid" layoutX="410.0" layoutY="261.0" prefHeight="35.0" prefWidth="113.0" promptText="\$12" />
-        <Label layoutX="408.0" layoutY="236.0" prefHeight="16.0" prefWidth="90.0" text="amount paid" textFill="#9e9898">
-            <font>
-                <Font name="Arial Bold" size="14.0" />
-            </font>
-        </Label>
-        <ComboBox fx:id="paidBy" layoutX="536.0" layoutY="262.0" prefHeight="34.0" prefWidth="140.0" promptText="paid by" styleClass="combo-btn" />
-      <Label layoutX="78.0" layoutY="709.0" prefHeight="24.0" prefWidth="320.0" text="BUUXI QAYBTA PAYMENT KA QUDHA" textFill="#328ca8">
+        <ComboBox fx:id="paidBy" layoutX="710.0" layoutY="255.0" prefHeight="34.0" prefWidth="140.0" promptText="paid by" styleClass="combo-btn" />
+      <Label layoutX="81.0" layoutY="665.0" prefHeight="24.0" prefWidth="320.0" text="BUUXI QAYBTA PAYMENT KA QUDHA" textFill="#328ca8">
          <font>
             <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="firstName" layoutX="153.0" layoutY="189.0" prefHeight="40.0" prefWidth="261.0" promptText="e.g mohamed " />
+      <TextField fx:id="middleName" layoutX="155.0" layoutY="252.0" prefHeight="40.0" prefWidth="261.0" promptText="e.g saeed" />
+      <TextField fx:id="phone" layoutX="155.0" layoutY="388.0" prefHeight="40.0" prefWidth="261.0" promptText="e.g (063)XXX-XXX" />
+      <JFXRadioButton fx:id="male1" layoutX="170.0" layoutY="457.0" text="Male" />
+      <JFXRadioButton fx:id="female1" layoutX="341.0" layoutY="457.0" prefHeight="17.0" prefWidth="74.0" text="Female" />
+      <Label layoutX="39.0" layoutY="198.0" prefHeight="20.0" prefWidth="83.0" text="first name" textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="397.0" prefHeight="20.0" prefWidth="55.0" text="phone" textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="261.0" prefHeight="20.0" prefWidth="108.0" text="middle name" textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="39.0" layoutY="457.0" text="gender" textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="lastName" layoutX="155.0" layoutY="321.0" prefHeight="40.0" prefWidth="261.0" promptText="e.g oogle" />
+      <Label layoutX="37.0" layoutY="334.0" prefHeight="20.0" prefWidth="74.0" text="last name" textFill="#9e9898">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
          </font>
       </Label>
     </children>

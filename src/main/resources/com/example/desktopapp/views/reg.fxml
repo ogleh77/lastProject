@@ -47,9 +47,9 @@
             <Image url="@../icons/undraw_Add_files_re_v09g.png" />
          </image>
       </ImageView>
-      <TextField fx:id="firstName" layoutX="188.0" layoutY="177.0" prefHeight="40.0" prefWidth="290.0" promptText="e.g mohamed " AnchorPane.leftAnchor="188.0" />
-      <TextField fx:id="middleName" layoutX="190.0" layoutY="240.0" prefHeight="40.0" prefWidth="290.0" promptText="e.g saeed" AnchorPane.leftAnchor="190.0" />
-      <TextField fx:id="phone" layoutX="190.0" layoutY="376.0" prefHeight="40.0" prefWidth="290.0" promptText="e.g (063)XXX-XXX" AnchorPane.leftAnchor="188.0" />
+      <TextField fx:id="firstName" layoutX="188.0" layoutY="177.0" prefHeight="40.0" prefWidth="290.0" promptText="Mohamed" AnchorPane.leftAnchor="188.0" />
+      <TextField fx:id="middleName" layoutX="190.0" layoutY="240.0" prefHeight="40.0" prefWidth="290.0" promptText="Saeed" AnchorPane.leftAnchor="190.0" />
+      <TextField fx:id="lastName" layoutX="188.0" layoutY="307.0" prefHeight="40.0" prefWidth="290.0" promptText="Ogleh" AnchorPane.leftAnchor="188.0" />
       <JFXRadioButton fx:id="male" layoutX="226.0" layoutY="446.0" text="Male" AnchorPane.leftAnchor="226.0" />
       <JFXRadioButton fx:id="female" layoutX="376.0" layoutY="445.0" prefHeight="17.0" prefWidth="74.0" text="Female" AnchorPane.leftAnchor="376.0" />
       <Label layoutX="64.0" layoutY="187.0" prefHeight="20.0" prefWidth="83.0" text="first name" textFill="#9e9898" AnchorPane.leftAnchor="64.0">
@@ -57,7 +57,7 @@
             <Font name="Arial Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="63.0" layoutY="386.0" prefHeight="20.0" prefWidth="55.0" text="phone" textFill="#9e9898" AnchorPane.leftAnchor="64.0">
+      <Label layoutX="64.0" layoutY="317.0" prefHeight="20.0" prefWidth="83.0" text="last name" textFill="#9e9898" AnchorPane.leftAnchor="64.0">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
@@ -141,8 +141,8 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <TextField fx:id="lastName" layoutX="190.0" layoutY="309.0" prefHeight="40.0" prefWidth="293.0" promptText="e.g oogle" AnchorPane.leftAnchor="190.0" />
-      <Label layoutX="62.0" layoutY="323.0" prefHeight="20.0" prefWidth="74.0" text="last name" textFill="#9e9898" AnchorPane.leftAnchor="64.0">
+      <TextField fx:id="phone" layoutX="190.0" layoutY="368.0" prefHeight="40.0" prefWidth="293.0" promptText="(063)XXX-XXX" AnchorPane.leftAnchor="190.0" />
+      <Label layoutX="64.0" layoutY="382.0" prefHeight="20.0" prefWidth="74.0" text="phone" textFill="#9e9898" AnchorPane.leftAnchor="64.0">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>

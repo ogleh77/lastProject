@@ -14,9 +14,10 @@ public class Customers {
     private String address;
     private String image;
     private double weight;
+    private String whoAdded;
     private ObservableList<Payments> payments;
 
-    public Customers(int customerId, String firstName, String middleName, String lastName, String phone, String gander, String shift, String address, String image, double weight) {
+    public Customers(int customerId, String firstName, String middleName, String lastName, String phone, String gander, String shift, String address, String image, double weight, String whoAdded) {
         this.customerId = customerId;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -27,9 +28,10 @@ public class Customers {
         this.address = address;
         this.image = image;
         this.weight = weight;
+        this.whoAdded = whoAdded;
     }
 
-    public Customers(String firstName, String middleName, String lastName, String phone, String gander, String shift, String address, String image, double weight) {
+    public Customers(String firstName, String middleName, String lastName, String phone, String gander, String shift, String address, String image, double weight, String whoAdded) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -39,6 +41,55 @@ public class Customers {
         this.address = address;
         this.image = image;
         this.weight = weight;
+        this.whoAdded = whoAdded;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getGander() {
+        return gander;
+    }
+
+    public String getShift() {
+        return shift;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public String getWhoAdded() {
+        return whoAdded;
+    }
+
+    public ObservableList<Payments> getPayments() {
+        return payments;
     }
 
     public void setFirstName(String firstName) {
@@ -51,6 +102,10 @@ public class Customers {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void setPayments(ObservableList<Payments> payments) {
+        this.payments = payments;
     }
 
     @Override
@@ -66,6 +121,7 @@ public class Customers {
                 ", address='" + address + '\'' +
                 ", image='" + image + '\'' +
                 ", weight=" + weight +
+                ", whoAdded='" + whoAdded + '\'' +
                 ", payments=" + payments +
                 '}';
     }

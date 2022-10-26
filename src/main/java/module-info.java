@@ -3,6 +3,7 @@ module com.example.desktopapp {
     requires javafx.fxml;
     requires AnimateFX;
     requires com.jfoenix;
+    requires java.sql;
 
     opens com.example.desktopapp to javafx.fxml;
     opens com.example.desktopapp.controllers to javafx.fxml;

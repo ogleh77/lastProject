@@ -24,17 +24,17 @@ public class Payments {
         this.poxing = poxing;
     }
 
-    public Payments(int paymentID, String paymentDate, String month, String year, double amountPaid, String comment, String paidBy, double discount, boolean poxing, Box box) {
+    public Payments(int paymentID, String paymentDate, String expDate, String month, String year, double amountPaid, String paidBy, double discount, boolean poxing, String comment) {
         this.paymentID = paymentID;
         this.paymentDate = paymentDate;
+        this.expDate = expDate;
         this.month = month;
         this.year = year;
         this.amountPaid = amountPaid;
-        this.comment = comment;
         this.paidBy = paidBy;
         this.discount = discount;
         this.poxing = poxing;
-        this.box = box;
+        this.comment = comment;
     }
 
     public int getPaymentID() {
@@ -77,6 +77,10 @@ public class Payments {
         return box;
     }
 
+    public void setBox(Box box) {
+        this.box = box;
+    }
+
     @Override
     public String toString() {
         return "Payments{" +
@@ -89,7 +93,7 @@ public class Payments {
                 ", paidBy='" + paidBy + '\'' +
                 ", discount=" + discount +
                 ", poxing=" + poxing +
-                ", box=" + box +
+                ", \n\nbox=" + box +
                 '}';
     }
 }

@@ -322,7 +322,7 @@
                                 </HBox>
                             </children>
                         </StackPane>
-                        <JFXButton buttonType="RAISED" contentDisplay="TOP" prefHeight="105.0" prefWidth="142.0" styleClass="btn-menu" text="Single payment report" textFill="#544c4c" wrapText="true">
+                        <JFXButton buttonType="RAISED" contentDisplay="TOP" onAction="#singlePaymentHandler" prefHeight="105.0" prefWidth="142.0" styleClass="btn-menu" text="Single payment report" textFill="#544c4c" wrapText="true">
                             <font>
                                 <Font name="Arial" size="18.0" />
                             </font>
