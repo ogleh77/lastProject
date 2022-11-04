@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="loginPane" prefHeight="434.0" prefWidth="596.0" styleClass="login-pane" stylesheets="@../style/login-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desktopapp.controlls.LoginController">
+    <children>
+        <ImageView fitHeight="197.0" fitWidth="255.0" layoutX="14.0" layoutY="122.0" pickOnBounds="true">
+            <image>
+                <Image url="@../icons/undraw_indoor_bike_pwa4%20(1).png" />
+            </image>
+        </ImageView>
+        <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="600.0" spacing="290.0" styleClass="top-pane">
+            <children>
+                <HBox alignment="CENTER" prefHeight="43.0" prefWidth="246.0" spacing="10.0">
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin>
+                    <children>
+                        <ImageView fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../black-Icon/icons8-barbell-50.png" />
+                            </image>
+                        </ImageView>
+                        <Label prefHeight="24.0" prefWidth="191.0" text="Togdheer gym center" textFill="#c6d0cd">
+                            <font>
+                                <Font name="Arial Black" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" onMouseClicked="#exitHandler" prefHeight="43.0" prefWidth="61.0" styleClass="cancel-pane">
+                    <children>
+                        <ImageView fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../icons/icons8-close-30.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                    <HBox.margin>
+                        <Insets left="10.0" />
+                    </HBox.margin>
+                </HBox>
+            </children>
+        </HBox>
+        <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="246.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../black-Icon/icons8-admin-settings-male-30.png" />
+            </image>
+        </ImageView>
+        <ComboBox fx:id="userCombo" layoutX="289.0" layoutY="154.0" prefHeight="36.0" prefWidth="255.0" promptText="choose username" />
+        <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="246.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../black-Icon/icons8-forgot-password-50.png" />
+            </image>
+        </ImageView>
+        <PasswordField fx:id="password" layoutX="289.0" layoutY="211.0" prefHeight="43.0" prefWidth="255.0" promptText="password" />
+        <JFXButton graphicTextGap="10.0" layoutX="352.0" layoutY="308.0" onAction="#loginHandler" prefHeight="43.0" prefWidth="158.0" styleClass="btn-login" text="Login">
+            <font>
+                <Font name="Arial" size="17.0" />
+            </font>
+        </JFXButton>
+        <Label layoutX="62.0" layoutY="351.0" prefHeight="24.0" prefWidth="162.0" text="Formka Gelista" textFill="#3e6157">
+            <font>
+                <Font name="Arial Black" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="63.0" layoutY="377.0" prefHeight="24.0" prefWidth="237.0" text="Geli password kaga leh userkad dooratay" textFill="#5e7573">
+            <font>
+                <Font name="Arial Bold" size="11.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

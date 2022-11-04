@@ -1,0 +1,54 @@
+.login-pane {
+    -fx-background-color: white;
+}
+
+.top-pane {
+    -fx-background-color: #2B4865;
+}
+
+.btn-login {
+    -fx-background-color: #2B4865;
+    -fx-text-fill: white;
+}
+
+.btn-login:hover {
+    -fx-background-color: #3a6188;
+    -fx-cursor: hand;
+}
+
+.cancel-pane:hover {
+    -fx-background-color: red;
+}
+
+.create-user-btn {
+    -fx-background-color: #132332;
+}
+
+.create-user-btn:hover {
+    -fx-background-color: #3a6188;
+    -fx-text-fill: black;
+    -fx-cursor: hand;
+}
+
+.load-mage-btn {
+    -fx-background-color: dodgerblue;
+    -fx-text-fill: white;
+}
+
+.load-mage-btn:hover {
+    -fx-background-color: #3079b7;
+    -fx-text-fill: black;
+    -fx-cursor: hand;
+}
+
+.password-field {
+    -fx-background-color: #F6F6F6;
+    -fx-border-color: #3a6188;
+    -fx-border-width: 0.5;
+}
+
+.combo-box-base {
+    -fx-background-color: #F6F6F6;
+    -fx-border-color: #3a6188;
+}
+

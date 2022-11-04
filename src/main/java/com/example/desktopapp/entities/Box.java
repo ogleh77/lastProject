@@ -43,10 +43,6 @@ public class Box {
 
     @Override
     public String toString() {
-        return "Box{" +
-                "boxID=" + boxID +
-                ", boxName='" + boxName + '\'' +
-                ", isReady=" + isReady +
-                '}';
+        return boxName + " Is available";
     }
 }

@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" styleClass="dash-pane" stylesheets="@../style/dashboard-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desktopapp.controllers.DashboardController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" styleClass="dash-pane" stylesheets="@../style/dashboard-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desktopapp.controlls.DashboardController">
     <top>
         <HBox alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="1120.0" styleClass="top-pane" BorderPane.alignment="CENTER">
             <children>
@@ -24,7 +24,7 @@
                     <children>
                         <HBox alignment="CENTER" prefHeight="37.0" prefWidth="262.0" spacing="10.0">
                             <children>
-                                <HBox fx:id="menuHbox" onMouseClicked="#menuClicked" prefHeight="40.0" prefWidth="37.0" styleClass="menu">
+                                <HBox fx:id="menuHbox" onMouseClicked="#menuClicked" prefHeight="40.0" prefWidth="37.0" styleClass="menu" visible="false">
                                     <HBox.margin>
                                         <Insets bottom="5.0" top="5.0" />
                                     </HBox.margin>
@@ -45,7 +45,7 @@
                         </HBox>
                     </children>
                 </HBox>
-                <HBox fx:id="topProfile" alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="0.0" spacing="10.0" HBox.hgrow="SOMETIMES">
+                <HBox fx:id="topProfile" alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="0.0" spacing="10.0" visible="false" HBox.hgrow="SOMETIMES">
                     <children>
                         <Circle fill="DODGERBLUE" radius="18.0" stroke="#048be4" strokeLineCap="ROUND">
                             <HBox.margin>
@@ -88,7 +88,7 @@
                 </HBox>
                 <HBox alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="180.0" spacing="10.0">
                     <children>
-                        <HBox fx:id="maximizeHandler" alignment="CENTER" onMouseClicked="#maximizeHandler" prefHeight="37.0" prefWidth="44.0" styleClass="menu">
+                        <HBox alignment="CENTER" prefHeight="37.0" prefWidth="44.0" styleClass="menu">
                             <children>
                                 <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -115,7 +115,7 @@
         </HBox>
     </top>
     <left>
-        <VBox fx:id="sidePane" alignment="TOP_CENTER" prefHeight="755.0" prefWidth="159.0" spacing="20.0" styleClass="side-pane" BorderPane.alignment="CENTER">
+        <VBox fx:id="sidePane" alignment="TOP_CENTER" prefHeight="755.0" prefWidth="159.0" spacing="20.0" styleClass="side-pane" visible="false" BorderPane.alignment="CENTER">
             <children>
                 <Label text="Customer care" textFill="#dddcdc">
                     <font>
@@ -218,11 +218,11 @@
                         <Font name="Arial" size="15.0" />
                     </font>
                 </JFXButton>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/loading.gif" />
-               </image>
-            </ImageView>
+                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/loading.gif" />
+                    </image>
+                </ImageView>
             </children>
             <effect>
                 <DropShadow radius="7.775" width="12.1">
@@ -237,7 +237,7 @@
         </VBox>
     </left>
     <center>
-        <AnchorPane prefHeight="755.0" prefWidth="1154.0" style="-fx-background-color: red;" styleClass="center-pane" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="755.0" prefWidth="1154.0" styleClass="center-pane" BorderPane.alignment="CENTER">
             <children>
                 <HBox alignment="CENTER" layoutY="236.0" prefHeight="113.0" prefWidth="1081.0" spacing="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
@@ -253,7 +253,7 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" contentDisplay="TOP" onAction="#RegistrationHandler" prefHeight="105.0" prefWidth="142.0" styleClass="btn-menu" text="Registrations" textFill="#544c4c">
+                        <JFXButton buttonType="RAISED" contentDisplay="TOP" prefHeight="105.0" prefWidth="142.0" styleClass="btn-menu" text="Registrations" textFill="#544c4c">
                             <font>
                                 <Font name="Arial" size="18.0" />
                             </font>
@@ -265,7 +265,7 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" contentDisplay="TOP" onAction="#paymentHandler" prefHeight="105.0" prefWidth="142.0" styleClass="btn-menu" text="Payment" textFill="#544c4c">
+                        <JFXButton buttonType="RAISED" contentDisplay="TOP" prefHeight="105.0" prefWidth="142.0" styleClass="btn-menu" text="Payment" textFill="#544c4c">
                             <font>
                                 <Font name="Arial" size="18.0" />
                             </font>
@@ -279,7 +279,7 @@
                         </JFXButton>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" layoutX="5.0" layoutY="388.0" prefHeight="113.0" prefWidth="842.0" spacing="50.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0">
+                <HBox alignment="CENTER" layoutX="5.0" layoutY="388.0" prefHeight="113.0" prefWidth="842.0" spacing="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
                         <JFXButton buttonType="RAISED" contentDisplay="TOP" prefHeight="105.0" prefWidth="142.0" styleClass="btn-menu" text="Reports" textFill="#544c4c">
                             <font>
@@ -295,7 +295,7 @@
                         </JFXButton>
                         <StackPane>
                             <children>
-                                <JFXButton buttonType="RAISED" contentDisplay="TOP" graphicTextGap="10.0" onAction="#notificationHandler" prefHeight="105.0" prefWidth="142.0" styleClass="btn-menu" text="Notifications" textFill="#544c4c" wrapText="true">
+                                <JFXButton buttonType="RAISED" contentDisplay="TOP" graphicTextGap="20.0" prefHeight="105.0" prefWidth="142.0" styleClass="btn-menu" text="Notifications" textFill="#544c4c" wrapText="true">
                                     <font>
                                         <Font name="Arial" size="18.0" />
                                     </font>
@@ -308,12 +308,12 @@
                                         <Insets top="-50.0" />
                                     </StackPane.margin>
                                 </ImageView>
-                                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="20.0" prefWidth="23.0" styleClass="noti-circle">
+                                <HBox fx:id="outdatedHBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="20.0" prefWidth="23.0" styleClass="noti-circle">
                                     <StackPane.margin>
                                         <Insets left="20.0" top="-70.0" />
                                     </StackPane.margin>
                                     <children>
-                                        <Label text="9+" textFill="WHITE">
+                                        <Label fx:id="outdatedCounter" text="9+" textFill="WHITE">
                                             <font>
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
@@ -322,7 +322,7 @@
                                 </HBox>
                             </children>
                         </StackPane>
-                        <JFXButton buttonType="RAISED" contentDisplay="TOP" onAction="#singlePaymentHandler" prefHeight="105.0" prefWidth="142.0" styleClass="btn-menu" text="Single payment report" textFill="#544c4c" wrapText="true">
+                        <JFXButton buttonType="RAISED" contentDisplay="TOP" prefHeight="105.0" prefWidth="142.0" styleClass="btn-menu" text="Single payment report" textFill="#544c4c" wrapText="true">
                             <font>
                                 <Font name="Arial" size="18.0" />
                             </font>
@@ -336,10 +336,30 @@
                         </JFXButton>
                     </children>
                 </HBox>
+            <Circle fx:id="activeImage" fill="DODGERBLUE" layoutX="106.0" layoutY="54.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label fx:id="activeUsername" layoutX="140.0" layoutY="44.0" text="Welcome :- Mohamed Ogleh" textFill="#3a6188">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="82.0" layoutY="651.0" prefHeight="20.0" prefWidth="142.0" text="Dashboard" textFill="#3a6188" AnchorPane.leftAnchor="82.0">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+            <HBox layoutX="82.0" layoutY="678.0" style="-fx-background-color: #f6f6f6;" AnchorPane.leftAnchor="82.0">
+               <children>
+                  <Label prefHeight="27.0" prefWidth="305.0" text="Swaeting is just fat crying" textFill="#687480">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             </children>
-         <BorderPane.margin>
-            <Insets top="5.0" />
-         </BorderPane.margin>
+            <BorderPane.margin>
+                <Insets top="5.0" />
+            </BorderPane.margin>
         </AnchorPane>
     </center>
 </BorderPane>

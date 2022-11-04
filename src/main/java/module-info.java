@@ -4,8 +4,10 @@ module com.example.desktopapp {
     requires AnimateFX;
     requires com.jfoenix;
     requires java.sql;
+    requires org.xerial.sqlitejdbc;
 
     opens com.example.desktopapp to javafx.fxml;
-    opens com.example.desktopapp.controllers to javafx.fxml;
+    opens com.example.desktopapp.controlls to javafx.fxml;
     exports com.example.desktopapp;
+    exports com.example.desktopapp.entities;
 }

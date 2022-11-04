@@ -1,40 +1,28 @@
 package com.example.desktopapp.entities;
 
+import java.time.LocalDate;
+
 public class Payments {
 
     private int paymentID;
     private String paymentDate;
 
-    private String expDate;
-    private String month;
-    private String year;
-    private final double amountPaid;
-    private final String paidBy;
-    private final double discount;
-    private final boolean poxing;
+    private LocalDate expDate;
 
-    private final String comment;
+    private String customerFK;
     private Box box;
 
-    public Payments(double amountPaid, String comment, String paidBy, double discount, boolean poxing) {
-        this.amountPaid = amountPaid;
-        this.comment = comment;
-        this.paidBy = paidBy;
-        this.discount = discount;
-        this.poxing = poxing;
+
+    public Payments(String paymentDate, LocalDate expDate) {
+        this.paymentDate = paymentDate;
+        this.expDate = expDate;
     }
 
-    public Payments(int paymentID, String paymentDate, String expDate, String month, String year, double amountPaid, String paidBy, double discount, boolean poxing, String comment) {
+    public Payments(int paymentID, String paymentDate, LocalDate expDate, String customerFK) {
         this.paymentID = paymentID;
         this.paymentDate = paymentDate;
         this.expDate = expDate;
-        this.month = month;
-        this.year = year;
-        this.amountPaid = amountPaid;
-        this.paidBy = paidBy;
-        this.discount = discount;
-        this.poxing = poxing;
-        this.comment = comment;
+        this.customerFK = customerFK;
     }
 
     public int getPaymentID() {
@@ -45,32 +33,8 @@ public class Payments {
         return paymentDate;
     }
 
-    public String getMonth() {
-        return month;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public double getAmountPaid() {
-        return amountPaid;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public String getPaidBy() {
-        return paidBy;
-    }
-
-    public double getDiscount() {
-        return discount;
-    }
-
-    public boolean isPoxing() {
-        return poxing;
+    public LocalDate getExpDate() {
+        return expDate;
     }
 
     public Box getBox() {
@@ -81,19 +45,17 @@ public class Payments {
         this.box = box;
     }
 
+    public String getCustomerFK() {
+        return customerFK;
+    }
+
     @Override
     public String toString() {
         return "Payments{" +
                 "paymentID=" + paymentID +
                 ", paymentDate='" + paymentDate + '\'' +
-                ", month='" + month + '\'' +
-                ", year='" + year + '\'' +
-                ", amountPaid=" + amountPaid +
-                ", comment='" + comment + '\'' +
-                ", paidBy='" + paidBy + '\'' +
-                ", discount=" + discount +
-                ", poxing=" + poxing +
-                ", \n\nbox=" + box +
+                ", expDate='" + expDate + '\'' +
+                ", box=" + box +
                 '}';
     }
 }

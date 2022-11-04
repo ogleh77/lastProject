@@ -3,13 +3,6 @@
     -fx-pref-height: 740;
     -fx-background-color: white;
 
-
-    /*-fx-padding: 10px;*/
-    /*-fx-border-insets: 5px;*/
-    /*-fx-background-insets: 5px;*/
-    /*-fx-border-color: #3aaacc;*/
-    /*-fx-border-width: 0.4;*/
-    /*-fx-background-radius: 10;*/
 }
 
 .btn-upload {
@@ -57,5 +50,21 @@
     -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, white;
     -fx-background-insets: 0 0 -1 0, 0, 1, 2;
     -fx-background-radius: 3px, 3px, 2px, 1px;
+}
+
+.text-field {
+    -fx-background-color: #F6F6F6;
+    -fx-prompt-text-fill: gray;
+    -fx-text-fill: black;
+    -fx-font-family: Arial;
+
+    -fx-border-color: #3a6188;
+    -fx-border-width: 0.5;
+}
+
+.combo-box-base {
+    -fx-background-color: #F6F6F6;
+    -fx-border-color: #3a6188;
+
 }
 

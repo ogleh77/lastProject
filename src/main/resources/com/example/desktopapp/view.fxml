@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="544.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desktopapp.Controller">
+   <children>
+      <Button layoutX="300.0" layoutY="111.0" mnemonicParsing="false" onAction="#fetcher" prefHeight="44.0" prefWidth="96.0" text="Fetch" />
+      <DatePicker layoutX="72.0" layoutY="108.0" />
+      <TextField fx:id="payment" layoutX="72.0" layoutY="232.0" prefHeight="32.0" prefWidth="178.0" />
+      <CheckBox fx:id="poxing" layoutX="260.0" layoutY="239.0" mnemonicParsing="false" text="Poxing" />
+      <ComboBox fx:id="comboBox" layoutX="366.0" layoutY="227.0" prefWidth="150.0" />
+      <ImageView fx:id="imgView" fitHeight="150.0" fitWidth="200.0" layoutX="224.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="280.0" layoutY="498.0" mnemonicParsing="false" onAction="#uploadHandler" prefHeight="32.0" prefWidth="108.0" text="Upload" />
+   </children>
+</AnchorPane>
