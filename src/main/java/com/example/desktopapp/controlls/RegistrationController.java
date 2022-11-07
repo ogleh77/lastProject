@@ -2,22 +2,26 @@ package com.example.desktopapp.controlls;
 
 import com.example.desktopapp.Common;
 import com.example.desktopapp.entities.Customers;
+import com.example.desktopapp.models.CustomerDAO;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -55,14 +59,19 @@ public class RegistrationController extends Common implements Initializable {
 
     @FXML
     private TextField weight;
+    @FXML
+    private Label customerId;
 
     private File selectedFile;
+
+    private BorderPane borderPane;
     private final ObservableList<Control> mandatoryFields;
     private final ToggleGroup genderGroup;
 
-    public RegistrationController() {
+    public RegistrationController() throws SQLException {
         this.mandatoryFields = FXCollections.observableArrayList();
         genderGroup = new ToggleGroup();
+        CustomerDAO.nextSqId();
     }
 
     @Override
@@ -72,13 +81,14 @@ public class RegistrationController extends Common implements Initializable {
         female.setToggleGroup(genderGroup);
         shift.setItems(super.shift);
         Platform.runLater(() -> {
+            customerId.setText(String.valueOf(CustomerDAO.id));
             mandatoryFields.addAll(firstName, middleName, lastName, phone, shift);
         });
 
     }
 
     @FXML
-    void stepTwoHandler(ActionEvent event) {
+    void stepTwoHandler(ActionEvent event) throws FileNotFoundException {
 
 
         if (!isValid(mandatoryFields, genderGroup) || !checkPhone()) {
@@ -88,7 +98,7 @@ public class RegistrationController extends Common implements Initializable {
             String _address = address.getText() != null ? address.getText().trim() : null;
             double _weight = ((!weight.getText().isEmpty() || !weight.getText().isBlank())) ? Double.parseDouble(weight.getText().trim()) : 65.0;
             String image = selectedFile != null ? selectedFile.getAbsolutePath() : null;
-
+            int _customerId = Integer.parseInt(customerId.getText().trim());
 
             if (selectedFile == null) {
                 Alert alert = message(Alert.AlertType.CONFIRMATION, "Sawir ka maad ilowdey mise ogaaan bad u dhaaftay?\n" +
@@ -100,37 +110,33 @@ public class RegistrationController extends Common implements Initializable {
 
                 if (confirm.get().getButtonData().isDefaultButton()) {
                     System.out.println("Ok selected");
-                    Customers customers = new Customers(firstName.getText(), phone.getText(), gander);
+                } else if (confirm.get().getButtonData().isCancelButton()) {
+                    alert.close();
 
-
-
-                } else {
+                    uploadImage();
                     System.out.println("Canceld...");
                 }
             }
 
+            Customers customers = new Customers(_customerId, firstName.getText(), middleName.getText(), lastName.getText()
+                    , phone.getText(), gander, shift.getValue(), _address, image, _weight, "Ogleh");
 
+            try {
+                message(Alert.AlertType.INFORMATION, "Buuxi formka paymentka", "Created");
+                ///  CustomerDAO.insertCustomer(customers);
+
+                FXMLLoader loader = openWindow("/com/example/desktopapp/views/payments.fxml", borderPane, null, null, null);
+                PaymentController controller = loader.getController();
+
+                controller.setCustomers(customers);
+            } catch (Exception e) {
+                e.printStackTrace();
+                message(Alert.AlertType.ERROR, "Khalad ba ka dhacay " + e.getMessage(), "Error");
+            }
 
 
         }
 
-
-//        if (selectedFile == null) {
-//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//            alert.setTitle("Forgot image");
-//            alert.setContentText("Image mad ilowdey");
-//            Optional<ButtonType> confirm = alert.showAndWait();
-//
-//
-//            if (confirm.get().getButtonData().isDefaultButton()) {
-//                System.out.println("Ok selected");
-//            } else {
-//                System.out.println("Canceld...");
-//            }
-//
-//        } else {
-//            System.out.println(selectedFile.getAbsolutePath());
-//        }
     }
 
     @FXML
@@ -145,9 +151,10 @@ public class RegistrationController extends Common implements Initializable {
     }
 
     @FXML
-    void resetHandler(ActionEvent event) {
+    void resetHandler(ActionEvent event) throws SQLException {
 
     }
+
 
     private boolean checkPhone() {
         boolean isValid;
@@ -181,5 +188,9 @@ public class RegistrationController extends Common implements Initializable {
         }
         //Setting the preserve ratio of the image view
 
+    }
+
+    public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
     }
 }

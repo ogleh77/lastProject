@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="gymPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="545.0" prefWidth="483.0" style="-fx-background-color: white;" stylesheets="@../../style/gym-creation-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.production.newcontrollers.newservices.GymController">
+    <children>
+        <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="483.0" spacing="230.0" style="-fx-background-color: #132332;">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="182.0" spacing="10.0">
+                    <children>
+                        <ImageView fitHeight="21.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../icons/icons8-collapse-30.png" />
+                            </image>
+                        </ImageView>
+                        <Label text="Shuruucda Gymka" textFill="#f2ecec">
+                            <font>
+                                <Font name="Arial Bold" size="13.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <HBox.margin>
+                        <Insets left="10.0" />
+                    </HBox.margin>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="61.0" spacing="10.0">
+                    <children>
+                        <HBox alignment="CENTER" onMouseClicked="#cancelHandler" prefHeight="36.0" prefWidth="58.0" styleClass="cancel-pane">
+                            <children>
+                                <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../icons/icons8-close-30.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </HBox>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+        <TextField fx:id="gymName" layoutX="25.0" layoutY="90.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g togdheer gym" />
+        <TextField fx:id="poxingCost" layoutX="29.0" layoutY="230.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g $3.0" />
+        <TextField fx:id="fitnessCost" layoutX="27.0" layoutY="161.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g $12.0" />
+        <JFXButton buttonType="RAISED" layoutX="266.0" layoutY="326.0" onAction="#createBoxHandler" prefHeight="36.0" prefWidth="182.0" styleClass="create-user-btn" text="Save garee" textFill="#aba2a2">
+            <font>
+                <Font name="Arial" size="15.0" />
+            </font>
+        </JFXButton>
+        <TextField fx:id="maxDiscount" layoutX="28.0" layoutY="298.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g $1" />
+        <ComboBox fx:id="boxView" layoutX="243.0" layoutY="87.0" prefHeight="30.0" prefWidth="194.0" promptText="Choose" />
+        <TextField fx:id="boxName" layoutX="260.0" layoutY="272.0" prefHeight="36.0" prefWidth="194.0" promptText="ke.g hanada kobaad" />
+        <Label layoutX="261.0" layoutY="217.0" text="Add new vip box" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial Black" size="13.0" />
+            </font>
+        </Label>
+        <Separator layoutX="248.0" layoutY="199.0" prefWidth="200.0" />
+        <TextField fx:id="boxCost" layoutX="247.0" layoutY="152.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g $12.0" />
+        <JFXButton buttonType="RAISED" layoutX="266.0" layoutY="426.0" onAction="#updateHandler" prefHeight="36.0" prefWidth="182.0" styleClass="load-mage-btn" text="Bedel" textFill="#aba2a2">
+            <font>
+                <Font name="Arial" size="15.0" />
+            </font>
+        </JFXButton>
+        <Separator layoutX="246.0" layoutY="205.0" orientation="VERTICAL" prefHeight="169.0" prefWidth="6.0" />
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../icons/experimental-loading-4.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="29.0" layoutY="487.0" text="Halkan ka bedel ">
+            <font>
+                <Font name="Arial Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="29.0" layoutY="508.0" text="shayga aad donayso inad wax ku darto ama wax ka bedesho" />
+      <Separator layoutX="255.0" layoutY="377.0" prefWidth="200.0" />
+      <Label layoutX="247.0" layoutY="131.0" prefHeight="16.0" prefWidth="139.0" text="Qiimaha khanadaha" textFill="#46749f">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="134.0" prefHeight="16.0" prefWidth="131.0" text="Qiimaha Jimicsiga" textFill="#46749f">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="26.0" layoutY="68.0" prefHeight="16.0" prefWidth="120.0" text="Magaca Gym ka" textFill="#46749f">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="209.0" prefHeight="16.0" prefWidth="120.0" text="Qimaha feedhka" textFill="#46749f">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="278.0" prefHeight="16.0" prefWidth="178.0" text="Qiimo dhimista usaraysa" textFill="#46749f">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="244.0" layoutY="68.0" prefHeight="16.0" prefWidth="166.0" text="Khanadaha aad haysto" textFill="#46749f">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="260.0" layoutY="252.0" prefHeight="16.0" prefWidth="120.0" text="Sumada Khanada" textFill="#46749f">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+    </children>
+    <effect>
+        <DropShadow height="56.58" radius="23.3425" width="38.79" />
+    </effect>
+</AnchorPane>

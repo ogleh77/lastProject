@@ -4,6 +4,7 @@ import animatefx.animation.FadeIn;
 import animatefx.animation.Shake;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideInRight;
+import com.example.desktopapp.entities.services.Users;
 import com.example.desktopapp.models.PaymentChecker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +27,7 @@ public abstract class Common {
     private final SlideInLeft slideInLeft;
     private final FadeIn fadeIn;
 
+    private Users activeUser;
     private PaymentChecker paymentChecker;
 
     public Common() {
@@ -143,7 +145,11 @@ public abstract class Common {
         return isValid;
     }
 
-    public void setPaymentChecker(PaymentChecker paymentChecker) {
+    public void setPaymentChecker(PaymentChecker paymentChecker) throws IOException {
         this.paymentChecker = paymentChecker;
+    }
+
+    public void setActiveUser(Users activeUser) {
+        this.activeUser = activeUser;
     }
 }

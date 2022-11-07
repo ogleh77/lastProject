@@ -1,10 +1,7 @@
 package com.example.desktopapp.models;
-
-import com.example.desktopapp.Common;
-import com.example.desktopapp.entities.Users;
+import com.example.desktopapp.entities.services.Users;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

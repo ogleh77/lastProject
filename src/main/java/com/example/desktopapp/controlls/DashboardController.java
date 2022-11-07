@@ -4,12 +4,13 @@ import animatefx.animation.FadeIn;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideOutLeft;
 import com.example.desktopapp.Common;
-import com.example.desktopapp.entities.Users;
+import com.example.desktopapp.controlls.service.NotificationsControllers;
 import com.example.desktopapp.models.PaymentChecker;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -19,9 +20,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class DashboardController extends Common implements Initializable {
@@ -46,7 +46,7 @@ public class DashboardController extends Common implements Initializable {
     private Label activeUsername;
 
     private boolean visible = true;
-
+    private PaymentChecker paymentChecker;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,11 +58,33 @@ public class DashboardController extends Common implements Initializable {
     }
 
     @FXML
-    void homeHandler(ActionEvent event) {
-        sidePane.setVisible(true);
-        borderPane.setLeft(sidePane);
-        menuHbox.setVisible(true);
-        topProfile.setVisible(true);
+    void homeHandler(ActionEvent event) throws IOException {
+        FXMLLoader loader = openWindow("/com/example/desktopapp/views/home.fxml", borderPane, sidePane, menuHbox, topProfile);
+        HomeController controller = loader.getController();
+        controller.setPaymentChecker(paymentChecker);
+    }
+
+    @FXML
+    void registrationHandler(ActionEvent event) throws IOException {
+        FXMLLoader loader = openWindow("/com/example/desktopapp/views/registrations.fxml", borderPane, sidePane, menuHbox, topProfile);
+        RegistrationController controller = loader.getController();
+        controller.setActiveUser(paymentChecker.getActiveUser());
+        controller.setBorderPane(borderPane);
+    }
+
+    @FXML
+    void notificationHandler(ActionEvent event) throws IOException {
+        FXMLLoader loader = openWindow("/com/example/desktopapp/views/services/notifications.fxml", borderPane, sidePane, menuHbox, topProfile);
+        NotificationsControllers controllers = loader.getController();
+        controllers.setPaymentChecker(paymentChecker);
+        controllers.setBorderPane(borderPane);
+    }
+    @FXML
+    void notificationMouseHandler(MouseEvent event) throws IOException {
+        FXMLLoader loader = openWindow("/com/example/desktopapp/views/services/notifications.fxml", borderPane, sidePane, menuHbox, topProfile);
+        NotificationsControllers controllers = loader.getController();
+        controllers.setPaymentChecker(paymentChecker);
+        controllers.setBorderPane(borderPane);
     }
 
     @FXML
@@ -95,8 +117,10 @@ public class DashboardController extends Common implements Initializable {
 
     @Override
     public void setPaymentChecker(PaymentChecker paymentChecker) {
-
+        this.paymentChecker = paymentChecker;
         //U bedel subax wcan insha Allah
+
+
         activeUsername.setText("Welcome :-  " + paymentChecker.getActiveUser().getUsername());
 
         if (paymentChecker.getOutdatedCustomers().size() > 0) {

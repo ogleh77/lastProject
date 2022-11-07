@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="545.0" prefWidth="483.0" styleClass="user-pane" stylesheets="@../../style/user-creation-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.production.controller.service.UserCreationController">
+    <children>
+        <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="483.0" spacing="230.0" style="-fx-background-color: #132332;">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="182.0" spacing="10.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../black-Icon/icons8-registration-30.png" />
+                            </image>
+                        </ImageView>
+                        <Label text="Create new user" textFill="#f2ecec">
+                            <font>
+                                <Font name="Arial Bold" size="13.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <HBox.margin>
+                        <Insets left="10.0" />
+                    </HBox.margin>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="61.0" spacing="10.0">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="36.0" prefWidth="58.0" styleClass="cancel-pane">
+                            <children>
+                                <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../icons/icons8-close-30.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </HBox>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+        <TextField fx:id="firstname" layoutX="25.0" layoutY="90.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g mohamed" />
+        <Label layoutX="25.0" layoutY="67.0" text="First name" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <TextField fx:id="lastname" layoutX="259.0" layoutY="87.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g ogleh" />
+        <Label layoutX="259.0" layoutY="64.0" text="Last name" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <TextField fx:id="phone" layoutX="27.0" layoutY="166.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g xxx-xxx" />
+        <Label layoutX="28.0" layoutY="142.0" text="phone" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <Label layoutX="264.0" layoutY="138.0" text="gender" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <JFXRadioButton fx:id="male" layoutX="267.0" layoutY="168.0" text="Male" />
+        <JFXRadioButton fx:id="female" layoutX="377.0" layoutY="168.0" text="Female" />
+        <ComboBox fx:id="shift" layoutX="28.0" layoutY="238.0" prefHeight="36.0" prefWidth="194.0" promptText="Choose" />
+        <Label layoutX="28.0" layoutY="214.0" text="shift the user is managing" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <JFXButton buttonType="RAISED" layoutX="279.0" layoutY="489.0" onAction="#createUser" prefHeight="36.0" prefWidth="182.0" styleClass="create-user-btn" text="Create user" textFill="#aba2a2">
+            <font>
+                <Font name="Arial" size="15.0" />
+            </font>
+        </JFXButton>
+        <TextField fx:id="username" layoutX="28.0" layoutY="304.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g ogleh" />
+        <Label layoutX="28.0" layoutY="281.0" text="username" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <Label layoutX="28.0" layoutY="350.0" text="password" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <VBox layoutX="267.0" layoutY="304.0" prefHeight="164.0" prefWidth="194.0" style="-fx-background-color: white;">
+            <effect>
+                <DropShadow />
+            </effect>
+            <children>
+                <ImageView fx:id="imageView" fitHeight="166.0" fitWidth="200.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../icons/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpeg" />
+               </image></ImageView>
+            </children>
+        </VBox>
+        <Label layoutX="259.0" layoutY="201.0" text="Role" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <JFXButton buttonType="RAISED" layoutX="40.0" layoutY="432.0" onAction="#imageUploader" prefHeight="36.0" prefWidth="171.0" styleClass="load-mage-btn" text="Upload image" textFill="#403a3a">
+            <font>
+                <Font name="Arial" size="15.0" />
+            </font>
+        </JFXButton>
+        <PasswordField fx:id="password" layoutX="28.0" layoutY="376.0" prefHeight="36.0" prefWidth="194.0" promptText="enter password" />
+        <JFXRadioButton fx:id="superadmin" layoutX="283.0" layoutY="237.0" text="Super admin" />
+        <JFXRadioButton fx:id="admin" layoutX="283.0" layoutY="272.0" text="Admin" />
+        <JFXRadioButton fx:id="user" layoutX="370.0" layoutY="272.0" text="User" />
+    </children>
+    <effect>
+        <DropShadow height="38.79" radius="23.3425" width="56.58" />
+    </effect>
+</AnchorPane>

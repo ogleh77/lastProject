@@ -1,15 +1,13 @@
 package com.example.desktopapp.models;
 
 import com.example.desktopapp.entities.Customers;
-import com.example.desktopapp.entities.Payments;
-import com.example.desktopapp.entities.Users;
+
+import com.example.desktopapp.entities.services.Users;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
+
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.time.LocalDate;
 
 public class PaymentChecker extends Task<Void> {

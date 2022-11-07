@@ -1,7 +1,7 @@
 package com.example.desktopapp.controlls;
 
 import com.example.desktopapp.Common;
-import com.example.desktopapp.entities.Users;
+import com.example.desktopapp.entities.services.Users;
 import com.example.desktopapp.models.PaymentChecker;
 import javafx.application.Platform;
 import javafx.fxml.FXML;

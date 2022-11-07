@@ -1,11 +1,8 @@
 package com.example.desktopapp.controlls;
 
 import com.example.desktopapp.Common;
-import com.example.desktopapp.HelloApplication;
-import com.example.desktopapp.entities.Users;
-import com.example.desktopapp.models.CustomerDAO;
+import com.example.desktopapp.entities.services.Users;
 import com.example.desktopapp.models.UserDTO;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,7 +52,7 @@ public class LoginController extends Common implements Initializable {
         } else {
             stage = (Stage) userCombo.getScene().getWindow();
 
-            FXMLLoader loader = openNormalWindow("/com/example/desktopapp/views/splash-screen.fxml");
+            FXMLLoader loader = openNormalWindow("/com/example/desktopapp/views/services/splash-screen.fxml");
             Scene scene = new Scene(loader.load());
             SplashScreenController splashScreen = loader.getController();
             splashScreen.setActiveUser(userCombo.getValue());

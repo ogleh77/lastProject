@@ -1,24 +1,22 @@
 package com.example.desktopapp.entities;
 
 public class Box {
-
-    private int boxID;
+    private int boxId;
     private String boxName;
-
     private boolean isReady;
 
     public Box(String boxName) {
         this.boxName = boxName;
     }
 
-    public Box(int boxID, String boxName, boolean isReady) {
-        this.boxID = boxID;
+    public Box(int boxId, String boxName, boolean isReady) {
+        this.boxId = boxId;
         this.boxName = boxName;
         this.isReady = isReady;
     }
 
-    public int getBoxID() {
-        return boxID;
+    public int getBoxId() {
+        return boxId;
     }
 
     public String getBoxName() {
@@ -29,20 +27,10 @@ public class Box {
         return isReady;
     }
 
-    public void setBoxID(int boxID) {
-        this.boxID = boxID;
-    }
-
-    public void setBoxName(String boxName) {
-        this.boxName = boxName;
-    }
-
-    public void setReady(boolean ready) {
-        isReady = ready;
-    }
-
     @Override
     public String toString() {
-        return boxName + " Is available";
+        return "Box{" +
+                "boxName='" + boxName + '\'' +
+                '}';
     }
 }

@@ -1,43 +1,53 @@
 package com.example.desktopapp.models;
 
-import com.example.desktopapp.entities.Box;
 import com.example.desktopapp.entities.Customers;
 import com.example.desktopapp.entities.Payments;
-import com.example.desktopapp.entities.Users;
+import com.example.desktopapp.entities.services.Users;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class CustomerDAO {
-    static Connection connection = IConnection.getConnection();
     public static int limit = 0;
+    public static int id = 1;
 
-    public static void update(Payments payment) throws SQLException {
-        String updateQuery = "UPDATE payments\n" +
-                "SET active=false\n" +
-                "WHERE payment_id =" + payment.getPaymentID();
+    static Connection connection = IConnection.getConnection();
 
-        Statement statement = IConnection.getConnection().createStatement();
+    public static void insertCustomer(Customers customer) throws SQLException {
+        String insertQuery = "INSERT INTO customers(first_name, middle_name, last_name, phone, gander, shift, address, image, weight, who_added)\n" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        statement.executeUpdate(updateQuery);
+        PreparedStatement ps = connection.prepareStatement(insertQuery);
 
-        System.out.println(payment.getPaymentID() + " is false");
+        ps.setString(1, customer.getFirstName());
+        ps.setString(2, customer.getMiddleName());
+        ps.setString(3, customer.getLastName());
+        ps.setString(4, customer.getPhone());
+        ps.setString(5, customer.getGander());
+        ps.setString(6, customer.getShift());
+        ps.setString(7, customer.getAddress());
+        ps.setString(8, customer.getImage());
+        ps.setDouble(9, customer.getWeight());
+        ps.setString(10, customer.getWhoAdded());
+
+        ps.executeUpdate();
+
+        System.out.println("Customer added");
+
+
     }
-
 
     public static ObservableList<Customers> fetchPaymentsWithGender(Users activeUser) throws SQLException {
         ObservableList<Customers> customers = FXCollections.observableArrayList();
         String fetchQuery = "";
         if (activeUser.getRole().equals("super admin")) {
             System.out.println("Active customer is " + activeUser.getRole());
-            fetchQuery = "SELECT * FROM payments LEFT JOIN customers on payments.customer_fk = customers.customer_id WHERE active=true";
+            fetchQuery = "SELECT * FROM payments LEFT JOIN customers on payments.customer_fk = customers.customer_id WHERE is_online=true";
 
         } else {
-            fetchQuery = "SELECT * FROM payments LEFT JOIN customers on payments.customer_fk = customers.customer_id WHERE active=true AND gender='" + activeUser.getGender() + "'";
+            fetchQuery = "SELECT * FROM payments LEFT JOIN customers on payments.customer_fk = customers.customer_id WHERE is_online=true AND gander='" + activeUser.getGender() + "'";
             System.out.println("Active customer is " + activeUser.getRole());
         }
 
@@ -47,8 +57,15 @@ public class CustomerDAO {
         Payments payment;
         while (rs.next()) {
             limit++;
-            customer = new Customers(rs.getInt("customer_id"), rs.getString("first_name"), rs.getString("gender"), rs.getString("phone"));
-            payment = new Payments(rs.getInt("payment_id"), rs.getString("payment_date"), LocalDate.parse(rs.getString("exp_date")), rs.getString("customer_fk"));
+            customer = new Customers(rs.getInt("customer_id"), rs.getString("first_name"), rs.getString("middle_name"), rs.getString("last_name"),
+                    rs.getString("phone"), rs.getString("gander"), rs.getString("shift"),
+                    rs.getString("address"), rs.getString("image"), rs.getDouble("weight"),
+                    rs.getString("who_added"));
+
+            payment = new Payments(rs.getInt("payment_id"), rs.getString("payment_date"), LocalDate.parse(rs.getString("exp_date")), rs.getString("month"),
+                    rs.getString("year"), rs.getDouble("amount_paid"), rs.getString("paid_by"),
+                    rs.getDouble("discount"), rs.getBoolean("poxing"), rs.getString("customer_fk"), rs.getBoolean("is_online"));
+
             if (customer.getCustomerId() == Integer.parseInt((payment.getCustomerFK()))) {
                 customer.getPayments().add(payment);
             }
@@ -59,45 +76,19 @@ public class CustomerDAO {
         return customers;
     }
 
-    public static ObservableList<Customers> fetchAll() throws SQLException {
-        ObservableList<Customers> customers = FXCollections.observableArrayList();
 
-        ObservableList<Payments> payments = FXCollections.observableArrayList();
-        String fetchQuery = "SELECT * FROM payments LEFT JOIN customers on payments.customer_fk = customers.phone WHERE active=true";
+    public static int nextSqId() throws SQLException {
+        String query = "SELECT MAX(customer_id) AS max_id FROM customers;";
 
         Statement statement = connection.createStatement();
 
-        ResultSet rs = statement.executeQuery(fetchQuery);
-
-        Customers customer;
-
-        Payments payment;
-
-        Box box;
+        ResultSet rs = statement.executeQuery(query);
 
         while (rs.next()) {
-            //   customer = new Customers(rs.getInt("customer_id"), rs.getString("first_name"), rs.getString("phone"));
-            payment = new Payments(rs.getInt("payment_id"), rs.getString("payment_date"), LocalDate.parse(rs.getString("exp_date")), rs.getString("customer_fk"));
-            payments.add(payment);
-
-            while (payment.getCustomerFK().equals("phone")) {
-                //      customer.getPayments().add(payment);
-            }
-            //  customers.add(customer);
-//            if (rs.getString("box_fk") != null) {
-//
-//                box = new Box(rs.getInt("box_id"), rs.getString("box_name"), rs.getBoolean("is_ready"));
-//                payment.setBox(box);
-//            }
-            //  customer.setPayments(payments);
+            id += rs.getInt("max_id");
         }
 
-
-        statement.close();
-        rs.close();
-        return customers;
+        return id;
     }
-
-};
-
+}
 
