@@ -23,6 +23,7 @@ public class Gym {
         this.poxingCost = poxingCost;
         this.boxCost = boxCost;
         this.maxDiscount = maxDiscount;
+       this.vipBoxes = FXCollections.observableArrayList();
     }
 
     public int getGymId() {
@@ -50,7 +51,23 @@ public class Gym {
     }
 
     public ObservableList<Box> getVipBoxes() {
-        this.vipBoxes = FXCollections.observableArrayList();
-        return vipBoxes;
+         return vipBoxes;
+    }
+
+    public void setVipBoxes(ObservableList<Box> vipBoxes) {
+        this.vipBoxes = vipBoxes;
+    }
+
+    @Override
+    public String toString() {
+        return "Gym{" +
+                "gymId=" + gymId +
+                ", gymName='" + gymName + '\'' +
+                ", fitnessCost=" + fitnessCost +
+                ", poxingCost=" + poxingCost +
+                ", boxCost=" + boxCost +
+                ", maxDiscount=" + maxDiscount +
+                ", vipBoxes=" + vipBoxes +
+                '}';
     }
 }

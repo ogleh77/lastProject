@@ -1,8 +1,11 @@
-package com.example.desktopapp.controlls;
+package com.example.desktopapp.controllers;
 
-import com.example.desktopapp.Common;
+import com.example.desktopapp.controllers.services.SplashScreenController;
 import com.example.desktopapp.entities.services.Users;
-import com.example.desktopapp.models.UserDTO;
+import com.example.desktopapp.models.DailyReportDTO;
+import com.example.desktopapp.models.UsersDTO;
+import com.example.desktopapp.services.CommonClass;
+import com.example.desktopapp.services.IConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,9 +22,11 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class LoginController extends Common implements Initializable {
+public class LoginController extends CommonClass implements Initializable {
     @FXML
     private AnchorPane loginPane;
 
@@ -30,14 +35,13 @@ public class LoginController extends Common implements Initializable {
 
     @FXML
     private ComboBox<Users> userCombo;
-
     private Stage stage;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            userCombo.setItems(UserDTO.fetchUsers());
 
+        try {
+            userCombo.setItems(UsersDTO.users());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -47,12 +51,12 @@ public class LoginController extends Common implements Initializable {
     void loginHandler(ActionEvent event) throws IOException {
 
         if (!password.getText().equals(userCombo.getValue().getPassword())) {
-            Alert alert = message(Alert.AlertType.ERROR, "Username OR Password incorrect", "Authentication failed");
+            Alert alert = messageAlert("Authentication failed", "Username OR Password incorrect", Alert.AlertType.ERROR);
             alert.showAndWait();
         } else {
             stage = (Stage) userCombo.getScene().getWindow();
 
-            FXMLLoader loader = openNormalWindow("/com/example/desktopapp/views/services/splash-screen.fxml");
+            FXMLLoader loader = openNormalWindow("/com/example/desktopapp/views/service/splash-screen.fxml");
             Scene scene = new Scene(loader.load());
             SplashScreenController splashScreen = loader.getController();
             splashScreen.setActiveUser(userCombo.getValue());
@@ -69,9 +73,18 @@ public class LoginController extends Common implements Initializable {
 
     }
 
+
     @FXML
-    void exitHandler(MouseEvent event) {
+    void exitHandler(MouseEvent event) throws SQLException {
+
+        try {
+            Statement statement = IConnection.getConnection().createStatement();
+            DailyReportDTO.dailyReportMaleWithOutBox(LocalDate.now(), statement);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
-
-
 }

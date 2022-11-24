@@ -1,6 +1,6 @@
 .dash-pane {
     -fx-pref-height: 800;
-    -fx-pref-width: 1300;
+    -fx-pref-width: 1400;
     -fx-background-color: #f6f1f1;
     /*-fx-background-color: white;*/
 }
@@ -57,4 +57,13 @@
     -fx-background-color: red;
     -fx-border-radius: 50;
     -fx-background-radius: 50;
+}
+.label-background {
+    -fx-background-color: #dae0da;
+}
+
+.text-field {
+    -fx-background-color: #F6F6F6;
+    -fx-border-color: #3a6188;
+    -fx-border-width: 0.5;
 }

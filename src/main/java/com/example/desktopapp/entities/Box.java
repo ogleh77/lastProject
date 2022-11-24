@@ -30,7 +30,9 @@ public class Box {
     @Override
     public String toString() {
         return "Box{" +
-                "boxName='" + boxName + '\'' +
+                "boxId=" + boxId +
+                ", boxName='" + boxName + '\'' +
+                ", isReady=" + isReady +
                 '}';
     }
 }

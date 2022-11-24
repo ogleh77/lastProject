@@ -1,6 +1,5 @@
 package com.example.desktopapp.entities;
 
-import javafx.scene.shape.Box;
 
 import java.time.LocalDate;
 
@@ -8,26 +7,18 @@ public class Payments {
 
     private int paymentID;
     private String paymentDate;
-    private LocalDate expDate;
+    private final LocalDate expDate;
     private String month;
     private String year;
-    private double amountPaid;
-    private String paidBy;
-    private double discount;
-    private boolean poxing;
+    private final double amountPaid;
+    private final String paidBy;
+    private final double discount;
+    private final boolean poxing;
     private Box box;
-    private String customerFK;
+    private final String customerFK;
     private boolean online;
 
-    public Payments(LocalDate expDate, double amountPaid, String paidBy, double discount, boolean poxing, Box box, String customerFK) {
-        this.expDate = expDate;
-        this.amountPaid = amountPaid;
-        this.paidBy = paidBy;
-        this.discount = discount;
-        this.poxing = poxing;
-        this.box = box;
-        this.customerFK = customerFK;
-    }
+    private Payments payment;
 
     public Payments(int paymentID, String paymentDate, LocalDate expDate, String month, String year, double amountPaid, String paidBy, double discount, boolean poxing, String customerFK, boolean online) {
         this.paymentID = paymentID;
@@ -39,9 +30,17 @@ public class Payments {
         this.paidBy = paidBy;
         this.discount = discount;
         this.poxing = poxing;
-        this.box = box;
         this.customerFK = customerFK;
         this.online = online;
+    }
+
+    public Payments(LocalDate expDate, double amountPaid, String paidBy, double discount, boolean poxing, String customerFK) {
+        this.expDate = expDate;
+        this.amountPaid = amountPaid;
+        this.paidBy = paidBy;
+        this.discount = discount;
+        this.poxing = poxing;
+        this.customerFK = customerFK;
     }
 
     public int getPaymentID() {
@@ -92,15 +91,44 @@ public class Payments {
         return online;
     }
 
+    public Payments getPayment() {
+        return payment;
+    }
+    //-----------------------------Setters------------------------
+
+
+    public void setBox(Box box) {
+        this.box = box;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
+    public void setPayments(Payments payment) {
+        this.payment = payment;
+    }
+
+    public void setPayment(Payments payment) {
+        this.payment = payment;
+    }
+
     @Override
     public String toString() {
         return "Payments{" +
                 "paymentID=" + paymentID +
                 ", paymentDate='" + paymentDate + '\'' +
-                ", expDate='" + expDate + '\'' +
+                ", expDate=" + expDate +
+                ", month='" + month + '\'' +
+                ", year='" + year + '\'' +
+                ", amountPaid=" + amountPaid +
+                ", paidBy='" + paidBy + '\'' +
+                ", discount=" + discount +
+                ", poxing=" + poxing +
                 ", box=" + box +
-                ", customerFK='" + customerFK + '\'' +
+                ", customerFK=" + customerFK +
                 ", online=" + online +
+                ", payments=" + payment +
                 '}';
     }
 }

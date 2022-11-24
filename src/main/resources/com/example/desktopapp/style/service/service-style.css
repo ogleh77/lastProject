@@ -1,0 +1,47 @@
+.service-pane {
+    -fx-pref-width: 483;
+    -fx-pref-height: 545;
+    -fx-background-color: white;
+}
+
+.top-pane {
+    -fx-background-color: #2B4865;
+}
+
+.combo-box-base {
+    -fx-background-color: #F6F6F6;
+    -fx-border-color: #3a6188;
+}
+
+.top-label {
+    -fx-text-fill: #c6d0cd;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 16;
+}
+
+.label-background {
+    -fx-background-color: #dae0da;
+}
+
+.btn-login {
+    -fx-background-color: #2B4865;
+    -fx-text-fill: white;
+}
+
+.btn-login:hover {
+    -fx-background-color: #3a6188;
+    -fx-cursor: hand;
+}
+
+.cancel-pane:hover {
+    -fx-background-color: #b71818;
+}
+
+.label-background {
+    -fx-background-color: #dae0da;
+}
+.text-field {
+    -fx-background-color: #F6F6F6;
+    -fx-border-color: #3a6188;
+    -fx-border-width: 0.5;
+}

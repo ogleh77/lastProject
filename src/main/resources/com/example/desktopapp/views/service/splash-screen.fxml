@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="login-pane" stylesheets="@../../style/login-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desktopapp.controllers.services.SplashScreenController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="43.0" prefWidth="600.0" spacing="290.0" styleClass="top-pane">
+         <children>
+            <HBox alignment="CENTER" prefHeight="43.0" prefWidth="246.0" spacing="10.0">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../black-Icon/icons8-barbell-50.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="24.0" prefWidth="191.0" styleClass="top-label" text="Togdheer gym center" textFill="#c6d0cd" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <ProgressBar fx:id="progress" layoutX="53.0" layoutY="364.0" prefHeight="25.0" prefWidth="275.0" progress="0.47" />
+      <Label layoutX="338.0" layoutY="365.0" prefHeight="24.0" prefWidth="184.0" text="payment is cheking please wait....." textFill="#5e7573">
+         <font>
+            <Font name="Arial Bold" size="11.0" />
+         </font>
+      </Label>
+      <Circle fx:id="userProfile" fill="DODGERBLUE" layoutX="61.0" layoutY="81.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="userName" alignment="CENTER" layoutX="106.0" layoutY="69.0" prefHeight="24.0" prefWidth="184.0" styleClass="label-background" text="welcome Ogleh" textFill="#3e6157">
+         <font>
+            <Font name="Arial Black" size="16.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="217.0" fitWidth="288.0" layoutX="156.0" layoutY="131.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../icons/experimental-loading-4.png" />
+         </image>
+      </ImageView>
+   </children>
+   <effect>
+      <DropShadow height="31.38" radius="12.594999999999999" />
+   </effect>
+</AnchorPane>

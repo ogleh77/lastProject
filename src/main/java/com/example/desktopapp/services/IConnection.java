@@ -1,4 +1,4 @@
-package com.example.desktopapp.models;
+package com.example.desktopapp.services;
 
 import javafx.scene.control.Alert;
 

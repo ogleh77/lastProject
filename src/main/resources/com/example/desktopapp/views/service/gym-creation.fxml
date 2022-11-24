@@ -13,18 +13,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="gymPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="545.0" prefWidth="483.0" style="-fx-background-color: white;" stylesheets="@../../style/gym-creation-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.production.newcontrollers.newservices.GymController">
+<AnchorPane fx:id="gymPane" maxHeight="-Infinity" maxWidth="-Infinity" styleClass="service-pane" stylesheets="@../../style/service/service-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.production.newcontrollers.newservices.GymController">
     <children>
-        <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="483.0" spacing="230.0" style="-fx-background-color: #132332;">
+        <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="483.0" spacing="200.0" style="-fx-background-color: #132332;">
             <children>
-                <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="182.0" spacing="10.0">
+                <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="214.0" spacing="10.0">
                     <children>
                         <ImageView fitHeight="21.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../../icons/icons8-collapse-30.png" />
                             </image>
                         </ImageView>
-                        <Label text="Shuruucda Gymka" textFill="#f2ecec">
+                        <Label styleClass="top-label" text="Shuruucda Gymka" textFill="#f2ecec">
                             <font>
                                 <Font name="Arial Bold" size="13.0" />
                             </font>
@@ -55,7 +55,7 @@
         <TextField fx:id="gymName" layoutX="25.0" layoutY="90.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g togdheer gym" />
         <TextField fx:id="poxingCost" layoutX="29.0" layoutY="230.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g $3.0" />
         <TextField fx:id="fitnessCost" layoutX="27.0" layoutY="161.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g $12.0" />
-        <JFXButton buttonType="RAISED" layoutX="266.0" layoutY="326.0" onAction="#createBoxHandler" prefHeight="36.0" prefWidth="182.0" styleClass="create-user-btn" text="Save garee" textFill="#aba2a2">
+        <JFXButton buttonType="RAISED" layoutX="266.0" layoutY="326.0" onAction="#createBoxHandler" prefHeight="36.0" prefWidth="182.0" styleClass="btn-login" text="Save garee" textFill="#aba2a2">
             <font>
                 <Font name="Arial" size="15.0" />
             </font>
@@ -70,7 +70,7 @@
         </Label>
         <Separator layoutX="248.0" layoutY="199.0" prefWidth="200.0" />
         <TextField fx:id="boxCost" layoutX="247.0" layoutY="152.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g $12.0" />
-        <JFXButton buttonType="RAISED" layoutX="266.0" layoutY="426.0" onAction="#updateHandler" prefHeight="36.0" prefWidth="182.0" styleClass="load-mage-btn" text="Bedel" textFill="#aba2a2">
+        <JFXButton buttonType="RAISED" layoutX="266.0" layoutY="426.0" onAction="#updateHandler" prefHeight="36.0" prefWidth="182.0" styleClass="btn-login" text="Bedel" textFill="#aba2a2">
             <font>
                 <Font name="Arial" size="15.0" />
             </font>
@@ -81,9 +81,9 @@
                 <Image url="@../../icons/experimental-loading-4.png" />
             </image>
         </ImageView>
-        <Label layoutX="29.0" layoutY="487.0" text="Halkan ka bedel ">
+        <Label layoutX="29.0" layoutY="487.0" styleClass="label-background" text="Halkan ka bedel " textFill="#3a6188">
             <font>
-                <Font name="Arial Bold" size="14.0" />
+                <Font name="Arial Black" size="14.0" />
             </font>
         </Label>
         <Label layoutX="29.0" layoutY="508.0" text="shayga aad donayso inad wax ku darto ama wax ka bedesho" />
@@ -93,12 +93,12 @@
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="27.0" layoutY="134.0" prefHeight="16.0" prefWidth="131.0" text="Qiimaha Jimicsiga" textFill="#46749f">
+      <Label layoutX="27.0" layoutY="134.0" prefHeight="16.0" prefWidth="131.0" text="Fitness cost" textFill="#46749f">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="26.0" layoutY="68.0" prefHeight="16.0" prefWidth="120.0" text="Magaca Gym ka" textFill="#46749f">
+      <Label layoutX="26.0" layoutY="68.0" prefHeight="16.0" prefWidth="120.0" text="Gym name" textFill="#46749f">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>

@@ -23,7 +23,7 @@ public class Customers {
     private JFXButton information;
     private JFXButton update;
 
-
+    private Payments payment;
     private ObservableList<Payments> payments;
 
     public Customers(int customerId, String firstName, String middleName, String lastName, String phone, String gander, String shift, String address, String image, double weight, String whoAdded) {
@@ -43,6 +43,20 @@ public class Customers {
         information.setStyle("-fx-background-color: #1e6e66;-fx-text-fill: white");
         update.setStyle("-fx-background-color: dodgerblue;-fx-text-fill: white");
 
+        this.payments = FXCollections.observableArrayList();
+    }
+
+    public Customers(String firstName, String middleName, String lastName, String phone, String gander, String shift, String address, String image, double weight, String whoAdded) {
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.gander = gander;
+        this.shift = shift;
+        this.address = address;
+        this.image = image;
+        this.weight = weight;
+        this.whoAdded = whoAdded;
         this.payments = FXCollections.observableArrayList();
     }
 
@@ -101,6 +115,20 @@ public class Customers {
     public ObservableList<Payments> getPayments() {
 
         return payments;
+    }
+
+    public Payments getPayment() {
+        return payment;
+    }
+    //----------------------------_Setters-------------------------
+
+
+    public void setPayment(Payments payment) {
+        this.payment = payment;
+    }
+
+    public void setPayments(ObservableList<Payments> payments) {
+        this.payments = payments;
     }
 
     @Override
