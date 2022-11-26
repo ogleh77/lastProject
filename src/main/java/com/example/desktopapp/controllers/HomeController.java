@@ -8,13 +8,16 @@ import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -59,15 +62,36 @@ public class HomeController extends CommonClass implements Initializable {
 
     private PaymentChecker paymentChecker;
 
+    private BorderPane borderPane;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
+
             System.out.println("Wait");
             paymentChecker.FetchAllCustomers.setOnSucceeded(e -> {
                 System.out.println("Done");
                 initTable();
-            });
 
+
+            });
+            for (Customers customer : paymentChecker.getAllCustomers()) {
+
+                customer.getUpdate().setOnAction(e -> {
+                    FXMLLoader loader = null;
+                    try {
+                        loader = openWindow("/com/example/desktopapp/views/payments.fxml", borderPane, null, null, null);
+                        PaymentController controller = loader.getController();
+                        controller.setCustomer(customer);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    PaymentController controller = loader.getController();
+                    controller.setCustomer(customer);
+                    // controller.setBorderPane(borderPane);
+                    controller.setPaymentChecker(paymentChecker);
+                });
+            }
         });
 
 
@@ -105,4 +129,9 @@ public class HomeController extends CommonClass implements Initializable {
         thread.setDaemon(true);
         thread.start();
     }
+
+//    @Override
+//    public void setBorderPane(BorderPane borderPane) {
+//        this.borderPane = borderPane;
+//    }
 }

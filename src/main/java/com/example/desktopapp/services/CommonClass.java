@@ -5,6 +5,7 @@ import animatefx.animation.Shake;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideInRight;
 import com.example.desktopapp.HelloApplication;
+import com.example.desktopapp.controllers.DashboardController;
 import com.example.desktopapp.entities.Customers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -118,7 +119,8 @@ public class CommonClass {
             sidePane.setVisible(true);
             slideInLeft.setNode(sidePane);
             slideInLeft.play();
-            borderPane.setLeft(sidePane);
+            System.out.println("In Opener The ref is " + DashboardController.borderPane);
+            DashboardController.borderPane.setLeft(sidePane);
         }
         //side menu
 
@@ -142,8 +144,8 @@ public class CommonClass {
         AnchorPane anchorPane = loader.load();
         slideInRight.setNode(anchorPane);
         slideInRight.play();
-        borderPane.setCenter(anchorPane);
-
+        DashboardController.borderPane.setCenter(anchorPane);
+        System.out.println("In Opener The ref is " + DashboardController.borderPane);
         return loader;
     }
 

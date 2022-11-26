@@ -5,71 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="326a82b6-ed2c-4911-9fb0-3599560e0083" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/DashboardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/HomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/PaymentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/RegistrationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/services/MonthlyReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/services/SplashScreenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/services/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entities/services/DailyReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models/CustomerDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models/DailyReportDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models/GymDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models/PaymentDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models/UsersDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/services/CommonClass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/services/CustomException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/services/PaymentChecker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/style/info/login-style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/style/service/service-style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/customer-info.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/info/pending-costumers.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/info/reports.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/service/splash-screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0564da4b-d10f-4913-ba71-b7c2825b4350.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0564da4b-d10f-4913-ba71-b7c2825b4350.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/mydb.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/mydb.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/Common.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controlls/DashboardController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controlls/HomeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controlls/LoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controlls/PaymentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controlls/RegistrationController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controlls/SplashScreenController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controlls/service/NotificationsControllers.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controlls/service/OutDatedController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entities/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entities/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entities/Customers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entities/Customers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entities/Payments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entities/Payments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entities/services/Gym.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entities/services/Gym.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models/CustomerDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models/GymDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models/IConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/services/IConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models/PaymentChecker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models/UserDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/icons/undraw_indoor_bike_pwa4 (1).png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/icons/bike.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/style/dashboard-style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/style/dashboard-style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/style/gym-creation-style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/style/long-pane-style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/style/home.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/style/login-style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/style/login-style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/style/registration-style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/style/user-creation-style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/notifications.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/payments.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/payments.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/registrations.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/registrations.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/services/gym-creation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/service/gym-creation.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/services/notifications.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/services/outdated.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/services/splash-screen.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/services/user-creation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/service/user-creation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/services/CommonClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/services/CommonClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,7 +207,9 @@
       <workItem from="1669099033616" duration="1500000" />
       <workItem from="1669100947646" duration="8000" />
       <workItem from="1669277439162" duration="925000" />
-      <workItem from="1669278702240" duration="1005000" />
+      <workItem from="1669278702240" duration="2111000" />
+      <workItem from="1669293427281" duration="68000" />
+      <workItem from="1669309083183" duration="1661000" />
     </task>
     <servers />
   </component>

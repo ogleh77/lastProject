@@ -36,7 +36,7 @@ public class DashboardController extends CommonClass implements Initializable {
     private Label activeUsername;
 
     @FXML
-    private BorderPane borderPane;
+    public static BorderPane borderPane;
 
     @FXML
     private HBox menuHbox;
@@ -56,9 +56,15 @@ public class DashboardController extends CommonClass implements Initializable {
     private PaymentChecker paymentChecker;
     private boolean visible = true;
 
+    public DashboardController(){
+
+        borderPane = new BorderPane();
+        System.out.println("Border ref " + borderPane);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        borderPane.setLeft(null);
+      borderPane.setLeft(null);
     }
 
     @FXML
@@ -66,7 +72,7 @@ public class DashboardController extends CommonClass implements Initializable {
 
         FXMLLoader loader = openWindow("/com/example/desktopapp/views/home.fxml", borderPane, sidePane, menuHbox, topProfile);
         HomeController controller = loader.getController();
-
+        //  controller.setBorderPane(borderPane);
         controller.setPaymentChecker(paymentChecker);
 //          controller.setPaymentChecker(paymentChecker);
 //         controller.setBorderPane(borderPane);
