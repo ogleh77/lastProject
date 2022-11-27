@@ -26,7 +26,7 @@
                 </HBox.margin>
                 <ImageView fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../black-Icon/icons8-barbell-50.png" />
+                        <Image url="@../icons/icons8-calendar-13-48.png" />
                     </image>
                 </ImageView>
                 <Label prefHeight="24.0" prefWidth="191.0" styleClass="top-label" text="Togdheer gym center" textFill="#c6d0cd" />
@@ -46,13 +46,13 @@
         </HBox>
         <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="246.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../black-Icon/icons8-admin-settings-male-30.png" />
+                <Image url="@../../black-Icon/icons8-admin-settings-male-30.png" />
             </image>
         </ImageView>
         <ComboBox fx:id="userCombo" layoutX="289.0" layoutY="154.0" prefHeight="36.0" prefWidth="255.0" promptText="choose username" />
         <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="246.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../black-Icon/icons8-forgot-password-50.png" />
+                <Image url="@../../black-Icon/icons8-forgot-password-50.png" />
             </image>
         </ImageView>
         <PasswordField fx:id="password" layoutX="289.0" layoutY="211.0" prefHeight="43.0" prefWidth="255.0" promptText="password" />

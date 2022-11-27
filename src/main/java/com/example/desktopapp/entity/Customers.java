@@ -1,30 +1,29 @@
-package com.example.desktopapp.entities;
+package com.example.desktopapp.entity;
 
 
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
 
 public class Customers {
 
     private int customerId;
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private String phone;
-    private String gander;
-    private String shift;
-    private String address;
-    private String image;
-    private double weight;
-    private String whoAdded;
+    private final String firstName;
+    private final String middleName;
+    private final String lastName;
+    private final String phone;
+    private final String gander;
+    private final String shift;
+    private final String address;
+    private final String image;
+    private final double weight;
+    private final String whoAdded;
     private JFXButton information;
     private JFXButton update;
 
     private Payments payment;
-    private ObservableList<Payments> payments;
+    private ObservableList<Payments> payments = FXCollections.observableArrayList();
 
     public Customers(int customerId, String firstName, String middleName, String lastName, String phone, String gander, String shift, String address, String image, double weight, String whoAdded) {
         this.customerId = customerId;
@@ -43,7 +42,7 @@ public class Customers {
         information.setStyle("-fx-background-color: #1e6e66;-fx-text-fill: white");
         update.setStyle("-fx-background-color: dodgerblue;-fx-text-fill: white");
 
-        this.payments = FXCollections.observableArrayList();
+
     }
 
     public Customers(String firstName, String middleName, String lastName, String phone, String gander, String shift, String address, String image, double weight, String whoAdded) {
@@ -113,7 +112,6 @@ public class Customers {
     }
 
     public ObservableList<Payments> getPayments() {
-
         return payments;
     }
 
@@ -145,6 +143,7 @@ public class Customers {
                 ", image='" + image + '\'' +
                 ", weight=" + weight +
                 ", whoAdded='" + whoAdded + '\'' +
+                ", payment=" + payment +
                 ", payments=" + payments +
                 '}';
     }

@@ -5,25 +5,21 @@ import animatefx.animation.Shake;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideInRight;
 import com.example.desktopapp.HelloApplication;
-import com.example.desktopapp.controllers.DashboardController;
-import com.example.desktopapp.entities.Customers;
+import com.example.desktopapp.entity.Customers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
-import java.sql.SQLException;
+
 
 public class CommonClass {
     protected final ToggleGroup genderGroup;
@@ -39,9 +35,7 @@ public class CommonClass {
 
     protected BorderPane borderPane;
     private File selectedFile;
-    private PaymentChecker paymentChecker;
-
-    private Customers customer;
+    // private PaymentChecker paymentChecker;
 
     public CommonClass() {
         this.genderGroup = new ToggleGroup();
@@ -119,8 +113,7 @@ public class CommonClass {
             sidePane.setVisible(true);
             slideInLeft.setNode(sidePane);
             slideInLeft.play();
-            System.out.println("In Opener The ref is " + DashboardController.borderPane);
-            DashboardController.borderPane.setLeft(sidePane);
+            borderPane.setLeft(sidePane);
         }
         //side menu
 
@@ -144,8 +137,8 @@ public class CommonClass {
         AnchorPane anchorPane = loader.load();
         slideInRight.setNode(anchorPane);
         slideInRight.play();
-        DashboardController.borderPane.setCenter(anchorPane);
-        System.out.println("In Opener The ref is " + DashboardController.borderPane);
+        borderPane.setCenter(anchorPane);
+
         return loader;
     }
 
@@ -163,9 +156,9 @@ public class CommonClass {
         return alert;
     }
 
-    public void setPaymentChecker(PaymentChecker paymentChecker) throws SQLException {
-        this.paymentChecker = paymentChecker;
-    }
+//    public void setPaymentChecker(PaymentChecker paymentChecker) throws SQLException {
+//        this.paymentChecker = paymentChecker;
+//    }
 
 
     public void setBorderPane(BorderPane borderPane) {
@@ -173,6 +166,5 @@ public class CommonClass {
     }
 
     public void setCustomer(Customers customer) {
-        this.customer = customer;
     }
 }

@@ -1,5 +1,7 @@
-package com.example.desktopapp.entities;
+package com.example.desktopapp.entity;
 
+
+import com.example.desktopapp.entity.services.Box;
 
 import java.time.LocalDate;
 
@@ -94,8 +96,8 @@ public class Payments {
     public Payments getPayment() {
         return payment;
     }
-    //-----------------------------Setters------------------------
 
+    //-----------------------------Setters------------------------
 
     public void setBox(Box box) {
         this.box = box;
@@ -119,16 +121,9 @@ public class Payments {
                 "paymentID=" + paymentID +
                 ", paymentDate='" + paymentDate + '\'' +
                 ", expDate=" + expDate +
-                ", month='" + month + '\'' +
-                ", year='" + year + '\'' +
-                ", amountPaid=" + amountPaid +
-                ", paidBy='" + paidBy + '\'' +
-                ", discount=" + discount +
-                ", poxing=" + poxing +
                 ", box=" + box +
-                ", customerFK=" + customerFK +
+                ", customerFK='" + customerFK + '\'' +
                 ", online=" + online +
-                ", payments=" + payment +
                 '}';
     }
 }

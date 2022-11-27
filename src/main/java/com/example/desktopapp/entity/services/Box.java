@@ -1,4 +1,4 @@
-package com.example.desktopapp.entities;
+package com.example.desktopapp.entity.services;
 
 public class Box {
     private int boxId;
@@ -29,10 +29,6 @@ public class Box {
 
     @Override
     public String toString() {
-        return "Box{" +
-                "boxId=" + boxId +
-                ", boxName='" + boxName + '\'' +
-                ", isReady=" + isReady +
-                '}';
+        return boxName;
     }
 }

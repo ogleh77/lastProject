@@ -1,7 +1,5 @@
-package com.example.desktopapp.entities.services;
+package com.example.desktopapp.entity.services;
 
-
-import com.example.desktopapp.entities.Box;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -23,7 +21,7 @@ public class Gym {
         this.poxingCost = poxingCost;
         this.boxCost = boxCost;
         this.maxDiscount = maxDiscount;
-       this.vipBoxes = FXCollections.observableArrayList();
+        this.vipBoxes = FXCollections.observableArrayList();
     }
 
     public int getGymId() {
@@ -51,7 +49,7 @@ public class Gym {
     }
 
     public ObservableList<Box> getVipBoxes() {
-         return vipBoxes;
+        return vipBoxes;
     }
 
     public void setVipBoxes(ObservableList<Box> vipBoxes) {

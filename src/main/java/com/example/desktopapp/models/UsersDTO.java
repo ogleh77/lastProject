@@ -1,6 +1,6 @@
 package com.example.desktopapp.models;
 
-import com.example.desktopapp.entities.services.Users;
+import com.example.desktopapp.entity.services.Users;
 import com.example.desktopapp.services.IConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

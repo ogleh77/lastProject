@@ -1,4 +1,4 @@
-package com.example.desktopapp.entities.services;
+package com.example.desktopapp.entity.services;
 
 public class Users {
     private int userId;
