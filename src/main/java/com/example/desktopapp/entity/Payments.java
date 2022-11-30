@@ -121,8 +121,6 @@ public class Payments {
                 "paymentID=" + paymentID +
                 ", paymentDate='" + paymentDate + '\'' +
                 ", expDate=" + expDate +
-                ", box=" + box +
-                ", customerFK='" + customerFK + '\'' +
                 ", online=" + online +
                 '}';
     }

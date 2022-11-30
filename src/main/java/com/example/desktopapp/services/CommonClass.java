@@ -32,10 +32,11 @@ public class CommonClass {
     private final SlideInRight slideInRight;
     private final SlideInLeft slideInLeft;
     private final FadeIn fadeIn;
-
     protected BorderPane borderPane;
-    private File selectedFile;
-    // private PaymentChecker paymentChecker;
+
+    protected PaymentChecker paymentChecker;
+
+    public File selectedFile;
 
     public CommonClass() {
         this.genderGroup = new ToggleGroup();
@@ -156,15 +157,12 @@ public class CommonClass {
         return alert;
     }
 
-//    public void setPaymentChecker(PaymentChecker paymentChecker) throws SQLException {
-//        this.paymentChecker = paymentChecker;
-//    }
-
 
     public void setBorderPane(BorderPane borderPane) {
         this.borderPane = borderPane;
     }
 
-    public void setCustomer(Customers customer) {
+    public void setPaymentChecker(PaymentChecker paymentChecker) {
+        this.paymentChecker = paymentChecker;
     }
 }

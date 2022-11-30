@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 import java.time.LocalDate;
 
-public class CostumerDTO {
+public class CustomerDTO {
 
     public static int numberOfPayments;
     public static int limit = 0;
@@ -61,6 +61,7 @@ public class CostumerDTO {
             customer = new Customers(rs.getInt("customer_id"), rs.getString("first_name"), rs.getString("middle_name"), rs.getString("last_name"), rs.getString("phone"), rs.getString("gander"), rs.getString("shift"), rs.getString("address"), rs.getString("image"), rs.getDouble("weight"), rs.getString("who_added"));
 
             payment = new Payments(rs.getInt("payment_id"), rs.getString("payment_date"), LocalDate.parse(rs.getString("exp_date")), rs.getString("month"), rs.getString("year"), rs.getDouble("amount_paid"), rs.getString("paid_by"), rs.getDouble("discount"), rs.getBoolean("poxing"), rs.getString("customer_id_fk"), rs.getBoolean("is_online"));
+
 
             if (String.valueOf(customer.getCustomerId()).equals(payment.getCustomerFK())) {
                 // customer.getPayments().add(payment);
@@ -127,21 +128,25 @@ public class CostumerDTO {
         ResultSet prs;
 
         while (crs.next()) {
+            limit++;
             Customers customer = new Customers(crs.getInt("customer_id"), crs.getString("first_name"),
                     crs.getString("middle_name"), crs.getString("last_name"), crs.getString("phone"),
                     crs.getString("gander"), crs.getString("shift"), crs.getString("address"),
                     crs.getString("image"), crs.getDouble("weight"), crs.getString("who_added"));
 
 
-            prs = pStatement.executeQuery("SELECT * FROM payments WHERE customer_id_fk=" + customer.getCustomerId());
+            prs = pStatement.executeQuery("SELECT * FROM payments WHERE customer_phone_fk=" + customer.getCustomerId());
 
             while (prs.next()) {
+
                 Payments payment = new Payments(prs.getInt("payment_id"), prs.getString("payment_date"), LocalDate.parse(prs.getString("exp_date")),
                         prs.getString("month"), prs.getString("year"), prs.getDouble("amount_paid"), prs.getString("paid_by"), prs.getDouble("discount"),
-                        prs.getBoolean("poxing"), prs.getString("customer_id_fk"), prs.getBoolean("is_online"));
+                        prs.getBoolean("poxing"), prs.getString("customer_phone_fk"), prs.getBoolean("is_online"));
 
                 customer.getPayments().add(payment);
-
+                if (payment.isOnline()) {
+                    customer.setPayment(payment);
+                }
             }
 
             customers.add(customer);

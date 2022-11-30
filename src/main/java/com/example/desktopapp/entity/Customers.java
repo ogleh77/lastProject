@@ -134,17 +134,9 @@ public class Customers {
         return "Customers{" +
                 "customerId=" + customerId +
                 ", firstName='" + firstName + '\'' +
-                ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", phone='" + phone + '\'' +
                 ", gander='" + gander + '\'' +
-                ", shift='" + shift + '\'' +
-                ", address='" + address + '\'' +
-                ", image='" + image + '\'' +
-                ", weight=" + weight +
-                ", whoAdded='" + whoAdded + '\'' +
-                ", payment=" + payment +
-                ", payments=" + payments +
+                "\n\n, payment=" + payment +
                 '}';
     }
 }
