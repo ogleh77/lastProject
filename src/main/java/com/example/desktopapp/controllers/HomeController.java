@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -14,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -63,6 +65,26 @@ public class HomeController extends CommonClass implements Initializable {
             outDatedCount.setText(String.valueOf(paymentChecker.getOutdatedCustomers().size()));
             initTable();
             searchCustomer();
+
+
+            for (Customers customer : paymentChecker.getAllCustomers()) {
+                EventHandler<MouseEvent> updateHandler = new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent e) {
+
+                    }
+                };
+
+                EventHandler<MouseEvent> information = new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        System.out.println(customer.getFirstName() + " info is touched...");
+                    }
+                };
+                customer.getUpdate().addEventFilter(MouseEvent.MOUSE_CLICKED, updateHandler);
+                customer.getInformation().addEventFilter(MouseEvent.MOUSE_CLICKED, updateHandler);
+            }
+
         });
     }
 
