@@ -9,19 +9,27 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class CustomerDTO {
-
-    public static int numberOfPayments;
     public static int limit = 0;
     public static int id = 1;
 
     private static Connection connection = IConnection.getConnection();
-    //  private static ObservableList<Payments> payments = FXCollections.observableArrayList();
 
-    public static void insertCustomer(Customers customer) throws SQLException {
-        String insertQuery = "INSERT INTO customers(first_name, middle_name, last_name, phone, gander, shift, address, image, weight, who_added)\n" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement ps = connection.prepareStatement(insertQuery);
+//    public static void insertCustomer(Customers customer) throws SQLException {
+//        createCustomer(customer);
+//        System.out.println("Customer added");
+//    }
+
+
+    public static void updateCustomer(Customers customer) throws SQLException {
+        String updateQuery = "\n" +
+                "UPDATE customers SET\n" +
+                "first_name=?,middle_name=?,last_name=?,phone=?,gander=?,shift=?,address=?,\n" +
+                "image=?,weight=? WHERE customer_id=" + customer.getCustomerId();
+
+        PreparedStatement ps = connection.prepareStatement(updateQuery);
 
         ps.setString(1, customer.getFirstName());
         ps.setString(2, customer.getMiddleName());
@@ -32,86 +40,17 @@ public class CustomerDTO {
         ps.setString(7, customer.getAddress());
         ps.setString(8, customer.getImage());
         ps.setDouble(9, customer.getWeight());
-        ps.setString(10, customer.getWhoAdded());
 
         ps.executeUpdate();
         ps.close();
-        System.out.println("Customer added");
-    }
-
-    public static ObservableList<Customers> fetchCustomersWithGender(Users activeUser) throws SQLException {
-
-        System.out.println("Limit is " + limit);
-
-        ObservableList<Customers> customers = FXCollections.observableArrayList();
-        String fetchQuery = "SELECT * FROM payments LEFT JOIN customers on payments.customer_id_fk = customers.customer_id WHERE is_online=true AND gander='" + activeUser.getGender() + "' ORDER BY customer_id";
-
-        if (activeUser.getRole().equals("SuperAdmin")) {
-            System.out.println("Active customer is " + activeUser.getRole());
-            fetchQuery = "SELECT * FROM payments LEFT JOIN customers on payments.customer_id_fk = customers.customer_id WHERE is_online=true ORDER BY customer_id";
-        }
-        Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery(fetchQuery);
-        Customers customer;
-        Payments payment;
-
-
-        while (rs.next()) {
-            limit++;
-            customer = new Customers(rs.getInt("customer_id"), rs.getString("first_name"), rs.getString("middle_name"), rs.getString("last_name"), rs.getString("phone"), rs.getString("gander"), rs.getString("shift"), rs.getString("address"), rs.getString("image"), rs.getDouble("weight"), rs.getString("who_added"));
-
-            payment = new Payments(rs.getInt("payment_id"), rs.getString("payment_date"), LocalDate.parse(rs.getString("exp_date")), rs.getString("month"), rs.getString("year"), rs.getDouble("amount_paid"), rs.getString("paid_by"), rs.getDouble("discount"), rs.getBoolean("poxing"), rs.getString("customer_id_fk"), rs.getBoolean("is_online"));
-
-
-            if (String.valueOf(customer.getCustomerId()).equals(payment.getCustomerFK())) {
-                // customer.getPayments().add(payment);
-                customer.setPayment(payment);
-            }
-
-            customers.add(customer);
-
-        }
-
-
-        return customers;
-
-    }
-
-
-    public static ObservableList<Customers> fetchAllCustomersWithGender(Users activeUser) throws SQLException {
-        //  System.out.println("number is " + numberOfCustomers);
-
-        ObservableList<Customers> customers = FXCollections.observableArrayList();
-        String fetchQuery = "SELECT * FROM customers  WHERE gander='" + activeUser.getGender() + "' ORDER BY customer_id";
-
-        if (activeUser.getRole().equals("SuperAdmin")) {
-            System.out.println("Active customer is " + activeUser.getRole());
-            fetchQuery = "SELECT * FROM customers ORDER BY customer_id";
-        }
-
-        Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery(fetchQuery);
-
-
-        while (rs.next()) {
-            //   numberOfCustomers++;
-            Customers customer = new Customers(rs.getInt("customer_id"), rs.getString("first_name"), rs.getString("middle_name"), rs.getString("last_name"), rs.getString("phone"), rs.getString("gander"), rs.getString("shift"), rs.getString("address"), rs.getString("image"), rs.getDouble("weight"), rs.getString("who_added"));
-
-            customers.add(customer);
-
-        }
-
-
-        return customers;
-
+        System.out.println("Customer update " + customer.getCustomerId());
     }
 
 
     public static ObservableList<Customers> fetchAllPayments(Users activeUser) throws SQLException {
-
         ObservableList<Customers> customers = FXCollections.observableArrayList();
-        String fetchCustomersQuery = "SELECT * FROM customers  WHERE gander='" + activeUser.getGender() + "' ORDER BY customer_id";
-
+        String fetchCustomersQuery = "SELECT * FROM customers  WHERE gander='" + activeUser.getGender() +
+                "'ORDER BY customer_id";
 
         if (activeUser.getRole().equals("SuperAdmin")) {
             System.out.println("Active customer is " + activeUser.getRole());
@@ -120,13 +59,11 @@ public class CustomerDTO {
 
         Statement cStatement = connection.createStatement();
 
-        Statement pStatement = connection.createStatement();
-
         ResultSet crs = cStatement.executeQuery(fetchCustomersQuery);
 
+        Statement pStatement = connection.createStatement();
 
         ResultSet prs;
-
         while (crs.next()) {
             limit++;
             Customers customer = new Customers(crs.getInt("customer_id"), crs.getString("first_name"),
@@ -144,14 +81,98 @@ public class CustomerDTO {
                         prs.getBoolean("poxing"), prs.getString("customer_phone_fk"), prs.getBoolean("is_online"));
 
                 customer.getPayments().add(payment);
-                if (payment.isOnline()) {
-                    customer.setPayment(payment);
-                }
-            }
 
+            }
             customers.add(customer);
         }
         return customers;
     }
 
+
+    //------------------Helper methods--------------------
+
+
+    //------------------Transactional method
+    public static void insertCustomerWithPayment(Customers customer) throws SQLException {
+        connection.setAutoCommit(false);
+        try {
+
+            //-------------Insert customers----------------------
+            createCustomer(customer);
+            //-------------make customer's payment---------------
+            makePayment(customer);
+            //-------------make the payment's report-------------
+            makeReport(customer, LocalDate.now());
+
+            connection.commit();
+        } catch (SQLException e) {
+            connection.rollback();
+            throw e;
+        }
+
+
+    }
+
+    private static void createCustomer(Customers customer) throws SQLException {
+        String insertCustomerQuery = "INSERT INTO customers(first_name, middle_name, last_name, phone, gander, " +
+                "shift, address, image, weight, who_added)\n" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        PreparedStatement ps = connection.prepareStatement(insertCustomerQuery);
+
+        ps.setString(1, customer.getFirstName());
+        ps.setString(2, customer.getMiddleName());
+        ps.setString(3, customer.getLastName());
+        ps.setString(4, customer.getPhone());
+        ps.setString(5, customer.getGander());
+        ps.setString(6, customer.getShift());
+        ps.setString(7, customer.getAddress());
+        ps.setString(8, customer.getImage());
+        ps.setDouble(9, customer.getWeight());
+        ps.setString(10, customer.getWhoAdded());
+        ps.executeUpdate();
+        System.out.println("Customer added");
+    }
+
+    private static void makePayment(Customers customer) throws SQLException {
+
+        String insertPaymentQuery = "INSERT INTO payments(exp_date, amount_paid, paid_by," +
+                "discount,poxing,box_fk, customer_phone_fk) VALUES (?,?,?,?,?,?,?)";
+
+        PreparedStatement ps = connection.prepareStatement(insertPaymentQuery);
+
+        ps.setString(1, customer.getPayments().get(0).getExpDate().toString());
+        ps.setDouble(2, customer.getPayments().get(0).getAmountPaid());
+        ps.setString(3, customer.getPayments().get(0).getPaidBy());
+        ps.setDouble(4, customer.getPayments().get(0).getDiscount());
+        ps.setBoolean(5, customer.getPayments().get(0).isPoxing());
+
+        if (customer.getPayments().get(0).getBox() == null) {
+            ps.setString(6, null);
+        } else {
+            ps.setInt(6, customer.getPayments().get(0).getBox().getBoxId());
+        }
+
+        ps.setString(7, customer.getPhone());
+        ps.executeUpdate();
+        System.out.println("Payment inserted");
+    }
+
+    private static void makeReport(Customers customer, LocalDate today) throws SQLException {
+        Statement st = connection.createStatement();
+
+        if (customer.getGander().equals("Male") && customer.getPayments().get(0).getBox() != null) {
+            DailyReportDTO.dailyReportMaleWithBox(today, st);
+
+        } else if (customer.getGander().equals("Female") && customer.getPayments().get(0).getBox() != null) {
+            DailyReportDTO.dailyReportFemaleWithBox(today, st);
+
+        } else if (customer.getPayments().get(0).getBox() == null && customer.getGander().equals("Male")) {
+            DailyReportDTO.dailyReportMaleWithOutBox(today, st);
+        } else if (customer.getPayments().get(0).getBox() == null && customer.getGander().equals("Female")) {
+            DailyReportDTO.dailyReportFemaleWithOutBox(today, st);
+        }
+        int arr[] = st.executeBatch();
+        System.out.println(Arrays.toString(arr));
+        st.close();
+    }
 }
