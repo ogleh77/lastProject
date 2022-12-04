@@ -9,14 +9,13 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -56,7 +55,6 @@ public class HomeController extends CommonClass implements Initializable {
     private Label activeCount;
 
     private FilteredList<Customers> filteredList;
-    private SortedList<Customers> sortedList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -68,21 +66,28 @@ public class HomeController extends CommonClass implements Initializable {
 
 
             for (Customers customer : paymentChecker.getAllCustomers()) {
-                EventHandler<MouseEvent> updateHandler = new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent e) {
-
+                System.out.println("Hello world");
+                EventHandler<MouseEvent> updateHandler = e -> {
+                    try {
+                        FXMLLoader loader = openWindow("/com/example/desktopapp/views/registrations.fxml", borderPane, null,
+                                null, null);
+                        RegistrationController controller = loader.getController();
+                        controller.setBorderPane(borderPane);
+                        controller.setCustomer(customer);
+                        controller.setPaymentChecker(paymentChecker);
+                    } catch (IOException ex) {
+                        message(Alert.AlertType.ERROR, "Error: " + ex.getMessage(), "Error occurred");
                     }
                 };
 
                 EventHandler<MouseEvent> information = new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        System.out.println(customer.getFirstName() + " info is touched...");
+                        System.out.println(customer);
                     }
                 };
                 customer.getUpdate().addEventFilter(MouseEvent.MOUSE_CLICKED, updateHandler);
-                customer.getInformation().addEventFilter(MouseEvent.MOUSE_CLICKED, updateHandler);
+                customer.getInformation().addEventFilter(MouseEvent.MOUSE_CLICKED, information);
             }
 
         });
@@ -118,7 +123,7 @@ public class HomeController extends CommonClass implements Initializable {
     private void searchCustomer() {
         filteredList = new FilteredList<>(paymentChecker.getAllCustomers(), b -> true);
 
-        sortedList = new SortedList<>(filteredList);
+        SortedList<Customers> sortedList = new SortedList<>(filteredList);
 
         sortedList.comparatorProperty().bind(tableView.comparatorProperty());
         tableView.setItems(sortedList);

@@ -1,7 +1,7 @@
-package com.example.graadproject.model.services;
+package com.example.desktopapp.models;
 
-import com.example.graadproject.entities.services.DailyReport;
-import com.example.graadproject.services.IConnection;
+import com.example.desktopapp.entity.DailyReport;
+import com.example.desktopapp.services.IConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class DailyReportDTO {
     private static Connection connection = IConnection.getConnection();
 
-    private static String month;
+//    private static String month;
 
     public ObservableList<DailyReport> getAll() throws SQLException {
         ObservableList<DailyReport> dailyReports = FXCollections.observableArrayList();
@@ -36,10 +36,10 @@ public class DailyReportDTO {
 
 
     public static void dailyReportMaleWithBox(LocalDate date, Statement st) throws SQLException {
-        month = String.valueOf(date).substring(0, 7);
-        System.out.println("date is " + date);
+//        month = String.valueOf(date).substring(0, 7);
+//        System.out.println("date is " + date);
 
-        if (st.executeUpdate("UPDATE daily_report SET registration=(registration+1),male=(male+1),vip_box=(vip_box+1) " + "WHERE report_month ='" + month + "'") > 0) {
+        if (st.executeUpdate("UPDATE daily_report SET registration=(registration+1),male=(male+1),vip_box=(vip_box+1) " + "WHERE report_day ='" + date + "'") > 0) {
             //st.addBatch();
             System.out.println("Updated male with box....");
 
@@ -56,10 +56,10 @@ public class DailyReportDTO {
 
     public static void dailyReportFemaleWithBox(LocalDate date, Statement st) throws SQLException {
 
-        month = String.valueOf(date).substring(0, 7);
+//        month = String.valueOf(date).substring(0, 7);
 
-        System.out.println(month);
-        if (st.executeUpdate("UPDATE daily_report SET registration=(registration+1),female=(female+1),vip_box=(vip_box+1) " + "WHERE report_month ='" + month + "'") > 0) {
+      //  System.out.println(month);
+        if (st.executeUpdate("UPDATE daily_report SET registration=(registration+1),female=(female+1),vip_box=(vip_box+1) " + "WHERE report_day ='" + date + "'") > 0) {
             //st.addBatch();
             System.out.println("Updated Female with box....");
 
@@ -75,11 +75,11 @@ public class DailyReportDTO {
 
     public static void dailyReportMaleWithOutBox(LocalDate date, Statement st) throws SQLException {
 
-        month = String.valueOf(date).substring(0, 7);
+//        month = String.valueOf(date).substring(0, 7);
+//
 
-
-        System.out.println("Month is " + month);
-        if (st.executeUpdate("UPDATE daily_report SET registration=(registration+1),male=(male+1) WHERE report_month='" + month + "'") > 0) {
+      //  System.out.println("Month is " + month);
+        if (st.executeUpdate("UPDATE daily_report SET registration=(registration+1),male=(male+1) WHERE report_day='" + date + "'") > 0) {
             //st.addBatch();
             System.out.println("Updated male with out box....");
 
@@ -94,9 +94,9 @@ public class DailyReportDTO {
 
 
     public static void dailyReportFemaleWithOutBox(LocalDate date, Statement st) throws SQLException {
-        month = String.valueOf(date).substring(0, 7);
+//        month = String.valueOf(date).substring(0, 7);
 
-        if (st.executeUpdate("UPDATE daily_report SET registration=(registration+1),female=(female+1)" + "WHERE report_month ='" + month + "'") > 0) {
+        if (st.executeUpdate("UPDATE daily_report SET registration=(registration+1),female=(female+1)" + "WHERE report_day ='" + date + "'") > 0) {
             //st.addBatch();
             System.out.println("Updated female with out box....");
 

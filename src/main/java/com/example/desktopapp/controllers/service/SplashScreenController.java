@@ -37,6 +37,7 @@ public class SplashScreenController extends CommonClass implements Initializable
         Platform.runLater(() -> {
             checker.FetchCustomersByGander.setOnSucceeded(e -> {
 
+                System.out.println(checker.getAllCustomers());
                 FXMLLoader loader = null;
                 try {
                     loader = openNormalWindow("/com/example/desktopapp/views/dashboard.fxml");

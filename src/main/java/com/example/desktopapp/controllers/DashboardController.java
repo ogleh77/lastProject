@@ -2,6 +2,7 @@ package com.example.desktopapp.controllers;
 
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideOutLeft;
+import com.example.desktopapp.controllers.service.NotificationController;
 import com.example.desktopapp.services.CommonClass;
 import com.example.desktopapp.services.PaymentChecker;
 import javafx.event.ActionEvent;
@@ -64,8 +65,10 @@ public class DashboardController extends CommonClass implements Initializable {
 
 
     @FXML
-    void notificationHandler(ActionEvent event) {
-
+    void notificationHandler(ActionEvent event) throws IOException {
+        FXMLLoader loader = openWindow("/com/example/desktopapp/views/service/notifications.fxml", borderPane, sidePane, menuHBox, topProfile);
+        NotificationController controller = loader.getController();
+        controller.setPaymentChecker(paymentChecker);
     }
 
     @FXML

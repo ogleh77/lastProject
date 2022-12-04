@@ -1,6 +1,7 @@
 module com.example.desktopapp {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.graphics;
     requires AnimateFX;
     requires com.jfoenix;
     requires java.sql;

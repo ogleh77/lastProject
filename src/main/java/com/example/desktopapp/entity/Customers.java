@@ -42,7 +42,6 @@ public class Customers {
         information.setStyle("-fx-background-color: #1e6e66;-fx-text-fill: white");
         update.setStyle("-fx-background-color: dodgerblue;-fx-text-fill: white");
 
-
     }
 
     public Customers(String firstName, String middleName, String lastName, String phone, String gander, String shift, String address, String image, double weight, String whoAdded) {
@@ -56,7 +55,7 @@ public class Customers {
         this.image = image;
         this.weight = weight;
         this.whoAdded = whoAdded;
-        this.payments = FXCollections.observableArrayList();
+
     }
 
     public int getCustomerId() {
@@ -132,11 +131,10 @@ public class Customers {
     @Override
     public String toString() {
         return "Customers{" +
-                "customerId=" + customerId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", gander='" + gander + '\'' +
-                "\n\n, payment=" + payment +
-                '}';
+                "firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", payment=" + payment +
+                ", payments=" + payments +
+                '}' + "\n";
     }
 }

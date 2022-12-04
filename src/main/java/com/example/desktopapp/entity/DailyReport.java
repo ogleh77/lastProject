@@ -1,4 +1,4 @@
-package com.example.graadproject.entities.services;
+package com.example.desktopapp.entity;
 
 public class DailyReport {
     private String reportDate;

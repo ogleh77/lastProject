@@ -27,16 +27,15 @@ public class CommonClass {
 
     public final ObservableList<String> shift;
     public final ObservableList<String> paidBy;
-
     public final Shake shake;
     private final SlideInRight slideInRight;
     private final SlideInLeft slideInLeft;
     private final FadeIn fadeIn;
     protected BorderPane borderPane;
-
     protected PaymentChecker paymentChecker;
-
     public File selectedFile;
+
+    private Customers customer;
 
     public CommonClass() {
         this.genderGroup = new ToggleGroup();
@@ -143,6 +142,12 @@ public class CommonClass {
         return loader;
     }
 
+    protected FXMLLoader openNotificationWindow(String url) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+        return loader;
+    }
+
+
     protected FXMLLoader openNormalWindow(String url) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(url));
 
@@ -157,6 +162,9 @@ public class CommonClass {
         return alert;
     }
 
+    public void setCustomer(Customers customer) {
+        this.customer = customer;
+    }
 
     public void setBorderPane(BorderPane borderPane) {
         this.borderPane = borderPane;

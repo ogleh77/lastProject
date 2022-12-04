@@ -2,15 +2,17 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" styleClass="reg-pane" stylesheets="@../../style/long-pane-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desktopapp.controllers.PaymentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" styleClass="reg-pane" stylesheets="@../../style/long-pane-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desktopapp.controllers.service.NotificationController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="994.0" spacing="800.0" styleClass="top-pane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -42,34 +44,33 @@
             </Label>
          </children>
       </HBox>
-      <AnchorPane layoutX="16.0" layoutY="130.0" prefHeight="593.0" prefWidth="555.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="585.0">
-         <effect>
-            <DropShadow>
-               <color>
-                  <Color red="0.8684210777282715" green="0.7920321822166443" blue="0.7920321822166443" />
-               </color>
-            </DropShadow>
-         </effect>
-      </AnchorPane>
       <Label layoutX="22.0" layoutY="97.0" prefHeight="20.0" prefWidth="156.0" text="Outdated customers" textFill="#9e9898">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="12.0" layoutY="130.0" prefHeight="593.0" prefWidth="555.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="583.0">
-         <effect>
-            <DropShadow>
-               <color>
-                  <Color red="0.8684210777282715" green="0.7920321822166443" blue="0.7920321822166443" />
-               </color>
-            </DropShadow>
-         </effect>
-      </AnchorPane>
       <Label layoutX="585.0" layoutY="97.0" prefHeight="20.0" prefWidth="156.0" text="Warning members" textFill="#9e9898" AnchorPane.leftAnchor="585.0" AnchorPane.rightAnchor="409.0">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
       </Label>
+      <VBox fx:id="vboxOutdated" layoutX="13.0" layoutY="130.0" prefHeight="593.0" prefWidth="565.0" spacing="5.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="13.0">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.8666666746139526" green="0.7921568751335144" blue="0.7921568751335144" />
+               </color>
+            </DropShadow>
+         </effect>
+         <padding>
+            <Insets top="2.0" />
+         </padding>
+      </VBox>
+      <Pagination fx:id="pagination" layoutX="585.0" layoutY="130.0" prefHeight="593.0" prefWidth="559.0" style="-fx-background-color: white;">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Pagination>
    </children>
    <effect>
       <DropShadow height="12.11" radius="5.555" spread="0.01" width="12.11">

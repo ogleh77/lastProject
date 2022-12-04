@@ -72,7 +72,8 @@ public class CustomerDTO {
                     crs.getString("image"), crs.getDouble("weight"), crs.getString("who_added"));
 
 
-            prs = pStatement.executeQuery("SELECT * FROM payments WHERE customer_phone_fk=" + customer.getCustomerId());
+            prs = pStatement.executeQuery("SELECT * FROM payments WHERE " +
+                    "customer_phone_fk=" + customer.getPhone() + " ORDER BY exp_date DESC;");
 
             while (prs.next()) {
 
@@ -84,7 +85,10 @@ public class CustomerDTO {
 
             }
             customers.add(customer);
+
+
         }
+
         return customers;
     }
 
@@ -101,8 +105,7 @@ public class CustomerDTO {
             createCustomer(customer);
             //-------------make customer's payment---------------
             makePayment(customer);
-            //-------------make the payment's report-------------
-            makeReport(customer, LocalDate.now());
+
 
             connection.commit();
         } catch (SQLException e) {
@@ -154,6 +157,10 @@ public class CustomerDTO {
 
         ps.setString(7, customer.getPhone());
         ps.executeUpdate();
+
+        //-------------make the payment's report-------------
+        makeReport(customer, LocalDate.now());
+
         System.out.println("Payment inserted");
     }
 

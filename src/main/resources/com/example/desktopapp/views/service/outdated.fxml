@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane prefHeight="142.0" prefWidth="530.0" style="-fx-background-color: #F6F8FC;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desktopapp.controllers.service.OutdatedController">
+    <children>
+        <Label layoutX="13.0" layoutY="13.0" prefHeight="24.0" prefWidth="108.0" text="customer ID:" textFill="#5a6568">
+            <font>
+                <Font name="Arial Black" size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="customerID" layoutX="130.0" layoutY="13.0" prefHeight="24.0" prefWidth="33.0" text="108" textFill="#328ca8">
+            <font>
+                <Font name="Arial Black" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="13.0" layoutY="36.0" prefHeight="24.0" prefWidth="96.0" text="full name:" textFill="#5a6568">
+            <font>
+                <Font name="Arial Black" size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="fullName" layoutX="130.0" layoutY="36.0" prefHeight="24.0" prefWidth="253.0" text="Mohamed Saeed Mohamed" textFill="#328ca8">
+            <font>
+                <Font name="Arial Black" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="243.0" layoutY="13.0" prefHeight="24.0" prefWidth="96.0" text="Duration:" textFill="#5a6568">
+            <font>
+                <Font name="Arial Black" size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="duration" layoutX="339.0" layoutY="13.0" prefHeight="24.0" prefWidth="33.0" text="31" textFill="#328ca8">
+            <font>
+                <Font name="Arial Black" size="15.0" />
+            </font>
+        </Label>
+        <ImageView fx:id="imageView" fitHeight="130.0" fitWidth="149.0" layoutX="389.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../../../../../../../../Downloads/NAASIR%20SICIID%20MAXAMED.jpeg" />
+            </image>
+        </ImageView>
+        <Label layoutX="14.0" layoutY="63.0" prefHeight="24.0" prefWidth="53.0" text="Shift:" textFill="#5a6568">
+            <font>
+                <Font name="Arial Black" size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="shift" layoutX="131.0" layoutY="63.0" prefHeight="24.0" prefWidth="87.0" text="Morning " textFill="#328ca8">
+            <font>
+                <Font name="Arial Black" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="14.0" layoutY="91.0" prefHeight="24.0" prefWidth="69.0" text="phone:" textFill="#5a6568">
+            <font>
+                <Font name="Arial Black" size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="phone" layoutX="131.0" layoutY="91.0" prefHeight="24.0" prefWidth="87.0" text="4303924" textFill="#328ca8">
+            <font>
+                <Font name="Arial Black" size="15.0" />
+            </font>
+        </Label>
+        <JFXButton layoutX="242.0" layoutY="72.0" onAction="#updateHandler" prefHeight="38.0" prefWidth="133.0" style="-fx-background-color: dodgerblue;" text="Update" textFill="#fcfcfc">
+            <font>
+                <Font name="Arial" size="15.0" />
+            </font>
+        </JFXButton>
+    </children>
 </AnchorPane>

@@ -30,3 +30,46 @@ insert into payments (exp_date, amount_paid, paid_by, discount, poxing, box_fk, 
 insert into payments (exp_date, amount_paid, paid_by, discount, poxing, box_fk, customer_phone_fk, is_online) values ('2022-05-05', 11, 'XL', 1, true, null, 10, false);--10
 insert into payments (exp_date, amount_paid, paid_by, discount, poxing, box_fk, customer_phone_fk, is_online) values ('2022-09-07', 12, 'S', 1, false, null, 10, false);--10
 
+
+
+
+
+ public static void insertPayment(Customers customer) throws SQLException {
+        connection.setAutoCommit(false);
+        PreparedStatement ps = null;
+        try {
+
+            String insertQuery = "INSERT INTO payments(exp_date, amount_paid, paid_by," +
+                    "discount,poxing,box_fk, customer_phone_fk) VALUES (?,?,?,?,?,?,?)";
+            ps = connection.prepareStatement(insertQuery);
+
+            ps.setString(1, customer.getPayment().getExpDate().toString());
+            ps.setDouble(2, customer.getPayment().getAmountPaid());
+            ps.setString(3, customer.getPayment().getPaidBy());
+            ps.setDouble(4, customer.getPayment().getDiscount());
+            ps.setBoolean(5, customer.getPayment().isPoxing());
+
+            if (customer.getPayment().getBox() == null) {
+                ps.setString(6, null);
+            } else {
+                ps.setInt(6, customer.getPayment().getBox().getBoxId());
+            }
+
+            ps.setString(7, customer.getPhone());
+            ps.executeUpdate();
+            System.out.println("Payment inserted..");
+            //System.out.println(1 / 0);
+            qualification(customer, LocalDate.now());
+
+            connection.commit();
+
+        } catch (SQLException e) {
+            connection.rollback();
+            e.printStackTrace();
+        } finally {
+
+            ps.close();
+
+        }
+
+    }

@@ -1,0 +1,273 @@
+package com.example.desktopapp.models;
+
+import com.example.desktopapp.entity.Customers;
+import com.example.desktopapp.entity.Payments;
+import com.example.desktopapp.entity.services.Users;
+import com.example.desktopapp.services.IConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.*;
+import java.time.LocalDate;
+import java.util.Arrays;
+
+public class CustomerDTO {
+    public static int limit = 0;
+    public static int id = 1;
+
+    private static Connection connection = IConnection.getConnection();
+
+
+    public static void insertCustomer(Customers customer) throws SQLException {
+        String insertQuery = "INSERT INTO customers(first_name, middle_name, last_name, phone, gander, shift, address, image, weight, who_added)\n" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps = connection.prepareStatement(insertQuery);
+
+        ps.setString(1, customer.getFirstName());
+        ps.setString(2, customer.getMiddleName());
+        ps.setString(3, customer.getLastName());
+        ps.setString(4, customer.getPhone());
+        ps.setString(5, customer.getGander());
+        ps.setString(6, customer.getShift());
+        ps.setString(7, customer.getAddress());
+        ps.setString(8, customer.getImage());
+        ps.setDouble(9, customer.getWeight());
+        ps.setString(10, customer.getWhoAdded());
+
+        ps.executeUpdate();
+        ps.close();
+        System.out.println("Customer added");
+    }
+
+
+    public static void updateCustomer(Customers customer) throws SQLException {
+        String updateQuery = "\n" +
+                "UPDATE customers SET\n" +
+                "first_name=?,middle_name=?,last_name=?,phone=?,gander=?,shift=?,address=?,\n" +
+                "image=?,weight=? WHERE customer_id=" + customer.getCustomerId();
+
+        PreparedStatement ps = connection.prepareStatement(updateQuery);
+
+        ps.setString(1, customer.getFirstName());
+        ps.setString(2, customer.getMiddleName());
+        ps.setString(3, customer.getLastName());
+        ps.setString(4, customer.getPhone());
+        ps.setString(5, customer.getGander());
+        ps.setString(6, customer.getShift());
+        ps.setString(7, customer.getAddress());
+        ps.setString(8, customer.getImage());
+        ps.setDouble(9, customer.getWeight());
+
+        ps.executeUpdate();
+        ps.close();
+        System.out.println("Customer update " + customer.getCustomerId());
+    }
+
+
+    public static ObservableList<Customers> fetchAllPayments(Users activeUser) throws SQLException {
+
+        ObservableList<Customers> customers = FXCollections.observableArrayList();
+        String fetchCustomersQuery = "SELECT * FROM customers  WHERE gander='" + activeUser.getGender() + "' ORDER BY customer_id";
+
+
+        if (activeUser.getRole().equals("SuperAdmin")) {
+            System.out.println("Active customer is " + activeUser.getRole());
+            fetchCustomersQuery = "SELECT * FROM customers ORDER BY customer_id";
+        }
+
+        Statement cStatement = connection.createStatement();
+
+        Statement pStatement = connection.createStatement();
+
+        ResultSet crs = cStatement.executeQuery(fetchCustomersQuery);
+
+
+        ResultSet prs;
+
+        while (crs.next()) {
+            limit++;
+            Customers customer = new Customers(crs.getInt("customer_id"), crs.getString("first_name"),
+                    crs.getString("middle_name"), crs.getString("last_name"), crs.getString("phone"),
+                    crs.getString("gander"), crs.getString("shift"), crs.getString("address"),
+                    crs.getString("image"), crs.getDouble("weight"), crs.getString("who_added"));
+
+
+            prs = pStatement.executeQuery("SELECT * FROM payments WHERE customer_phone_fk=" + customer.getCustomerId());
+
+            while (prs.next()) {
+
+                Payments payment = new Payments(prs.getInt("payment_id"), prs.getString("payment_date"), LocalDate.parse(prs.getString("exp_date")),
+                        prs.getString("month"), prs.getString("year"), prs.getDouble("amount_paid"), prs.getString("paid_by"), prs.getDouble("discount"),
+                        prs.getBoolean("poxing"), prs.getString("customer_phone_fk"), prs.getBoolean("is_online"));
+
+                customer.getPayments().add(payment);
+                if (payment.isOnline()) {
+                    customer.setPayment(payment);
+                }
+            }
+
+            customers.add(customer);
+        }
+        return customers;
+    }
+
+
+    //----------------------Update op-------------------–
+
+
+    public static void insertPayment(Customers customer) throws SQLException {
+
+        connection.setAutoCommit(false);
+        PreparedStatement ps = null;
+        try {
+            String insertCustomerQuery = "INSERT INTO customers(first_name, middle_name, last_name, phone, gander, shift, address, image, weight, who_added)\n" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            ps = connection.prepareStatement(insertCustomerQuery);
+
+            saveCustomer(customer, ps);
+
+            String insertQuery = "INSERT INTO payments(exp_date, amount_paid, paid_by," +
+                    "discount,poxing,box_fk, customer_phone_fk) VALUES (?,?,?,?,?,?,?)";
+
+            ps = connection.prepareStatement(insertQuery);
+
+            ps.setString(1, customer.getPayments().get(0).getExpDate().toString());
+            ps.setDouble(2, customer.getPayments().get(0).getAmountPaid());
+            ps.setString(3, customer.getPayments().get(0).getPaidBy());
+            ps.setDouble(4, customer.getPayments().get(0).getDiscount());
+            ps.setBoolean(5, customer.getPayments().get(0).isPoxing());
+
+            if (customer.getPayments().get(0).getBox() == null) {
+                ps.setString(6, null);
+            } else {
+                ps.setInt(6, customer.getPayments().get(0).getBox().getBoxId());
+            }
+
+            ps.setString(7, customer.getPhone());
+            ps.executeUpdate();
+            System.out.println("Payment inserted..");
+
+            qualification(customer, LocalDate.now());
+
+            connection.commit();
+
+
+        } catch (SQLException e) {
+            connection.rollback();
+            throw e;
+        } finally {
+            ps.close();
+        }
+
+    }
+
+    //Qualify the gander and the box
+    private static void qualification(Customers customer, LocalDate today) throws SQLException {
+        Statement st = connection.createStatement();
+
+        if (customer.getGander().equals("Male") && customer.getPayments().get(0).getBox() != null) {
+            DailyReportDTO.dailyReportMaleWithBox(today, st);
+
+        } else if (customer.getGander().equals("Female") && customer.getPayments().get(0).getBox() != null) {
+            DailyReportDTO.dailyReportFemaleWithBox(today, st);
+
+        } else if (customer.getPayments().get(0).getBox() == null && customer.getGander().equals("Male")) {
+            DailyReportDTO.dailyReportMaleWithOutBox(today, st);
+        } else if (customer.getPayments().get(0).getBox() == null && customer.getGander().equals("Female")) {
+            DailyReportDTO.dailyReportFemaleWithOutBox(today, st);
+        }
+        int arr[] = st.executeBatch();
+        System.out.println(Arrays.toString(arr));
+        st.close();
+    }
+
+    private static void saveCustomer(Customers customer, PreparedStatement ps) throws SQLException {
+        ps.setString(1, customer.getFirstName());
+        ps.setString(2, customer.getMiddleName());
+        ps.setString(3, customer.getLastName());
+        ps.setString(4, customer.getPhone());
+        ps.setString(5, customer.getGander());
+        ps.setString(6, customer.getShift());
+        ps.setString(7, customer.getAddress());
+        ps.setString(8, customer.getImage());
+        ps.setDouble(9, customer.getWeight());
+        ps.setString(10, customer.getWhoAdded());
+
+        ps.executeUpdate();
+        System.out.println("Customer added");
+    }
+
+    public static void updatePayment(Customers customer) throws SQLException {
+//
+//        PreparedStatement ps = null;
+//        try {
+//            connection.setAutoCommit(false);
+//
+//            String updateQuery = "UPDATE payments\n" +
+//                    "SET amount_paid=?,paid_by=?,discount=?,poxing=?,box_fk=? WHERE customer_phone_fk=" + customer.getPhone();
+//
+//            ps = connection.prepareStatement(updateQuery);
+//
+//            ps.setDouble(1, customer.getPayment().getAmountPaid());
+//            ps.setString(2, customer.getPayment().getPaidBy());
+//            ps.setDouble(3, customer.getPayment().getDiscount());
+//            ps.setBoolean(4, customer.getPayment().isPoxing());
+//
+//            if (customer.getPayment().getBox() == null) {
+//                ps.setString(5, null);
+//            } else {
+//                ps.setInt(5, customer.getPayment().getBox().getBoxId());
+//            }
+//
+//            ps.executeUpdate();
+//            System.out.println("Payment UPDATE.." + customer.getPayment());
+//            connection.commit();
+//
+//        } catch (SQLException e) {
+//            // connection.rollback();
+//            e.printStackTrace();
+//        } finally {
+//            ps.close();
+//        }
+//    }
+    }
+}
+
+
+
+
+
+
+
+  if (isValid(mandatoryFields, genderGroup) && phoneCheck() == null) {
+            try {
+
+                imageForgot(selectedFile);
+                String gander = male.isSelected() ? "Male" : "Female";
+                String _address = address.getText() != null ? address.getText().trim() : null;
+                double _weight = ((!weight.getText().isEmpty() || !weight.getText().isBlank())) ? Double.parseDouble(weight.getText().trim()) : 65.0;
+                String image = selectedFile != null ? selectedFile.getAbsolutePath() : null;
+
+                if (customer == null) {
+
+                    Customers newCustomer = new Customers(11, firstName.getText(), middleName.getText(), lastName.getText(),
+                            phone.getText(), gander, shift.getValue(), _address, image, _weight,
+                            paymentChecker.getActiveUser().getUsername());
+
+                    nextWindow(newCustomer);
+
+                } else {
+
+                    Customers updatedCustomer = new Customers(customer.getCustomerId(), firstName.getText(), middleName.getText(), lastName.getText(), phone.getText(), gander, shift.getValue(), _address, image, _weight, customer.getWhoAdded());
+                    if (payment == null) {
+                        nextWindow(updatedCustomer);
+                    } else {
+                        steptwoBtn.setText("Update customer");
+                        CustomerDTO.updateCustomer(updatedCustomer);
+                    }
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+
+        }

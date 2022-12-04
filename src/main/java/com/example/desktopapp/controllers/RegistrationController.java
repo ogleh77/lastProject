@@ -1,6 +1,7 @@
 package com.example.desktopapp.controllers;
 
 import com.example.desktopapp.entity.Customers;
+import com.example.desktopapp.entity.Payments;
 import com.example.desktopapp.entity.services.Users;
 import com.example.desktopapp.models.CustomerDTO;
 import com.example.desktopapp.services.CommonClass;
@@ -23,6 +24,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -65,11 +68,13 @@ public class RegistrationController extends CommonClass implements Initializable
     @FXML
     private JFXButton uploadImageBtn;
     @FXML
-    private JFXButton steptwoBtn;
+    private JFXButton updateBtn;
+    @FXML
+    private JFXButton paymentBtn;
     @FXML
     private Label headerInfo;
     private Customers customer;
-
+    private Payments payment;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -79,6 +84,10 @@ public class RegistrationController extends CommonClass implements Initializable
         Platform.runLater(() -> {
             customerId.setText(String.valueOf(CustomerDTO.id));
             mandatoryFields.addAll(firstName, middleName, lastName, phone, shift);
+
+            if (payment == null) {
+                paymentBtn.setVisible(true);
+            }
         });
 
 
@@ -86,42 +95,54 @@ public class RegistrationController extends CommonClass implements Initializable
 
 
     @FXML
-    void stepTwoHandler(ActionEvent event) throws IOException {
+    void updateHandler(ActionEvent event) throws IOException {
 
-        //check if the all mandatory fields  are full filled
         if (isValid(mandatoryFields, genderGroup) && phoneCheck() == null) {
-            imageForgot(selectedFile);
-            String gander = male.isSelected() ? "Male" : "Female";
-            String _address = address.getText() != null ? address.getText().trim() : null;
-            double _weight = ((!weight.getText().isEmpty() || !weight.getText().isBlank())) ? Double.parseDouble(weight.getText().trim()) : 65.0;
-            String image = selectedFile != null ? selectedFile.getAbsolutePath() : null;
+            try {
+                imageForgot(selectedFile);
+                String gander = male.isSelected() ? "Male" : "Female";
+                String _address = address.getText() != null ? address.getText().trim() : null;
+                double _weight = ((!weight.getText().isEmpty() || !weight.getText().isBlank())) ? Double.parseDouble(weight.getText().trim()) : 65.0;
+                String image = selectedFile != null ? selectedFile.getAbsolutePath() : null;
 
-            //Check if the customer is a new one or pre-existed one
-            if (customer == null) {
+                if (customer == null) {
+                    Customers newCustomer = new Customers(11, firstName.getText(), middleName.getText(), lastName.getText(),
+                            phone.getText(), gander, shift.getValue(), _address, image, _weight,
+                            paymentChecker.getActiveUser().getUsername());
 
-                Customers newCustomer = new Customers(11, firstName.getText(), middleName.getText(),
-                        lastName.getText(), phone.getText(), gander, shift.getValue(), _address, image, _weight,
-                        paymentChecker.getActiveUser().getUsername());
+                    nextWindow(newCustomer);
 
-//                nextWindow(newCustomer);
-                System.out.println("New customer added....");
-            } else {
+                } else {
+                    Customers updatedCustomer = new Customers(customer.getCustomerId(), firstName.getText(),
+                            middleName.getText(), lastName.getText(), phone.getText(), gander, shift.getValue(),
+                            _address, image, _weight, customer.getWhoAdded());
 
-                Customers updatedCustomer = new Customers(customer.getCustomerId(), firstName.getText(), middleName.getText(),
-                        lastName.getText(), phone.getText(), gander, shift.getValue(), _address, image, _weight,
-                        customer.getWhoAdded());
+                    if (payment != null) {
+                        CustomerDTO.updateCustomer(updatedCustomer);
+                    }
+
+                }
 
 
-                System.out.println("Existed customer was updated..");
+            } catch (SQLException e) {
+
             }
         }
-
 
     }
 
     @FXML
-    void resetHandler(ActionEvent event) {
+    void paymentHandler(ActionEvent event) {
 
+//        for (Customers customer : paymentChecker.getAllCustomers()) {
+//
+//            System.out.println("Name " + customer.getFirstName() + " " + customer.getLastName());
+//            System.out.println("------------");
+//            System.out.println(customer.getPayments());
+//            System.out.println("------------====-----------");
+//        }
+
+        System.out.println(payment);
     }
 
     @FXML
@@ -130,7 +151,7 @@ public class RegistrationController extends CommonClass implements Initializable
     }
 
 
-    //------------------Helper merhods are is down here------------------
+    //------------------Helper merhods are down there------------------
 
 
     //------------------get the payment window if the current customer haven't a payment------------------
@@ -199,21 +220,32 @@ public class RegistrationController extends CommonClass implements Initializable
     public void setCustomer(Customers customer) {
         this.customer = customer;
         firstName.setText(customer.getFirstName());
-        middleName.setText(customer.getFirstName());
-        lastName.setText(customer.getFirstName());
-
+        middleName.setText(customer.getMiddleName());
+        lastName.setText(customer.getLastName());
         phone.setText(customer.getPhone());
+        weight.setText(String.valueOf(customer.getWeight()));
+        shift.setValue(customer.getShift());
+        address.setText(customer.getAddress() != null ? customer.getAddress() : "No address");
+
         if (customer.getGander().equals("Male")) {
             male.setSelected(true);
         } else {
             female.setSelected(true);
         }
-        weight.setText(String.valueOf(customer.getWeight()));
-        shift.setValue(customer.getShift());
-        address.setText(customer.getAddress() != null ? customer.getAddress() : "No address");
+
+        //------------------set image if exist--------------------
+//        if (customer.getImage() != null) {
+//            imgView.setImage(new Image(customer.getImage()));
+//        }
+
+        for (Payments payment : customer.getPayments()) {
+            if (payment.isOnline() && payment.getExpDate().isAfter(LocalDate.now())) {
+                this.payment = payment;
+            }
+        }
 
         //if customer is not null tell the user meaning full data
-        steptwoBtn.setText("Update customer");
+        paymentBtn.setText("Update");
         uploadImageBtn.setText("Change image");
         headerInfo.setText("UPDATING EXISTED CUSTOMER INFO");
     }
