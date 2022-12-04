@@ -88,12 +88,12 @@
                 </DropShadow>
             </effect>
         </VBox>
-        <JFXButton fx:id="updateBtn" buttonType="RAISED" layoutX="740.0" layoutY="610.0" onAction="#updateHandler" prefHeight="47.0" prefWidth="222.0" styleClass="btn-save" text="Update" textFill="#d0cbcb" AnchorPane.bottomAnchor="83.0" AnchorPane.rightAnchor="282.0">
+        <JFXButton fx:id="updateBtn" buttonType="RAISED" layoutX="740.0" layoutY="610.0" onAction="#updateHandler" prefHeight="47.0" prefWidth="174.0" styleClass="btn-save" text="Update customer" textFill="#d0cbcb" AnchorPane.bottomAnchor="83.0" AnchorPane.rightAnchor="282.0">
             <font>
                 <Font name="Arial" size="14.0" />
             </font>
         </JFXButton>
-        <JFXButton fx:id="paymentBtn" buttonType="RAISED" layoutX="934.0" layoutY="610.0" onAction="#paymentHandler" prefHeight="40.0" prefWidth="120.0" styleClass="btn-reset" text="set payment" textFill="WHITE" visible="false" AnchorPane.bottomAnchor="83.0" AnchorPane.rightAnchor="88.0">
+        <JFXButton fx:id="paymentBtn" buttonType="RAISED" disable="true" layoutX="934.0" layoutY="610.0" onAction="#paymentHandler" prefHeight="40.0" prefWidth="120.0" styleClass="btn-reset" text="set payment" textFill="WHITE" AnchorPane.bottomAnchor="83.0" AnchorPane.rightAnchor="88.0">
             <font>
                 <Font size="15.0" />
             </font>

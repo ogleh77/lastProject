@@ -271,3 +271,55 @@ public class CustomerDTO {
 
 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ------------
+
+         if (customer == null || payment == null) {
+                        paymentBtn.setDisable(false);
+                    }
+
+           if (isValid(mandatoryFields, genderGroup) && phoneCheck() == null) {
+                    try {
+                        imageForgot(selectedFile);
+                        String gander = male.isSelected() ? "Male" : "Female";
+                        String _address = address.getText() != null ? address.getText().trim() : null;
+                        double _weight = ((!weight.getText().isEmpty() || !weight.getText().isBlank())) ? Double.parseDouble(weight.getText().trim()) : 65.0;
+                        String image = selectedFile != null ? selectedFile.getAbsolutePath() : null;
+
+                        if (customer == null) {
+                            Customers newCustomer = new Customers(11, firstName.getText(), middleName.getText(), lastName.getText(),
+                                    phone.getText(), gander, shift.getValue(), _address, image, _weight,
+                                    paymentChecker.getActiveUser().getUsername());
+
+
+                            nextWindow(newCustomer);
+
+                        } else {
+                            Customers updatedCustomer = new Customers(customer.getCustomerId(), firstName.getText(),
+                                    middleName.getText(), lastName.getText(), phone.getText(), gander, shift.getValue(),
+                                    _address, image, _weight, customer.getWhoAdded());
+
+                            if (payment != null) {
+                                CustomerDTO.updateCustomer(updatedCustomer);
+                            }
+
+                        }
+
+
+                    } catch (SQLException e) {
+
+                    }
+                }

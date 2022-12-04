@@ -85,8 +85,19 @@ public class RegistrationController extends CommonClass implements Initializable
             customerId.setText(String.valueOf(CustomerDTO.id));
             mandatoryFields.addAll(firstName, middleName, lastName, phone, shift);
 
-            if (payment == null) {
-                paymentBtn.setVisible(true);
+
+            if (customer == null) {
+                System.out.println("New customer");
+
+                updateBtn.setText("Next step");
+
+            } else if (payment == null) {
+
+                paymentBtn.setDisable(false);
+                System.out.println("Existed customer with out payment");
+            } else {
+                updateBtn.setText("update customer");
+                System.out.println("extisted customer with payment");
             }
         });
 
@@ -97,6 +108,7 @@ public class RegistrationController extends CommonClass implements Initializable
     @FXML
     void updateHandler(ActionEvent event) throws IOException {
 
+
         if (isValid(mandatoryFields, genderGroup) && phoneCheck() == null) {
             try {
                 imageForgot(selectedFile);
@@ -104,7 +116,9 @@ public class RegistrationController extends CommonClass implements Initializable
                 String _address = address.getText() != null ? address.getText().trim() : null;
                 double _weight = ((!weight.getText().isEmpty() || !weight.getText().isBlank())) ? Double.parseDouble(weight.getText().trim()) : 65.0;
                 String image = selectedFile != null ? selectedFile.getAbsolutePath() : null;
+                //---------------------------if the customer is new---------------------------
 
+                //Logics
                 if (customer == null) {
                     Customers newCustomer = new Customers(11, firstName.getText(), middleName.getText(), lastName.getText(),
                             phone.getText(), gander, shift.getValue(), _address, image, _weight,
@@ -112,15 +126,21 @@ public class RegistrationController extends CommonClass implements Initializable
 
                     nextWindow(newCustomer);
 
+                    //------------------if the customer has payment update it ----------------
                 } else {
+
                     Customers updatedCustomer = new Customers(customer.getCustomerId(), firstName.getText(),
                             middleName.getText(), lastName.getText(), phone.getText(), gander, shift.getValue(),
                             _address, image, _weight, customer.getWhoAdded());
 
-                    if (payment != null) {
-                        CustomerDTO.updateCustomer(updatedCustomer);
-                    }
+                    CustomerDTO.updateCustomer(updatedCustomer);
 
+                    //--------------------_Tell the user what he/she does----------------------
+                    Alert alert = message(Alert.AlertType.INFORMATION, "Waxaad wax ka bedeshay macluumadka macmiilka " +
+                                    customer.getFirstName()
+                            , "Customer updated..");
+
+                    alert.show();
                 }
 
 
@@ -128,11 +148,10 @@ public class RegistrationController extends CommonClass implements Initializable
 
             }
         }
-
     }
 
     @FXML
-    void paymentHandler(ActionEvent event) {
+    void paymentHandler(ActionEvent event) throws IOException {
 
 //        for (Customers customer : paymentChecker.getAllCustomers()) {
 //
@@ -142,7 +161,8 @@ public class RegistrationController extends CommonClass implements Initializable
 //            System.out.println("------------====-----------");
 //        }
 
-        System.out.println(payment);
+
+        nextWindow(customer);
     }
 
     @FXML

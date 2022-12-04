@@ -73,6 +73,7 @@ public class PaymentController extends CommonClass implements Initializable {
     private final double vipBoxCost = 3.0;
     private double currentCost = 0;
 
+    private Payments payments;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -196,24 +197,6 @@ public class PaymentController extends CommonClass implements Initializable {
 
         expDate.setValue(LocalDate.now().plusDays(30));
 
-
-        for (Payments payment : customer.getPayments()) {
-
-            if (payment != null) {
-                paidBy.setValue(customer.getPayment().getPaidBy());
-                discount.setText(String.valueOf(customer.getPayment().getDiscount()));
-                amountPaid.setText(String.valueOf(customer.getPayment().getAmountPaid()));
-                expDate.setValue(customer.getPayment().getExpDate());
-
-                if (customer.getPayment().getBox() != null) {
-                    boxChooser.setValue(customer.getPayment().getBox());
-                }
-
-                if (customer.getPayment().isPoxing()) {
-                    poxing.setSelected(true);
-                }
-            }
-        }
     }
 
     @Override
