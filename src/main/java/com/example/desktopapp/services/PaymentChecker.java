@@ -1,8 +1,10 @@
 package com.example.desktopapp.services;
 
 import com.example.desktopapp.entity.Customers;
+import com.example.desktopapp.entity.services.Gym;
 import com.example.desktopapp.entity.services.Users;
 import com.example.desktopapp.models.CustomerDTO;
+import com.example.desktopapp.models.GymDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -18,11 +20,14 @@ public class PaymentChecker {
 
     private final Users activeUser;
 
+    private Gym currentGym;
+
     public PaymentChecker(Users activeUser) {
         this.activeCustomers = FXCollections.observableArrayList();
         this.outdatedCustomers = FXCollections.observableArrayList();
         this.allCustomers = FXCollections.observableArrayList();
         this.activeUser = activeUser;
+        this.currentGym = GymDTO.currentGym;
     }
 
 
@@ -67,5 +72,9 @@ public class PaymentChecker {
 
     public Users getActiveUser() {
         return activeUser;
+    }
+
+    public Gym getCurrentGym() {
+        return currentGym;
     }
 }

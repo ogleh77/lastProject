@@ -136,7 +136,7 @@ public class CustomerDTO {
         System.out.println("Customer added");
     }
 
-    private static void makePayment(Customers customer) throws SQLException {
+    public static void makePayment(Customers customer) throws SQLException {
 
         String insertPaymentQuery = "INSERT INTO payments(exp_date, amount_paid, paid_by," +
                 "discount,poxing,box_fk, customer_phone_fk) VALUES (?,?,?,?,?,?,?)";

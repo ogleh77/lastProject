@@ -323,3 +323,39 @@ public class CustomerDTO {
 
                     }
                 }
+
+
+
+
+
+
+
+                ------Oay
+
+
+                  if (validateDiscount() == null) {
+                            double _discount = ((!discount.getText().isEmpty() || !discount.getText().isBlank())) ? Double.parseDouble(discount.getText()) : 0;
+
+                            currentCost -= _discount;
+
+
+                            Payments payment = new Payments(expDate.getValue(), currentCost, paidBy.getValue(), _discount, poxing.isSelected(),
+                                    String.valueOf(customer.getCustomerId()));
+
+                            if (boxChooser.getValue() != null) {
+                                Box box = boxChooser.getValue();
+                                payment.setBox(box);
+                            }
+
+                            try {
+
+
+                                CustomerDTO.insertCustomerWithPayment(customer);
+                                customer.getPayments().add(payment);
+                                paymentChecker.getAllCustomers().add(0, customer);
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                        }

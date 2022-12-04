@@ -1,5 +1,6 @@
 package com.example.desktopapp.controllers;
 
+import animatefx.animation.Shake;
 import com.example.desktopapp.entity.Customers;
 import com.example.desktopapp.entity.Payments;
 import com.example.desktopapp.entity.services.Box;
@@ -8,15 +9,11 @@ import com.example.desktopapp.services.CommonClass;
 import com.example.desktopapp.services.PaymentChecker;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXRadioButton;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
@@ -66,34 +63,31 @@ public class PaymentController extends CommonClass implements Initializable {
 
     private Customers customer;
 
-    private PaymentChecker paymentChecker;
+    private double fitnessCost;
+    private double poxingCost;
+    private double vipBoxCost;
+    private double currentCost;
 
-    private double fitnessCost = 12.0;
-    private double poxingCost = 2.0;
-    private final double vipBoxCost = 3.0;
-    private double currentCost = 0;
+    public PaymentController() {
 
-    private Payments payments;
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Box> boxes = FXCollections.observableArrayList();
-        boxes.add(new Box(1, "Box 1", true));
-        boxes.add(new Box(2, "Box 2", true));
-        boxes.add(new Box(3, "Box 3", true));
-        boxes.add(new Box(0, "remove box", true));
+        Box box = new Box("remove vip box");
+        Platform.runLater(() -> {
+            boxChooser.setItems(paymentChecker.getCurrentGym().getVipBoxes());
+            boxChooser.getItems().add(box);
 
-        expDate.setValue(LocalDate.now().minusDays(30));
-        paidBy.setItems(super.paidBy);
-        currentCost = fitnessCost;
-        amountPaid.setText(String.valueOf(currentCost));
-
-        //--------------------operations------------------------
-        boxChooser.setItems(boxes);
-
-        currentCost = fitnessCost;
-
-        amountPaid.setText(String.valueOf(currentCost));
+            fitnessCost = paymentChecker.getCurrentGym().getFitnessCost();
+            poxingCost = paymentChecker.getCurrentGym().getPoxingCost();
+            vipBoxCost = paymentChecker.getCurrentGym().getBoxCost();
+            expDate.setValue(LocalDate.now().plusDays(30));
+            paidBy.setItems(super.paidBy);
+            currentCost = fitnessCost;
+            amountPaid.setText(String.valueOf(currentCost));
+        });
 
         //---------------------Validations----------------------
 
@@ -123,37 +117,63 @@ public class PaymentController extends CommonClass implements Initializable {
 
     @FXML
     void saveHandler(ActionEvent event) {
-        if (validateDiscount() == null) {
-            double _discount = ((!discount.getText().isEmpty() || !discount.getText().isBlank())) ? Double.parseDouble(discount.getText()) : 0;
+        try {
+            if (validateDiscount() == null && validatePaidBy() == null) {
 
-            currentCost -= _discount;
+                double _discount = ((!discount.getText().isEmpty() || !discount.getText().isBlank())) ? Double.parseDouble(discount.getText()) : 0;
+
+                currentCost -= _discount;
 
 
-            Payments payment = new Payments(expDate.getValue(), currentCost, paidBy.getValue(), _discount, poxing.isSelected(),
-                    String.valueOf(customer.getCustomerId()));
+                Payments payment = new Payments(expDate.getValue(), currentCost, paidBy.getValue(), _discount, poxing.isSelected(),
+                        customer.getPhone());
+                customer.getPayments().add(0, payment);
 
-            if (boxChooser.getValue() != null) {
-                Box box = boxChooser.getValue();
-                payment.setBox(box);
+                //check if payment has a box
+                if (boxChooser.getValue() != null && !boxChooser.getValue().getBoxName().contains("re")) {
+                    payment.setBox(boxChooser.getValue());
+                }
+                //If the customer is new one create the customer and add a payment
+                if (customer.getPayments().size() == 0) {
+                    CustomerDTO.insertCustomerWithPayment(customer);
+
+                    paymentChecker.getAllCustomers().add(0, customer);
+
+                    messageAlert("Created", "new customer with payment created",
+                            Alert.AlertType.INFORMATION);
+                } else {
+                    //If the customer was existed update and created only new payment
+
+                    CustomerDTO.makePayment(customer);
+                    messageAlert("Updated", "new payment created for " + customer.getFirstName(),
+                            Alert.AlertType.INFORMATION);
+                    System.out.println("He is already memeber");
+                }
+
             }
-
-            customer.getPayments().add(0, payment);
-
-            try {
-                CustomerDTO.insertCustomerWithPayment(customer);
-                customer.getPayments().add(payment);
-                paymentChecker.getAllCustomers().add(0, customer);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+        } catch (SQLException e) {
+            messageAlert("Error", "error caused by " + e.getMessage(),
+                    Alert.AlertType.ERROR);
         }
+
+
+    }
+
+    @FXML
+    void resetHandler(ActionEvent event) {
+
 
     }
 
     // -----------------helper methods-----------------------
 
+    private String validatePaidBy() {
+        if (paidBy.getValue() == null) {
+            new Shake(paidBy).play();
+            return "Error";
+        }
+        return null;
+    }
 
     private String validateDiscount() {
 
@@ -194,9 +214,6 @@ public class PaymentController extends CommonClass implements Initializable {
         } else {
             female.setSelected(true);
         }
-
-        expDate.setValue(LocalDate.now().plusDays(30));
-
     }
 
     @Override
