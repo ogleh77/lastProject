@@ -1,7 +1,6 @@
 package com.example.desktopapp.services;
 
 import javafx.scene.control.Alert;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -12,7 +11,7 @@ public interface IConnection {
         Connection con = null;
 
         try {
-            con = DriverManager.getConnection("jdbc:sqlite:src/database/mydb.db");
+            con = DriverManager.getConnection("jdbc:sqlite:src/database/database.db");
             Class.forName("org.sqlite.JDBC");
 
         } catch (Exception e) {
