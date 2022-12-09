@@ -5,51 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="326a82b6-ed2c-4911-9fb0-3599560e0083" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/database/database.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/TesterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity/serices/Box.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/CustomerModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/tester.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0564da4b-d10f-4913-ba71-b7c2825b4350.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity/Users.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity/serices/DailyReport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity/serices/Gym.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/exceptions/SqlCustomException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/DailyReportDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/GymModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/com/example/desktopapp/model/CustomerModelTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/com/example/desktopapp/model/DailyReportDTOTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/com/example/desktopapp/model/GymTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/com/example/desktopapp/model/tested.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b23371bd-0965-4df4-ad82-33466b58dcb2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b23371bd-0965-4df4-ad82-33466b58dcb2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/mydb.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/DashboardController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/HomeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/PaymentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/RegistrationController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/service/LoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/service/NotificationController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/service/OutdatedController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/service/SplashScreenController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/database.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity/Customers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity/Customers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity/DailyReport.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity/Payments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity/Payments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity/services/Box.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity/services/Gym.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity/services/Users.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models/CustomerDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models/DailyReportDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models/GymDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models/UsersDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/services/CommonClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/services/IConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/services/IConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/services/PaymentChecker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/araged-pyment.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/paymentTxt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/saveCorrect" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/dashboard.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/home.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/payments.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/registrations.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/service/login.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/service/notifications.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/service/outdated.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/service/splash-screen.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/CustomerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/CustomerModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,15 +33,19 @@
       <list>
         <option value="CSS File" />
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="FxmlFile" />
         <option value="Record" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/CustomerModel.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/test/com/example/desktopapp/model/tested.txt" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -93,13 +69,14 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_directory_selection&quot;: &quot;/Users/mrd/Documents/JAVA_FX/DesktopApp/src/main/java/com/example/desktopapp/model&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/mrd/Documents/JAVA_FX/DesktopApp/src/main/java/com/example/desktopapp/services&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;DatabaseDriversLRU&quot;: [
@@ -127,29 +104,101 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.desktopapp.model" />
       <recent name="com.example.desktopapp.controllers" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.desktopapp.entities.services" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.HelloApplication" />
+  <component name="RunManager" selected="JUnit.GymTest.itShouldMakeFalseBox">
+    <configuration name="DailyReportDTOTest.dailyReportMaleWithBox" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="DesktopApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.desktopapp.*" />
+          <option name="PATTERN" value="com.example.desktopapp.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.example.desktopapp.model" />
+      <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.model.DailyReportDTOTest" />
+      <option name="METHOD_NAME" value="dailyReportMaleWithBox" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DailyReportDTOTest.itShouldUploadDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DesktopApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.desktopapp.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.desktopapp.model" />
+      <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.model.DailyReportDTOTest" />
+      <option name="METHOD_NAME" value="itShouldUploadDate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GymTest.itShouldGymData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DesktopApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.desktopapp.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.desktopapp.model" />
+      <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.model.GymTest" />
+      <option name="METHOD_NAME" value="itShouldGymData" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GymTest.itShouldLoadAllBoxes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DesktopApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.desktopapp.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.desktopapp.model" />
+      <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.model.GymTest" />
+      <option name="METHOD_NAME" value="itShouldLoadAllBoxes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GymTest.itShouldMakeFalseBox" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DesktopApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.desktopapp.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.desktopapp.model" />
+      <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.model.GymTest" />
+      <option name="METHOD_NAME" value="itShouldMakeFalseBox" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HelloApplication" />
+        <item itemvalue="JUnit.GymTest.itShouldMakeFalseBox" />
+        <item itemvalue="JUnit.GymTest.itShouldGymData" />
+        <item itemvalue="JUnit.GymTest.itShouldLoadAllBoxes" />
+        <item itemvalue="JUnit.DailyReportDTOTest.itShouldUploadDate" />
+        <item itemvalue="JUnit.DailyReportDTOTest.dailyReportMaleWithBox" />
       </list>
     </recent_temporary>
   </component>
@@ -298,7 +347,13 @@
       <workItem from="1670323412476" duration="3082000" />
       <workItem from="1670352428234" duration="41000" />
       <workItem from="1670418990036" duration="2773000" />
-      <workItem from="1670422317223" duration="410000" />
+      <workItem from="1670422317223" duration="8122000" />
+      <workItem from="1670477471517" duration="8155000" />
+      <workItem from="1670498467021" duration="8124000" />
+      <workItem from="1670510171419" duration="28000" />
+      <workItem from="1670516279952" duration="45000" />
+      <workItem from="1670524699007" duration="2566000" />
+      <workItem from="1670569507711" duration="397000" />
     </task>
     <servers />
   </component>
