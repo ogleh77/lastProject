@@ -148,6 +148,6 @@ public class CustomerDTO {
         return payments;
     }
 
-    //Fetch single payment
+
 
 }

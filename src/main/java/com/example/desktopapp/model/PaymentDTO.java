@@ -33,6 +33,8 @@ public class PaymentDTO {
         if (customer.payments().get(0).box() == null) {
             ps.setString(6, null);
         } else {
+            //Make the box un ready
+            setTookBoxIsReadyFalse(customer.payments().get(0).box());
             ps.setInt(6, customer.payments().get(0).box().boxId());
         }
 
@@ -192,7 +194,7 @@ public class PaymentDTO {
 
     }
 
-    //---------------make box not ready during in use ---------------------
+    //fetch single payment
     public static Payments payment(int paymentId) throws SQLException {
         Statement statement = connection.createStatement();
 
@@ -214,5 +216,24 @@ public class PaymentDTO {
         }
         return payment;
     }
+
+
+    //-----------------------Box operations------------------
+
+
+    private static void setTookBoxIsReadyFalse(Box box) throws SQLException {
+        String boxFalseQuery = "UPDATE box SET is_ready=false";
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(boxFalseQuery);
+        System.out.println(box.boxName() + " made false");
+    }
+
+    private static void setBoxIsReadyTrue(Box box) throws SQLException {
+        String boxFalseQuery = "UPDATE box SET is_ready=true";
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(boxFalseQuery);
+        System.out.println(box.boxName() + " made false");
+    }
+
 
 }

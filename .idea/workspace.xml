@@ -6,14 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="326a82b6-ed2c-4911-9fb0-3599560e0083" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/b23371bd-0965-4df4-ad82-33466b58dcb2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b23371bd-0965-4df4-ad82-33466b58dcb2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/database.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/database.db-journal" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/CustomerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/CustomerDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/DailyReportDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/DailyReportDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/PaymentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/PaymentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/com/example/desktopapp/model/CustomerDTOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/com/example/desktopapp/model/CustomerDTOTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -348,7 +343,8 @@
       <workItem from="1670590856860" duration="59000" />
       <workItem from="1670615436138" duration="3132000" />
       <workItem from="1670645441002" duration="1254000" />
-      <workItem from="1670656722556" duration="5088000" />
+      <workItem from="1670656722556" duration="5348000" />
+      <workItem from="1670667964504" duration="940000" />
     </task>
     <servers />
   </component>
