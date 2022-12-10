@@ -65,7 +65,7 @@ public class PaymentDTO {
         } catch (SQLException e) {
             connection.rollback();
             e.printStackTrace();
-//            throw e;
+            throw e;
         }
 
 
@@ -220,7 +220,6 @@ public class PaymentDTO {
 
     //-----------------------Box operations------------------
 
-
     private static void setTookBoxIsReadyFalse(Box box) throws SQLException {
         String boxFalseQuery = "UPDATE box SET is_ready=false";
         Statement statement = connection.createStatement();
@@ -234,6 +233,27 @@ public class PaymentDTO {
         statement.executeUpdate(boxFalseQuery);
         System.out.println(box.boxName() + " made false");
     }
+
+    private static void paymentIsOutDated(Payments payment) throws SQLException {
+        connection.setAutoCommit(false);
+        try {
+            String outDatedPaymentQuery = "UPDATE payments set is_online=false";
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(outDatedPaymentQuery);
+
+            if (payment.box() != null) {
+                setBoxIsReadyTrue(payment.box());
+            }
+
+            connection.commit();
+            System.out.println("Connection outdated...");
+        } catch (SQLException e) {
+            connection.rollback();
+            throw e;
+        }
+    }
+
+
 
 
 }
