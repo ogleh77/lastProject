@@ -11,10 +11,8 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.Arrays;
 
-public class CustomerModel {
-
+public class CustomerDTO {
     public static int numberOfCustomers;
     public static int limit = 0;
     public static int id = 1;
@@ -48,10 +46,12 @@ public class CustomerModel {
 
     }
 
+
     //--------------------update customers----------------
     public static void updateCustomer(Customers customer) throws SQLException {
 
-        String updateQuery = "UPDATE customers SET first_name=?,middle_name=?,last_name=?,phone=?,gander=?,shift=?,\n" + "                     address=?,image=?,weight=? WHERE customer_id=" + customer.customerId();
+        String updateQuery = "UPDATE customers SET first_name=?,middle_name=?,last_name=?,phone=?,gander=?,shift=?, " +
+                "address=?,image=?,weight=? WHERE customer_id=" + customer.customerId();
 
         PreparedStatement ps = connection.prepareStatement(updateQuery);
 
@@ -70,31 +70,8 @@ public class CustomerModel {
         System.out.println("Customer updated");
     }
 
+    //-----------fetch all the customers with their payments----------------------
 
-    //--------------------Insert customer with payment transactionaly----------------------------
-
-    public static void insertCustomerWithPayment(Customers customer) throws SQLException {
-
-        //step 1  set auto commit off
-        connection.setAutoCommit(false);
-        try {
-            //setp 2  create customer
-            insertCustomer(customer);
-            //step 3 create payment
-            insertPayment(customer);
-            System.out.println(1 / 0);
-            //Finally commit the opertions
-            connection.commit();
-        } catch (SQLException e) {
-            connection.rollback();
-            e.printStackTrace();
-//            throw e;
-        }
-
-
-    }
-
-    //--------------------fetchAll customers accourding to it's gander---------------tested........
     public static ObservableList<Customers> fetchCustomersWithGender(Users activeUser)
             throws SQLException {
         System.out.println("Limit is " + limit);
@@ -102,7 +79,7 @@ public class CustomerModel {
         ObservableList<Customers> customers = FXCollections.observableArrayList();
 
         //----------------------Pass the user's gander and role---------------------
-        String fetchingQueryWithGander = userSeparator(activeUser.gender());
+        String fetchingQueryWithGander = userSeparator(activeUser.role(), activeUser.gender());
 
         Statement statement = connection.createStatement();
 
@@ -133,19 +110,19 @@ public class CustomerModel {
 
 
     //------------------------helper methods-------------------------tested.....
-    private static String userSeparator(String gander) {
+    private static String userSeparator(String role, String gander) {
         String fetchQuery = "SELECT * FROM customers WHERE gander='" + gander +
                 "'ORDER BY customer_id";
 
-        if (gander.equals("superAdmin")) {
-            System.out.println("Active customer is " + gander);
+        if (role.equals("superAdmin")) {
+            System.out.println("Active customer is " + role);
             fetchQuery = "SELECT * FROM customers ORDER BY customer_id";
         }
         return fetchQuery;
     }
 
     //-------Fetch payments according to customer that belongs--------tested......
-    public static ObservableList<Payments> fetchPayments(String phone) throws SQLException {
+    private static ObservableList<Payments> fetchPayments(String phone) throws SQLException {
         ObservableList<Payments> payments = FXCollections.observableArrayList();
         Statement statement = connection.createStatement();
 
@@ -172,49 +149,5 @@ public class CustomerModel {
 
         return payments;
     }
-
-
-    //-------------------------make payment----------------------------tested.....
-    public static void insertPayment(Customers customer) throws SQLException {
-        String insertPaymentQuery = "INSERT INTO payments(exp_date, amount_paid, paid_by," +
-                "discount,poxing,box_fk, customer_phone_fk) VALUES (?,?,?,?,?,?,?)";
-        PreparedStatement ps = connection.prepareStatement(insertPaymentQuery);
-        ps.setString(1, customer.payments().get(0).expDate().toString());
-        ps.setDouble(2, customer.payments().get(0).amountPaid());
-        ps.setString(3, customer.payments().get(0).paidBy());
-        ps.setDouble(4, customer.payments().get(0).discount());
-        ps.setBoolean(5, customer.payments().get(0).poxing());
-        if (customer.payments().get(0).box() == null) {
-            ps.setString(6, null);
-        } else {
-            ps.setInt(6, customer.payments().get(0).box().boxId());
-        }
-
-        ps.setString(7, customer.phone());
-        ps.executeUpdate();
-
-        //-------------make the payment's report-------------
-        makeReport(customer, LocalDate.now());
-
-        System.out.println("Payment inserted");
-    }
-
-    //-------------------------make report------------------------------
-    private static void makeReport(Customers customer, LocalDate today) throws SQLException {
-        Statement st = connection.createStatement();
-        if (customer.gander().equals("Male") && customer.payments().get(0).box() != null) {
-            DailyReportDTO.dailyReportMaleWithBox(today, st);
-        } else if (customer.gander().equals("Female") && customer.payments().get(0).box() != null) {
-            DailyReportDTO.dailyReportFemaleWithBox(today, st);
-        } else if (customer.payments().get(0).box() == null && customer.gander().equals("Male")) {
-            DailyReportDTO.dailyReportMaleWithOutBox(today, st);
-        } else if (customer.payments().get(0).box() == null && customer.gander().equals("Female")) {
-            DailyReportDTO.dailyReportFemaleWithOutBox(today, st);
-        }
-        int arr[] = st.executeBatch();
-        System.out.println(Arrays.toString(arr));
-        st.close();
-    }
-
 
 }
