@@ -71,6 +71,31 @@ public class PaymentDTO {
         }
     }
 
+
+    public static void paymentOutDated(Payments payment) throws SQLException {
+        connection.setAutoCommit(false);
+        try {
+            Statement statement = connection.createStatement();
+            String setPaymentOff = "UPDATE payments SET is_online=false WHERE payment_id=" + payment.paymentId();
+            statement.addBatch(setPaymentOff);
+
+            if (payment.box() != null) {
+                String setBoxOnline = "UPDATE box SET is_ready=true WHERE box_id=" + payment.box().boxId();
+                statement.addBatch(setBoxOnline);
+            }
+
+            statement.executeBatch();
+
+            connection.commit();
+            System.out.println("Payment offed " + payment);
+
+
+        } catch (SQLException e) {
+            connection.rollback();
+            throw e;
+        }
+    }
+
     //-----------------------Fetch customer's payments---------------------
     public static ObservableList<Payments> fetchPayments(String phone) throws SQLException {
 
@@ -136,6 +161,30 @@ public class PaymentDTO {
         return payments;
     }
 
+
+    public static Payments payment(int paymentId) throws SQLException {
+        Statement statement = connection.createStatement();
+
+        Payments payment = null;
+        ResultSet rs = statement.executeQuery("SELECT * FROM payments LEFT JOIN box b on payments.box_fk = b.box_id " +
+                "WHERE payment_id=" + paymentId);
+
+        while (rs.next()) {
+            Box box = null;
+            if (rs.getString("box_fk") != null) {
+                box = new Box(rs.getInt("box_id"), rs.getString("box_name"), rs.getBoolean("is_ready"));
+            }
+            payment = new Payments(rs.getInt("payment_id"), rs.getString("payment_date"),
+                    LocalDate.parse(rs.getString("exp_date")), rs.getString("month"),
+                    rs.getString("year"), rs.getDouble("amount_paid"),
+                    rs.getString("paid_by"), rs.getDouble("discount"),
+                    rs.getBoolean("poxing"), box, rs.getInt("customer_phone_fk"),
+                    rs.getBoolean("is_online"), rs.getBoolean("pending"));
+        }
+        return payment;
+    }
+
+
     //-------------------------make report------------------------------
     private static void makeReport(Payments payment, String customerGender) throws SQLException {
         Statement st = connection.createStatement();
@@ -162,14 +211,4 @@ public class PaymentDTO {
     }
 
 
-    private static String userSeparator(String role, String gander) {
-        String fetchQuery = "SELECT * FROM customers WHERE gander='" + gander +
-                "'ORDER BY customer_id";
-
-        if (role.equals("superAdmin")) {
-            System.out.println("Active customer is " + role);
-            fetchQuery = "SELECT * FROM customers ORDER BY customer_id";
-        }
-        return fetchQuery;
-    }
 }

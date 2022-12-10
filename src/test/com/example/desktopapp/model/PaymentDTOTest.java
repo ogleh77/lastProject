@@ -56,4 +56,18 @@ class PaymentDTOTest {
 
         System.out.println(PaymentDTO.fetchPayments("4303920"));
     }
+
+
+    @Test
+    void itShouldLoadSinglePayment() throws SQLException {
+
+        System.out.println(PaymentDTO.payment(5));
+    }
+
+
+    @Test
+    void itShouldOutDatePayment() throws SQLException {
+
+        PaymentDTO.paymentOutDated(PaymentDTO.payment(6));
+    }
 }
