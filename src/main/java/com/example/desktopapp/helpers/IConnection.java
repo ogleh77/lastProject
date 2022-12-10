@@ -1,19 +1,28 @@
 package com.example.desktopapp.helpers;
 
 import javafx.scene.control.Alert;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
-public interface IConnection {
+public abstract class IConnection {
 
-    static Connection getConnection() {
+    static final Connection con;
 
-        Connection con = null;
-
+    static {
         try {
             con = DriverManager.getConnection("jdbc:sqlite:src/database/database.db");
-            Class.forName("org.sqlite.JDBC");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+
+    public static Connection getConnection() {
+
+        try {
+            Class.forName("org.sqlite.JDBC");
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();

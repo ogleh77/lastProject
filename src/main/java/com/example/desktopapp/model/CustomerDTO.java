@@ -17,7 +17,7 @@ public class CustomerDTO {
     public static int limit = 0;
     public static int id = 1;
 
-    private static Connection connection = IConnection.getConnection();
+    public static Connection connection = IConnection.getConnection();
 
     //Insert customers
     public static void insertCustomer(Customers customer) throws SQLException {
@@ -147,7 +147,6 @@ public class CustomerDTO {
 
         return payments;
     }
-
 
 
 }

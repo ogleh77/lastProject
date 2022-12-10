@@ -60,7 +60,7 @@ class CustomerDTOTest {
                 "Female", "afternoon", null, null, 0, "Ogleh", payments);
 
 
-        PaymentDTO.insertCustomerWithPayment(customer);
+        //     PaymentDTO.insertCustomerWithPayment(customer);
     }
 
 
