@@ -1,4 +1,4 @@
-package com.example.desktopapp.services;
+package com.example.desktopapp.helpers;
 
 import javafx.scene.control.Alert;
 import java.sql.Connection;

@@ -1,7 +1,7 @@
 package com.example.desktopapp.model;
 
 import com.example.desktopapp.entity.serices.DailyReport;
-import com.example.desktopapp.services.IConnection;
+import com.example.desktopapp.helpers.IConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

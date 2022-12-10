@@ -5,7 +5,7 @@ import com.example.desktopapp.entity.Payments;
 import com.example.desktopapp.entity.Users;
 import com.example.desktopapp.entity.serices.Box;
 import com.example.desktopapp.exceptions.SqlCustomException;
-import com.example.desktopapp.services.IConnection;
+import com.example.desktopapp.helpers.IConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

@@ -1,14 +1,11 @@
 package com.example.desktopapp.model;
 
-import com.example.desktopapp.services.IConnection;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class DailyReportDTOTest {
 
