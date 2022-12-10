@@ -19,7 +19,7 @@ public class CustomerDTO {
 
     private static Connection connection = IConnection.getConnection();
 
-    //--------------------Insert customers----------------
+    //Insert customers
     public static void insertCustomer(Customers customer) throws SQLException {
         try {
             String insertQuery = "INSERT INTO customers(first_name, middle_name, last_name, phone, gander, shift, address, image, weight, who_added)\n" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -47,7 +47,7 @@ public class CustomerDTO {
     }
 
 
-    //--------------------update customers----------------
+    //update customers
     public static void updateCustomer(Customers customer) throws SQLException {
 
         String updateQuery = "UPDATE customers SET first_name=?,middle_name=?,last_name=?,phone=?,gander=?,shift=?, " +
@@ -70,7 +70,7 @@ public class CustomerDTO {
         System.out.println("Customer updated");
     }
 
-    //-----------fetch all the customers with their payments----------------------
+    //fetch all the customers with their payments
 
     public static ObservableList<Customers> fetchCustomersWithGender(Users activeUser)
             throws SQLException {
@@ -88,18 +88,16 @@ public class CustomerDTO {
 
         while (rs.next()) {
             //--------------Load phone of the customer-------------
-            String customerPhone = rs.getString("phone");
+            //String customerPhone = rs.getString("phone");
 
             //--------------Fetch all the payments that has customer phone-------------
-            ObservableList<Payments> payments = fetchPayments(customerPhone);
-
-
+            // ObservableList<Payments> payments = fetchPayments(customerPhone);
             Customers customer = new Customers(rs.getInt("customer_id"), rs.getString("first_name"),
                     rs.getString("middle_name"), rs.getString("last_name"),
                     rs.getString("phone"), rs.getString("gander"),
                     rs.getString("shift"), rs.getString("address"),
                     rs.getString("image"), rs.getDouble("weight"),
-                    rs.getString("who_added"), null, null, payments);
+                    rs.getString("who_added"), null, null, null);
 
             customers.add(customer);
         }
@@ -121,8 +119,8 @@ public class CustomerDTO {
         return fetchQuery;
     }
 
-    //-------Fetch payments according to customer that belongs--------tested......
-    private static ObservableList<Payments> fetchPayments(String phone) throws SQLException {
+    //Fetch payments according to customer that belongs
+    public static ObservableList<Payments> fetchPayments(String phone) throws SQLException {
         ObservableList<Payments> payments = FXCollections.observableArrayList();
         Statement statement = connection.createStatement();
 
@@ -149,5 +147,7 @@ public class CustomerDTO {
 
         return payments;
     }
+
+    //Fetch single payment
 
 }
