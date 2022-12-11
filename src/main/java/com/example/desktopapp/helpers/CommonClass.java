@@ -4,6 +4,7 @@ import animatefx.animation.FadeIn;
 import animatefx.animation.Shake;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideInRight;
+import com.example.desktopapp.HelloApplication;
 import com.example.desktopapp.entity.Customers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,7 +31,7 @@ public abstract class CommonClass {
     protected BorderPane borderPane;
 
     private File selectedFile;
-    private PaymentChecker paymentChecker;
+    public PaymentChecker paymentChecker;
 
     private Customers customer;
 
@@ -141,5 +142,12 @@ public abstract class CommonClass {
 
     public void setBorderPane(BorderPane borderPane) {
         this.borderPane = borderPane;
+    }
+
+    protected FXMLLoader openNormalWindow(String url) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(url));
+
+
+        return fxmlLoader;
     }
 }

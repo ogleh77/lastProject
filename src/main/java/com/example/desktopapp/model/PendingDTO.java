@@ -86,7 +86,7 @@ public class PendingDTO {
 
             pending = new Pending(rs.getInt("pending_id"),
                     rs.getString("pending_date"),
-                    rs.getInt("days_remain"), PaymentDTO.payment(paymentID), rs.getBoolean("is_pending"));
+                    rs.getInt("days_remain"), PaymentDTO.fetchSinglePayment(paymentID), rs.getBoolean("is_pending"));
 
         }
         rs.close();
@@ -110,7 +110,7 @@ public class PendingDTO {
 
             Pending pending = new Pending(rs.getInt("pending_id"),
                     rs.getString("pending_date"),
-                    rs.getInt("days_remain"), PaymentDTO.payment(paymentID), rs.getBoolean("is_pending"));
+                    rs.getInt("days_remain"), PaymentDTO.fetchSinglePayment(paymentID), rs.getBoolean("is_pending"));
 
             pendings.add(pending);
         }

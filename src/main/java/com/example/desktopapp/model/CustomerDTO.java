@@ -13,10 +13,10 @@ import java.sql.*;
 import java.time.LocalDate;
 
 public class CustomerDTO {
-    public static int numberOfCustomers;
+
     public static int limit = 0;
     public static int id = 1;
-
+    public static int numberOfCustomers = 0;
     public static Connection connection = IConnection.getConnection();
 
     //Insert customers
@@ -72,14 +72,50 @@ public class CustomerDTO {
 
     //fetch all the customers with their payments
 
-    public static ObservableList<Customers> fetchCustomersWithGender(Users activeUser)
+    public static ObservableList<Customers> fetchAllCustomer()
             throws SQLException {
         System.out.println("Limit is " + limit);
 
         ObservableList<Customers> customers = FXCollections.observableArrayList();
 
         //----------------------Pass the user's gander and role---------------------
-        String fetchingQueryWithGander = userSeparator(activeUser.role(), activeUser.gender());
+        String fetchingAll = "SELECT * FROM customers";
+
+        Statement statement = connection.createStatement();
+
+        ResultSet rs = statement.executeQuery(fetchingAll);
+
+
+        while (rs.next()) {
+            numberOfCustomers++;
+            // --------------Load phone of the customer-------------
+            //  String customerPhone = rs.getString("phone");
+
+            // --------------Fetch all the payments that has customer phone-------------
+            //   ObservableList<Payments> payments = PaymentDTO.fetchPayments(customerPhone);
+            Customers customer = new Customers(rs.getInt("customer_id"), rs.getString("first_name"),
+                    rs.getString("middle_name"), rs.getString("last_name"),
+                    rs.getString("phone"), rs.getString("gander"),
+                    rs.getString("shift"), rs.getString("address"),
+                    rs.getString("image"), rs.getDouble("weight"),
+                    rs.getString("who_added"), null, null, null);
+
+            customers.add(customer);
+        }
+        System.out.println("Number of customers " + numberOfCustomers);
+
+
+        return customers;
+    }
+
+    public static ObservableList<Customers> fetchCustomersWithGenderWherePaymentIsOnline(Users activeUser)
+            throws SQLException {
+        //   System.out.println("Limit is " + limit);
+
+        ObservableList<Customers> customers = FXCollections.observableArrayList();
+
+        //----------------------Pass the user's gander and role---------------------
+        String fetchingQueryWithGander = userSeparator(activeUser.getRole(), activeUser.getGender());
 
         Statement statement = connection.createStatement();
 
@@ -87,11 +123,12 @@ public class CustomerDTO {
 
 
         while (rs.next()) {
+            limit++;
             // --------------Load phone of the customer-------------
             String customerPhone = rs.getString("phone");
 
             // --------------Fetch all the payments that has customer phone-------------
-            ObservableList<Payments> payments = PaymentDTO.fetchPayments(customerPhone);
+            ObservableList<Payments> payments = PaymentDTO.fetchPaymentsWhereIsOnline(customerPhone);
             Customers customer = new Customers(rs.getInt("customer_id"), rs.getString("first_name"),
                     rs.getString("middle_name"), rs.getString("last_name"),
                     rs.getString("phone"), rs.getString("gander"),
@@ -100,8 +137,9 @@ public class CustomerDTO {
                     rs.getString("who_added"), null, null, payments);
 
             customers.add(customer);
-        }
 
+        }
+        System.out.println("Limit " + limit);
 
         return customers;
     }
@@ -112,7 +150,7 @@ public class CustomerDTO {
         String fetchQuery = "SELECT * FROM customers WHERE gander='" + gander +
                 "'ORDER BY customer_id";
 
-        if (role.equals("superAdmin")) {
+        if (role.equals("super_admin")) {
             System.out.println("Active customer is " + role);
             fetchQuery = "SELECT * FROM customers ORDER BY customer_id";
         }

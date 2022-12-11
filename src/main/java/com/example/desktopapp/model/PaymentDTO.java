@@ -2,6 +2,7 @@ package com.example.desktopapp.model;
 
 import com.example.desktopapp.entity.Customers;
 import com.example.desktopapp.entity.Payments;
+import com.example.desktopapp.entity.Users;
 import com.example.desktopapp.entity.serices.Box;
 import com.example.desktopapp.helpers.IConnection;
 import javafx.collections.FXCollections;
@@ -128,7 +129,7 @@ public class PaymentDTO {
         return payments;
     }
 
-    public static ObservableList<Payments> fetchPaymentsWhereIsOnline() throws SQLException {
+    public static ObservableList<Payments> fetchPaymentsWhereIsOnline(String customerPhone) throws SQLException {
 
         //------------------------helper methods-------------------------tested.....
 
@@ -138,7 +139,7 @@ public class PaymentDTO {
 
         Payments payment = null;
         ResultSet rs = statement.executeQuery("SELECT * FROM payments LEFT JOIN box b on payments.box_fk = b.box_id " +
-                "WHERE is_online=true AND pending =false ORDER BY exp_date DESC ");
+                "WHERE customer_phone_fk=" + customerPhone + " AND is_online=true AND pending =false ORDER BY exp_date DESC ");
 
         while (rs.next()) {
             Box box = null;
@@ -161,7 +162,7 @@ public class PaymentDTO {
     }
 
 
-    public static Payments payment(int paymentId) throws SQLException {
+    public static Payments fetchSinglePayment(int paymentId) throws SQLException {
         Statement statement = connection.createStatement();
 
         Payments payment = null;

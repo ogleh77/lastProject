@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="login-pane" stylesheets="@../../style/login-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.graadproject.controllers.services.SplashScreenController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="login-pane" stylesheets="@../../style/login-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desktopapp.controllers.services.SplashScreenController">
     <children>
         <HBox alignment="CENTER" prefHeight="43.0" prefWidth="600.0" spacing="290.0" styleClass="top-pane">
             <children>
@@ -22,7 +22,7 @@
                     <children>
                         <ImageView fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../black-Icon/icons8-barbell-50.png" />
+                                <Image url="@../../icons/icons8-barbell-50.png" />
                             </image>
                         </ImageView>
                         <Label prefHeight="24.0" prefWidth="191.0" styleClass="top-label" text="Togdheer gym center" textFill="#c6d0cd" />

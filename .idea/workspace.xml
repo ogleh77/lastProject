@@ -5,13 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="326a82b6-ed2c-4911-9fb0-3599560e0083" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/PendingDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/com/example/desktopapp/model/PendingDTOTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/DashboardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/services/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/services/SplashScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/dashboard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/home.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers/SplashScreenController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/helpers/CommonClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/helpers/CommonClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/helpers/PaymentChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/helpers/PaymentChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/CustomerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/CustomerDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/PaymentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/PaymentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/PendingDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/PendingDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/UsersDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/model/UsersDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/desktopapp/services/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/services/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/splash-screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/services/splash-screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com/example/desktopapp/model/CustomerDTOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/com/example/desktopapp/model/CustomerDTOTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/com/example/desktopapp/model/PaymentDTOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/com/example/desktopapp/model/PaymentDTOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com/example/desktopapp/model/PendingDTOTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com/example/desktopapp/model/UsersDTOTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +42,10 @@
       <list>
         <option value="CSS File" />
         <option value="Interface" />
-        <option value="FxmlFile" />
         <option value="Record" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -60,7 +79,7 @@
     &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;last_directory_selection&quot;: &quot;/Users/mrd/Documents/JAVA_FX/DesktopApp/src/main/java/com/example/desktopapp/model&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mrd/Documents/JAVA_FX/DesktopApp/src/main/java/com/example/desktopapp/services&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mrd/Documents/JAVA_FX/DesktopApp/src/main/resources/com/example/desktopapp/views&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
@@ -77,18 +96,18 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views" />
       <recent name="$PROJECT_DIR$/src/main/java/com/example/desktopapp/services" />
       <recent name="$PROJECT_DIR$/src/main/java/com/example/desktopapp/models" />
       <recent name="$PROJECT_DIR$/src/main/java/com/example/desktopapp/entity" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views" />
       <recent name="$PROJECT_DIR$/src/main/java/com/example/desktopapp/controllers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/services" />
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/icons" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/service" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/style" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/views/services" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/example/desktopapp/black-Icon" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -101,8 +120,53 @@
       <recent name="com.example.desktopapp.entities.services" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PendingDTOTest.rePend">
-    <configuration name="PaymentDTOTest.itShouldOutDatePayment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.HelloApplication">
+    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.HelloApplication" />
+      <module name="DesktopApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.desktopapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerDTOTest.fetchCustomersAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DesktopApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.desktopapp.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.desktopapp.model" />
+      <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.model.CustomerDTOTest" />
+      <option name="METHOD_NAME" value="fetchCustomersAll" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerDTOTest.fetchCustomersWithGenderWherePaymentIsOnline" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DesktopApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.desktopapp.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.desktopapp.model" />
+      <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.model.CustomerDTOTest" />
+      <option name="METHOD_NAME" value="fetchCustomersWithGenderWherePaymentIsOnline" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaymentDTOTest.insertCustomerWithPayment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="DesktopApp" />
       <extension name="coverage">
         <pattern>
@@ -112,13 +176,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.desktopapp.model" />
       <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.model.PaymentDTOTest" />
-      <option name="METHOD_NAME" value="itShouldOutDatePayment" />
+      <option name="METHOD_NAME" value="insertCustomerWithPayment" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PendingDTOTest.fetchPendingPayments" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PaymentDTOTest.insertPayment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="DesktopApp" />
       <extension name="coverage">
         <pattern>
@@ -127,56 +191,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.desktopapp.model" />
-      <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.model.PendingDTOTest" />
-      <option name="METHOD_NAME" value="fetchPendingPayments" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PendingDTOTest.fetchSinglePayment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="DesktopApp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.desktopapp.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.desktopapp.model" />
-      <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.model.PendingDTOTest" />
-      <option name="METHOD_NAME" value="fetchSinglePayment" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PendingDTOTest.pendPayment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="DesktopApp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.desktopapp.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.desktopapp.model" />
-      <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.model.PendingDTOTest" />
-      <option name="METHOD_NAME" value="pendPayment" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PendingDTOTest.rePend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="DesktopApp" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.desktopapp.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.desktopapp.model" />
-      <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.model.PendingDTOTest" />
-      <option name="METHOD_NAME" value="rePend" />
+      <option name="MAIN_CLASS_NAME" value="com.example.desktopapp.model.PaymentDTOTest" />
+      <option name="METHOD_NAME" value="insertPayment" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -184,11 +200,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PendingDTOTest.rePend" />
-        <item itemvalue="JUnit.PendingDTOTest.fetchPendingPayments" />
-        <item itemvalue="JUnit.PendingDTOTest.fetchSinglePayment" />
-        <item itemvalue="JUnit.PendingDTOTest.pendPayment" />
-        <item itemvalue="JUnit.PaymentDTOTest.itShouldOutDatePayment" />
+        <item itemvalue="Application.HelloApplication" />
+        <item itemvalue="JUnit.CustomerDTOTest.fetchCustomersWithGenderWherePaymentIsOnline" />
+        <item itemvalue="JUnit.CustomerDTOTest.fetchCustomersAll" />
+        <item itemvalue="JUnit.PaymentDTOTest.insertCustomerWithPayment" />
+        <item itemvalue="JUnit.PaymentDTOTest.insertPayment" />
       </list>
     </recent_temporary>
   </component>
@@ -352,7 +368,9 @@
       <workItem from="1670692145168" duration="1252000" />
       <workItem from="1670697357684" duration="10515000" />
       <workItem from="1670743931240" duration="2976000" />
-      <workItem from="1670753751844" duration="194000" />
+      <workItem from="1670753751844" duration="4045000" />
+      <workItem from="1670772175372" duration="4682000" />
+      <workItem from="1670787473276" duration="4941000" />
     </task>
     <servers />
   </component>
