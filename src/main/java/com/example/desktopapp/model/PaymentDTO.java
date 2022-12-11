@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 public class PaymentDTO {
 
-    public static Connection connection = IConnection.getConnection();
+    public static final Connection connection = IConnection.getConnection();
     public static int limit = 0;
 
 
@@ -77,14 +77,13 @@ public class PaymentDTO {
         try {
             Statement statement = connection.createStatement();
             String setPaymentOff = "UPDATE payments SET is_online=false WHERE payment_id=" + payment.paymentId();
-            statement.addBatch(setPaymentOff);
+
 
             if (payment.box() != null) {
-                String setBoxOnline = "UPDATE box SET is_ready=true WHERE box_id=" + payment.box().boxId();
-                statement.addBatch(setBoxOnline);
+                setTookBoxIsReadyTrue(payment.box());
             }
 
-            statement.executeBatch();
+            statement.executeQuery(setPaymentOff);
 
             connection.commit();
             System.out.println("Payment offed " + payment);
@@ -210,5 +209,11 @@ public class PaymentDTO {
         System.out.println(box.boxName() + " made false");
     }
 
+    public static void setTookBoxIsReadyTrue(Box box) throws SQLException {
+        String boxFalseQuery = "UPDATE box SET is_ready=true WHERE box_id=" + box.boxId();
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(boxFalseQuery);
+        System.out.println(box.boxName() + " made false");
+    }
 
 }

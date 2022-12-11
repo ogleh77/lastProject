@@ -87,17 +87,17 @@ public class CustomerDTO {
 
 
         while (rs.next()) {
-            //--------------Load phone of the customer-------------
-            //String customerPhone = rs.getString("phone");
+            // --------------Load phone of the customer-------------
+            String customerPhone = rs.getString("phone");
 
-            //--------------Fetch all the payments that has customer phone-------------
-            // ObservableList<Payments> payments = fetchPayments(customerPhone);
+            // --------------Fetch all the payments that has customer phone-------------
+            ObservableList<Payments> payments = PaymentDTO.fetchPayments(customerPhone);
             Customers customer = new Customers(rs.getInt("customer_id"), rs.getString("first_name"),
                     rs.getString("middle_name"), rs.getString("last_name"),
                     rs.getString("phone"), rs.getString("gander"),
                     rs.getString("shift"), rs.getString("address"),
                     rs.getString("image"), rs.getDouble("weight"),
-                    rs.getString("who_added"), null, null, null);
+                    rs.getString("who_added"), null, null, payments);
 
             customers.add(customer);
         }
@@ -117,35 +117,6 @@ public class CustomerDTO {
             fetchQuery = "SELECT * FROM customers ORDER BY customer_id";
         }
         return fetchQuery;
-    }
-
-    //Fetch payments according to customer that belongs
-    public static ObservableList<Payments> fetchPayments(String phone) throws SQLException {
-        ObservableList<Payments> payments = FXCollections.observableArrayList();
-        Statement statement = connection.createStatement();
-
-        Payments payment = null;
-        ResultSet rs = statement.executeQuery("SELECT * FROM payments LEFT JOIN box b on payments.box_fk = b.box_id " +
-                "WHERE customer_phone_fk=" + phone + " ORDER BY exp_date DESC ");
-
-        while (rs.next()) {
-            Box box = null;
-            if (rs.getString("box_fk") != null) {
-                box = new Box(rs.getInt("box_id"), rs.getString("box_name"), rs.getBoolean("is_ready"));
-            }
-
-            payment = new Payments(rs.getInt("payment_id"), rs.getString("payment_date"),
-                    LocalDate.parse(rs.getString("exp_date")), rs.getString("month"),
-                    rs.getString("year"), rs.getDouble("amount_paid"),
-                    rs.getString("paid_by"), rs.getDouble("discount"),
-                    rs.getBoolean("poxing"), box, rs.getInt("customer_phone_fk"),
-                    rs.getBoolean("is_online"), rs.getBoolean("pending"));
-            payments.add(payment);
-        }
-        statement.close();
-        rs.close();
-
-        return payments;
     }
 
 

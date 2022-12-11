@@ -52,15 +52,12 @@ class PaymentDTOTest {
 
     @Test
     void itShouldLoadCustomersPayments() throws SQLException {
-
-
         System.out.println(PaymentDTO.fetchPayments("4303920"));
     }
 
 
     @Test
     void itShouldLoadSinglePayment() throws SQLException {
-
         System.out.println(PaymentDTO.payment(5));
     }
 
