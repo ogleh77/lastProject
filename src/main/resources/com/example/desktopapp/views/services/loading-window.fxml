@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="61.0" prefWidth="308.0" spacing="10.0" style="-fx-background-color: #46749F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../icons/Loading_2.gif" />
+         </image>
+      </ImageView>
+      <Label prefHeight="35.0" prefWidth="95.0" text="wait...." textFill="#ebeaea">
+         <font>
+            <Font name="AppleMyungjo Regular" size="23.0" />
+         </font>
+      </Label>
+   </children>
+</HBox>

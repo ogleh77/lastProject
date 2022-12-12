@@ -5,16 +5,21 @@ import animatefx.animation.Shake;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideInRight;
 import com.example.desktopapp.HelloApplication;
+import com.example.desktopapp.controllers.DashboardController;
+import com.example.desktopapp.controllers.services.CustomerInfoController;
 import com.example.desktopapp.entity.Customers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -167,5 +172,17 @@ public abstract class CommonClass {
     }
 
 
+    protected Stage loadingStage(String path) throws IOException {
 
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(path));
+        Scene scene = new Scene(fxmlLoader.load());
+        //CustomerInfoController controller = fxmlLoader.getController();
+        //  controller.setPaymentChecker(paymentChecker);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+
+        return stage;
+    }
 }

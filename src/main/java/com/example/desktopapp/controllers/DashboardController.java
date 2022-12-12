@@ -18,6 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -51,56 +52,43 @@ public class DashboardController extends CommonClass implements Initializable {
 
     @FXML
     private VBox sidePane;
-
-    @FXML
-    private StackPane stackPane;
-
     @FXML
     private HBox topProfile;
-    @FXML
-    private ProgressBar loadingProgress;
-    @FXML
-    private HBox loadingHBox;
 
     private PaymentChecker paymentChecker;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        stackPane.getChildren().remove(1);
+        borderPane.setLeft(null);
     }
 
     @FXML
     void homeHandler(ActionEvent event) throws IOException {
         if (paymentChecker.getAllCustomers().size() == 0) {
-            stackPane.getChildren().add(1, loadingHBox);
+
+            Stage loadingStage = loadingStage("/com/example/desktopapp/views/services/loading-window.fxml");
+
             Thread thread = new Thread(paymentChecker.fetchAllCustomers);
             thread.setDaemon(true);
             thread.start();
-            loadingProgress.progressProperty().bind(paymentChecker.fetchAllCustomers.progressProperty());
             paymentChecker.fetchAllCustomers.setOnSucceeded(e -> {
                 FXMLLoader loader = null;
                 try {
                     loader = openWindow("/com/example/desktopapp/views/home.fxml", borderPane, sidePane, menuHbox, topProfile);
                     HomeController controller = loader.getController();
                     controller.setBorderPane(borderPane);
-                    // controller.setStackPane(stackPane);
-                    //  controller.setProgressLoading(loadingProgress);
                     controller.setPaymentChecker(paymentChecker);
-                    stackPane.getChildren().remove(1);
+                    loadingStage.close();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-
             });
         } else {
-            FXMLLoader loader = null;
+
             try {
-                loader = openWindow("/com/example/desktopapp/views/home.fxml", borderPane, sidePane, menuHbox, topProfile);
+                FXMLLoader loader = openWindow("/com/example/desktopapp/views/home.fxml", borderPane, sidePane, menuHbox, topProfile);
                 HomeController controller = loader.getController();
                 controller.setBorderPane(borderPane);
-                // controller.setStackPane(stackPane);
-                //  controller.setProgressLoading(loadingProgress);
                 controller.setPaymentChecker(paymentChecker);
 
             } catch (IOException ex) {
