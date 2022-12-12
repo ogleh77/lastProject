@@ -25,20 +25,20 @@ public class PaymentDTO {
             String insertPaymentQuery = "INSERT INTO payments(exp_date, amount_paid, paid_by," +
                     "discount,poxing,box_fk, customer_phone_fk) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(insertPaymentQuery);
-            ps.setString(1, payment.expDate().toString());
-            ps.setDouble(2, payment.amountPaid());
-            ps.setString(3, payment.paidBy());
-            ps.setDouble(4, payment.discount());
-            ps.setBoolean(5, payment.poxing());
+            ps.setString(1, payment.getExpDate().toString());
+            ps.setDouble(2, payment.getAmountPaid());
+            ps.setString(3, payment.getPaidBy());
+            ps.setDouble(4, payment.getDiscount());
+            ps.setBoolean(5, payment.isPoxing());
 
-            if (payment.box() == null) {
+            if (payment.getBox() == null) {
                 ps.setString(6, null);
             } else {
 
-                ps.setInt(6, payment.box().boxId());
+                ps.setInt(6, payment.getBox().boxId());
 
                 //set the box isReady off if the payment took
-                setTookBoxIsReadyFalse(payment.box());
+                setTookBoxIsReadyFalse(payment.getBox());
 
 
             }
@@ -64,7 +64,7 @@ public class PaymentDTO {
             CustomerDTO.insertCustomer(customer);
 
 
-            insertPayment(customer.phone(), customer.gander(), payment);
+            insertPayment(customer.getPhone(), customer.getGander(), payment);
 
             System.out.println("Job done");
         } catch (SQLException e) {
@@ -77,11 +77,11 @@ public class PaymentDTO {
         connection.setAutoCommit(false);
         try {
             Statement statement = connection.createStatement();
-            String setPaymentOff = "UPDATE payments SET is_online=false WHERE payment_id=" + payment.paymentId();
+            String setPaymentOff = "UPDATE payments SET is_online=false WHERE payment_id=" + payment.getPaymentID();
 
 
-            if (payment.box() != null) {
-                setTookBoxIsReadyTrue(payment.box());
+            if (payment.getBox() != null) {
+                setTookBoxIsReadyTrue(payment.getBox());
             }
 
             statement.executeQuery(setPaymentOff);
@@ -119,8 +119,9 @@ public class PaymentDTO {
                     LocalDate.parse(rs.getString("exp_date")), rs.getString("month"),
                     rs.getString("year"), rs.getDouble("amount_paid"),
                     rs.getString("paid_by"), rs.getDouble("discount"),
-                    rs.getBoolean("poxing"), box, rs.getInt("customer_phone_fk"),
+                    rs.getBoolean("poxing"), rs.getString("customer_phone_fk"),
                     rs.getBoolean("is_online"), rs.getBoolean("pending"));
+            payment.setBox(box);
             payments.add(payment);
         }
         statement.close();
@@ -151,9 +152,11 @@ public class PaymentDTO {
                     LocalDate.parse(rs.getString("exp_date")), rs.getString("month"),
                     rs.getString("year"), rs.getDouble("amount_paid"),
                     rs.getString("paid_by"), rs.getDouble("discount"),
-                    rs.getBoolean("poxing"), box, rs.getInt("customer_phone_fk"),
+                    rs.getBoolean("poxing"), rs.getString("customer_phone_fk"),
                     rs.getBoolean("is_online"), rs.getBoolean("pending"));
+            payment.setBox(box);
             payments.add(payment);
+
         }
         statement.close();
         rs.close();
@@ -170,16 +173,21 @@ public class PaymentDTO {
                 "WHERE payment_id=" + paymentId);
 
         while (rs.next()) {
-            Box box = null;
-            if (rs.getString("box_fk") != null) {
-                box = new Box(rs.getInt("box_id"), rs.getString("box_name"), rs.getBoolean("is_ready"));
-            }
+
             payment = new Payments(rs.getInt("payment_id"), rs.getString("payment_date"),
                     LocalDate.parse(rs.getString("exp_date")), rs.getString("month"),
                     rs.getString("year"), rs.getDouble("amount_paid"),
                     rs.getString("paid_by"), rs.getDouble("discount"),
-                    rs.getBoolean("poxing"), box, rs.getInt("customer_phone_fk"),
+                    rs.getBoolean("poxing"), rs.getString("customer_phone_fk"),
                     rs.getBoolean("is_online"), rs.getBoolean("pending"));
+
+
+            if (rs.getString("box_fk") != null) {
+                Box box = new Box(rs.getInt("box_id"), rs.getString("box_name"), rs.getBoolean("is_ready"));
+                payment.setBox(box);
+            }
+
+
         }
         return payment;
     }
@@ -188,13 +196,13 @@ public class PaymentDTO {
     //-------------------------make report------------------------------
     private static void makeReport(Payments payment, String customerGender) throws SQLException {
         Statement st = connection.createStatement();
-        if (customerGender.equals("Male") && payment.box() != null) {
+        if (customerGender.equals("Male") && payment.getBox() != null) {
             DailyReportDTO.dailyReportMaleWithBox(st);
-        } else if (customerGender.equals("Female") && payment.box() != null) {
+        } else if (customerGender.equals("Female") && payment.getBox() != null) {
             DailyReportDTO.dailyReportFemaleWithBox(st);
-        } else if (payment.box() == null && customerGender.equals("Male")) {
+        } else if (payment.getBox() == null && customerGender.equals("Male")) {
             DailyReportDTO.dailyReportMaleWithOutBox(st);
-        } else if (payment.box() == null && customerGender.equals("Female")) {
+        } else if (payment.getBox() == null && customerGender.equals("Female")) {
             DailyReportDTO.dailyReportFemaleWithOutBox(st);
         }
         int arr[] = st.executeBatch();

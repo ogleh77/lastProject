@@ -20,13 +20,13 @@ public class PendingDTO {
         Statement statement = null;
         try {
             String pendQuery = "INSERT INTO pending(payment_fk,days_remain)" +
-                    "VALUES (" + daysRemind + "," + payment.paymentId() + ")";
+                    "VALUES (" + daysRemind + "," + payment.getPaymentID() + ")";
 
-            String paymentOffQuery = "UPDATE payments SET is_online=false,pending=true WHERE payment_id=" + payment.paymentId();
+            String paymentOffQuery = "UPDATE payments SET is_online=false,pending=true WHERE payment_id=" + payment.getPaymentID();
             statement = connection.createStatement();
 
-            if (payment.box() != null) {
-                PaymentDTO.setTookBoxIsReadyTrue(payment.box());
+            if (payment.getBox() != null) {
+                PaymentDTO.setTookBoxIsReadyTrue(payment.getBox());
             }
 
             statement.addBatch(pendQuery);
@@ -51,7 +51,7 @@ public class PendingDTO {
         try {
             LocalDate remaindDate = LocalDate.now().plusDays(pending.daysRemain());
             String setPaymentOnlineTrue = "UPDATE payments SET is_online=true, pending=false, exp_date='" + remaindDate + "'" +
-                    "WHERE payment_id=" + pending.payment().paymentId();
+                    "WHERE payment_id=" + pending.payment().getPaymentID();
 
 
             String setPendingFalse = "UPDATE pending SET is_pending=false" +

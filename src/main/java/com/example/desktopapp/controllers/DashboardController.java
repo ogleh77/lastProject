@@ -125,8 +125,12 @@ public class DashboardController extends CommonClass implements Initializable {
     }
 
     @FXML
-    void registrationHandler(ActionEvent event) {
+    void registrationHandler(ActionEvent event) throws IOException {
 
+        FXMLLoader loader = openWindow("/com/example/desktopapp/views/registrations.fxml", borderPane, sidePane, menuHbox, topProfile);
+        RegistrationController controller = loader.getController();
+        controller.setPaymentChecker(paymentChecker);
+        controller.setBorderPane(borderPane);
     }
 
     @FXML
@@ -148,4 +152,6 @@ public class DashboardController extends CommonClass implements Initializable {
         }
         activeUsername.setText(activeUser.getUsername());
     }
+
+
 }

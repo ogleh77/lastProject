@@ -10,5 +10,6 @@ module com.example.desktopapp {
     opens com.example.desktopapp to javafx.fxml;
     opens com.example.desktopapp.controllers to javafx.fxml;
     exports com.example.desktopapp;
+    exports com.example.desktopapp.entity;
     opens com.example.desktopapp.controllers.services to javafx.fxml;
 }

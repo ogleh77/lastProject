@@ -17,7 +17,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Optional;
 
 public abstract class CommonClass {
 
@@ -30,10 +32,13 @@ public abstract class CommonClass {
 
     protected BorderPane borderPane;
 
-    private File selectedFile;
+    public File selectedFile;
     public PaymentChecker paymentChecker;
 
-    private Customers customer;
+    public ToggleGroup genderGroup;
+    public Customers customer;
+
+    public ObservableList<Control> mandatoryFields;
 
     public CommonClass() {
         shift = FXCollections.observableArrayList();
@@ -44,6 +49,8 @@ public abstract class CommonClass {
         this.slideInRight = new SlideInRight();
         this.slideInLeft = new SlideInLeft();
         this.fadeIn = new FadeIn();
+        this.genderGroup = new ToggleGroup();
+        this.mandatoryFields = FXCollections.observableArrayList();
 
     }
 
@@ -150,4 +157,15 @@ public abstract class CommonClass {
 
         return fxmlLoader;
     }
+
+
+    public Alert message(Alert.AlertType alertType, String content, String title) {
+        Alert alert = new Alert(alertType);
+        alert.setContentText(content);
+        alert.setTitle(title);
+        return alert;
+    }
+
+
+
 }

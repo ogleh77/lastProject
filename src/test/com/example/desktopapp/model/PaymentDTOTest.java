@@ -14,21 +14,21 @@ class PaymentDTOTest {
     @Test
     void insertPayment() throws SQLException {
 
-        Payments payment = new Payments(LocalDate.now().minusDays(30), 12.0,
-                "ZaadService", 1.0, false, null, 4303924);
-
-        PaymentDTO.insertPayment("4303924", "Male", payment);
+//        Payments payment = new Payments(LocalDate.now().minusDays(30), 12.0,
+//                "ZaadService", 1.0, false, null, 4303924);
+//
+//        PaymentDTO.insertPayment("4303924", "Male", payment);
     }
 
     @Test
     void insertCustomerWithPayment() throws SQLException {
-        Customers customer = new Customers("Luul", "Jama", "Aadan", "4303920",
-                "Female", "morning", null, null, 0, "Ogleh", null);
-
-        Payments payment = new Payments(LocalDate.now().plusDays(30), 12.0,
-                "eDahab", 1.0, false, null, 4303920);
-
-        PaymentDTO.insertCustomerWithPayment(customer, payment);
+//        Customers customer = new Customers("Luul", "Jama", "Aadan", "4303920",
+//                "Female", "morning", null, null, 0, "Ogleh", null);
+//
+//        Payments payment = new Payments(LocalDate.now().plusDays(30), 12.0,
+//                "eDahab", 1.0, false, null, 4303920);
+//
+//        PaymentDTO.insertCustomerWithPayment(customer, payment);
     }
 
     @Test

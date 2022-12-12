@@ -35,13 +35,13 @@ public class PaymentChecker {
                 i++;
                 updateMessage("Loading..");
                 updateProgress(i, CustomerDTO.limit);
-                if (customer.payments().get(0).expDate().isBefore(LocalDate.now())) {
-                    System.out.println(customer.firstname() + " Outdated " + customer.payments().get(0).expDate());
+                if (customer.getPayments().get(0).getExpDate().isBefore(LocalDate.now())) {
+                    System.out.println(customer.getFirstName() + " Outdated " + customer.getPayments().get(0).getExpDate());
                     outDatedCustomers.add(customer);
 
-                } else if (customer.payments().get(0).expDate().isEqual(LocalDate.now().plusDays(2))) {
+                } else if (customer.getPayments().get(0).getExpDate().isEqual(LocalDate.now().plusDays(2))) {
                     warningCustomers.add(customer);
-                    System.out.println(customer.firstname() + " is warning " + customer.payments().get(0).expDate());
+                    System.out.println(customer.getFirstName() + " is warning " + customer.getPayments().get(0).getExpDate());
                 }
                 Thread.sleep(10);
             }

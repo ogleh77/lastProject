@@ -6,6 +6,7 @@ import com.example.desktopapp.entity.Users;
 import com.example.desktopapp.entity.serices.Box;
 import com.example.desktopapp.exceptions.SqlCustomException;
 import com.example.desktopapp.helpers.IConnection;
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -25,16 +26,16 @@ public class CustomerDTO {
             String insertQuery = "INSERT INTO customers(first_name, middle_name, last_name, phone, gander, shift, address, image, weight, who_added)\n" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(insertQuery);
 
-            ps.setString(1, customer.firstname());
-            ps.setString(2, customer.middleName());
-            ps.setString(3, customer.lastName());
-            ps.setString(4, customer.phone());
-            ps.setString(5, customer.gander());
-            ps.setString(6, customer.shift());
-            ps.setString(7, customer.address());
-            ps.setString(8, customer.image());
-            ps.setDouble(9, customer.weight());
-            ps.setString(10, customer.whoAdded());
+            ps.setString(1, customer.getFirstName());
+            ps.setString(2, customer.getMiddleName());
+            ps.setString(3, customer.getLastName());
+            ps.setString(4, customer.getPhone());
+            ps.setString(5, customer.getGander());
+            ps.setString(6, customer.getShift());
+            ps.setString(7, customer.getAddress());
+            ps.setString(8, customer.getImage());
+            ps.setDouble(9, customer.getWeight());
+            ps.setString(10, customer.getWhoAdded());
 
             ps.executeUpdate();
             ps.close();
@@ -51,19 +52,19 @@ public class CustomerDTO {
     public static void updateCustomer(Customers customer) throws SQLException {
 
         String updateQuery = "UPDATE customers SET first_name=?,middle_name=?,last_name=?,phone=?,gander=?,shift=?, " +
-                "address=?,image=?,weight=? WHERE customer_id=" + customer.customerId();
+                "address=?,image=?,weight=? WHERE customer_id=" + customer.getCustomerId();
 
         PreparedStatement ps = connection.prepareStatement(updateQuery);
 
-        ps.setString(1, customer.firstname());
-        ps.setString(2, customer.middleName());
-        ps.setString(3, customer.lastName());
-        ps.setString(4, customer.phone());
-        ps.setString(5, customer.gander());
-        ps.setString(6, customer.shift());
-        ps.setString(7, customer.address());
-        ps.setString(8, customer.image());
-        ps.setDouble(9, customer.weight());
+        ps.setString(1, customer.getFirstName());
+        ps.setString(2, customer.getMiddleName());
+        ps.setString(3, customer.getLastName());
+        ps.setString(4, customer.getPhone());
+        ps.setString(5, customer.getGander());
+        ps.setString(6, customer.getShift());
+        ps.setString(7, customer.getAddress());
+        ps.setString(8, customer.getImage());
+        ps.setDouble(9, customer.getWeight());
 
         ps.executeUpdate();
         ps.close();
@@ -98,7 +99,7 @@ public class CustomerDTO {
                     rs.getString("phone"), rs.getString("gander"),
                     rs.getString("shift"), rs.getString("address"),
                     rs.getString("image"), rs.getDouble("weight"),
-                    rs.getString("who_added"), null, null, null);
+                    rs.getString("who_added"));
 
             customers.add(customer);
         }
@@ -134,8 +135,9 @@ public class CustomerDTO {
                     rs.getString("phone"), rs.getString("gander"),
                     rs.getString("shift"), rs.getString("address"),
                     rs.getString("image"), rs.getDouble("weight"),
-                    rs.getString("who_added"), null, null, payments);
+                    rs.getString("who_added"));
 
+            customer.setPayments(payments);
             customers.add(customer);
 
         }
