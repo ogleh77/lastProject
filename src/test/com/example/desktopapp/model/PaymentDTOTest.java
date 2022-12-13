@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.Period;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -51,5 +52,17 @@ class PaymentDTOTest {
 
     @Test
     void setTookBoxIsReadyTrue() {
+    }
+
+
+    @Test
+    void fetchSinglePayment() throws SQLException {
+
+        Payments payment = PaymentDTO.fetchSinglePayment(9);
+        LocalDate exp = payment.getExpDate();
+        LocalDate pendingDate = LocalDate.now();
+        Period period = Period.between(pendingDate, exp);
+        System.out.println(period.getDays());
+        System.out.println(payment);
     }
 }

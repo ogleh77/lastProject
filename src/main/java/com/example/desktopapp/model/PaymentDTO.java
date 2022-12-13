@@ -140,7 +140,7 @@ public class PaymentDTO {
 
         Payments payment = null;
         ResultSet rs = statement.executeQuery("SELECT * FROM payments LEFT JOIN box b on payments.box_fk = b.box_id " +
-                "WHERE customer_phone_fk=" + customerPhone + " AND is_online=true AND pending =false ORDER BY exp_date DESC ");
+                "WHERE customer_phone_fk=" + customerPhone + " AND is_online=true AND pending=false ORDER BY exp_date DESC ");
 
         while (rs.next()) {
             Box box = null;
@@ -189,6 +189,8 @@ public class PaymentDTO {
 
 
         }
+        rs.close();
+        statement.close();
         return payment;
     }
 

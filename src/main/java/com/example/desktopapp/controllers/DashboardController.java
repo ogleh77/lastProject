@@ -1,8 +1,10 @@
 package com.example.desktopapp.controllers;
 
+import com.example.desktopapp.controllers.info.NotificationsController;
 import com.example.desktopapp.entity.Users;
 import com.example.desktopapp.helpers.CommonClass;
 import com.example.desktopapp.helpers.PaymentChecker;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,6 +62,9 @@ public class DashboardController extends CommonClass implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         borderPane.setLeft(null);
+        Platform.runLater(() -> {
+            System.out.println(paymentChecker.getOutDatedCustomers().size() + " Out dated");
+        });
     }
 
     @FXML
@@ -103,8 +108,13 @@ public class DashboardController extends CommonClass implements Initializable {
     }
 
     @FXML
-    void notificationHandler(ActionEvent event) {
+    void notificationHandler(ActionEvent event) throws IOException {
 
+        FXMLLoader loader = openWindow("/com/example/desktopapp/views/info/notifications.fxml", borderPane, sidePane, menuHbox, topProfile);
+
+        NotificationsController controller = loader.getController();
+        controller.setPaymentChecker(paymentChecker);
+        controller.setBorderPane(borderPane);
     }
 
     @FXML

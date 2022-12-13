@@ -1,10 +1,13 @@
 package com.example.desktopapp.model;
 
 import com.example.desktopapp.entity.Customers;
+import com.example.desktopapp.entity.Payments;
 import com.example.desktopapp.entity.Users;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,10 +17,21 @@ class CustomerDTOTest {
     void insertCustomer() throws SQLException {
 
 
-        Customers customer = new Customers("Jama", "Ali", "Husein", "4303922",
-                "Male", "afternoon", null, null, 0, "Ogleh", null);
+//        Customers customer = new Customers("Jama", "Ali", "Husein", "4303922",
+//                "Male", "afternoon", null, null, 0, "Ogleh", null);
+//
+//        CustomerDTO.insertCustomer(customer);
+        //Payments payment=PaymentDTO.fetchSinglePayment(9);
 
-        CustomerDTO.insertCustomer(customer);
+
+    //   LocalDate exp = payment.getExpDate();
+//
+      //  LocalDate pendingDate = LocalDate.now();
+
+       // Period period = Period.between(exp, pendingDate);
+
+
+
 
 
     }

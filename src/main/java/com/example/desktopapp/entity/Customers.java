@@ -35,10 +35,10 @@ public class Customers {
         this.weight = weight;
         this.whoAdded = whoAdded;
 
-        this.information = new JFXButton("information");
-        this.update = new JFXButton("update");
-        information.setStyle("-fx-background-color: #1e6e66;-fx-text-fill: white;-fx-pref-width: 100;-fx-font-size: 15");
-        update.setStyle("-fx-background-color: dodgerblue;-fx-text-fill: white;-fx-pref-width: 100;-fx-font-size: 15");
+//        this.information = new JFXButton("information");
+//        this.update = new JFXButton("update");
+//        information.setStyle("-fx-background-color: #1e6e66;-fx-text-fill: white;-fx-pref-width: 100;-fx-font-size: 15");
+//        update.setStyle("-fx-background-color: dodgerblue;-fx-text-fill: white;-fx-pref-width: 100;-fx-font-size: 15");
 
     }
 

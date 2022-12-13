@@ -16,8 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" styleClass="dash-pane" stylesheets="@../style/dashboard-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="com.example.desktopapp.controllers.DashboardController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" styleClass="dash-pane" stylesheets="@../style/dashboard-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desktopapp.controllers.DashboardController">
    <top>
       <HBox alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="1120.0" styleClass="top-pane" BorderPane.alignment="CENTER">
          <children>

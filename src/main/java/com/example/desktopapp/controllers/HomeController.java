@@ -73,7 +73,7 @@ public class HomeController extends CommonClass implements Initializable {
 
                 EventHandler<MouseEvent> information = event -> {
                     try {
-                        FXMLLoader loader = openWindow("/com/example/desktopapp/views/services/cutsomer-info.fxml", borderPane, null,
+                        FXMLLoader loader = openWindow("/com/example/desktopapp/views/info/cutsomer-info.fxml", borderPane, null,
                                 null, null);
                         CustomerInfoController controller = loader.getController();
                         controller.setBorderPane(borderPane);

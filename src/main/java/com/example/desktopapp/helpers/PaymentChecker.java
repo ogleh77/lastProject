@@ -35,6 +35,8 @@ public class PaymentChecker {
                 i++;
                 updateMessage("Loading..");
                 updateProgress(i, CustomerDTO.limit);
+                System.out.println(customer.getFirstName() + " Outdated " + customer.getPayments().get(0).getExpDate());
+
                 if (customer.getPayments().get(0).getExpDate().isBefore(LocalDate.now())) {
                     System.out.println(customer.getFirstName() + " Outdated " + customer.getPayments().get(0).getExpDate());
                     outDatedCustomers.add(customer);

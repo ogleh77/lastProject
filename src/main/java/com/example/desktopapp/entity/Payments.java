@@ -37,8 +37,8 @@ public class Payments {
         this.customerFK = customerFK;
         this.online = online;
         this.pending = pending;
-        this.pendingBtn = new JFXButton("pend");
-        pendingBtn.setStyle("-fx-background-color: #1e6e66;-fx-text-fill: white;-fx-pref-width: 100;-fx-font-size: 15");
+//        this.pendingBtn = new JFXButton("pend");
+//        pendingBtn.setStyle("-fx-background-color: #1e6e66;-fx-text-fill: white;-fx-pref-width: 100;-fx-font-size: 15");
 
     }
 

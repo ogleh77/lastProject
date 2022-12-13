@@ -1,5 +1,8 @@
 package com.example.desktopapp.controllers.services;
 
+import com.example.desktopapp.HelloApplication;
+import com.example.desktopapp.controllers.RegistrationController;
+import com.example.desktopapp.controllers.info.PendingController;
 import com.example.desktopapp.entity.Customers;
 import com.example.desktopapp.entity.Payments;
 import com.example.desktopapp.helpers.CommonClass;
@@ -9,15 +12,22 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -46,7 +56,7 @@ public class CustomerInfoController extends CommonClass implements Initializable
     private TableColumn<Payments, JFXButton> pendingBtn;
 
     @FXML
-    private TableColumn<Payments, String > poxing;
+    private TableColumn<Payments, String> poxing;
 
     @FXML
     private TableColumn<Payments, String> running;
@@ -92,7 +102,25 @@ public class CustomerInfoController extends CommonClass implements Initializable
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Platform.runLater(this::initTable);
+        Platform.runLater(() -> {
+            initTable();
+
+            for (Payments payment : payments) {
+
+                EventHandler<MouseEvent> pendHandler = event -> {
+                    try {
+                        pendingStage(payment);
+                    } catch (IOException ex) {
+                        Alert alert = message(Alert.AlertType.ERROR, "Error: " + ex.getMessage(), "Error occurred");
+                        alert.show();
+                        ex.printStackTrace();
+                    }
+                };
+                payment.getPendingBtn().addEventFilter(MouseEvent.MOUSE_CLICKED, pendHandler);
+            }
+        });
+
+
     }
 
 
@@ -148,4 +176,19 @@ public class CustomerInfoController extends CommonClass implements Initializable
         System.out.println(payments);
 
     }
+
+    private Stage pendingStage(Payments payment) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/desktopapp/views/info/pending-confirm.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        PendingController controller = fxmlLoader.getController();
+        controller.setPayment(payment);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+
+        return stage;
+    }
 }
+
