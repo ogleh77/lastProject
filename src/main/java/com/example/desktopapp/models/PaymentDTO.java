@@ -1,8 +1,7 @@
-package com.example.desktopapp.model;
+package com.example.desktopapp.models;
 
 import com.example.desktopapp.entity.Customers;
 import com.example.desktopapp.entity.Payments;
-import com.example.desktopapp.entity.Users;
 import com.example.desktopapp.entity.serices.Box;
 import com.example.desktopapp.helpers.IConnection;
 import javafx.collections.FXCollections;
@@ -17,11 +16,9 @@ public class PaymentDTO {
     public static final Connection connection = IConnection.getConnection();
     public static int limit = 0;
 
-
     public static void insertPayment(String customerPhone, String customerGender, Payments payment) throws SQLException {
         connection.setAutoCommit(false);
         try {
-
             String insertPaymentQuery = "INSERT INTO payments(exp_date, amount_paid, paid_by," +
                     "discount,poxing,box_fk, customer_phone_fk) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(insertPaymentQuery);
@@ -34,13 +31,8 @@ public class PaymentDTO {
             if (payment.getBox() == null) {
                 ps.setString(6, null);
             } else {
-
-                ps.setInt(6, payment.getBox().boxId());
-
-                //set the box isReady off if the payment took
+                ps.setInt(6, payment.getBox().getBoxId());
                 setTookBoxIsReadyFalse(payment.getBox());
-
-
             }
 
             ps.setString(7, customerPhone);
@@ -57,7 +49,6 @@ public class PaymentDTO {
         }
     }
 
-
     public static void insertCustomerWithPayment(Customers customer, Payments payment) throws SQLException {
         connection.setAutoCommit(false);
         try {
@@ -72,6 +63,139 @@ public class PaymentDTO {
         }
     }
 
+    public static Payments fetchSinglePayment(int paymentId) throws SQLException {
+        Statement statement = connection.createStatement();
+
+        Payments payment = null;
+        ResultSet rs = statement.executeQuery("SELECT * FROM payments LEFT JOIN box b on payments.box_fk = b.box_id " +
+                "WHERE payment_id=" + paymentId);
+
+        while (rs.next()) {
+
+            payment = new Payments(rs.getInt("payment_id"), rs.getString("payment_date"),
+                    LocalDate.parse(rs.getString("exp_date")), rs.getString("month"),
+                    rs.getString("year"), rs.getDouble("amount_paid"),
+                    rs.getString("paid_by"), rs.getDouble("discount"),
+                    rs.getBoolean("poxing"), rs.getString("customer_phone_fk"),
+                    rs.getBoolean("is_online"), rs.getBoolean("pending"));
+
+
+            if (rs.getString("box_fk") != null) {
+                Box box = new Box(rs.getInt("box_id"), rs.getString("box_name"), rs.getBoolean("is_ready"));
+                payment.setBox(box);
+            }
+
+
+        }
+        rs.close();
+        statement.close();
+        return payment;
+    }
+
+    public static ObservableList<Payments> fetchPaymentsWhereIsOnline(String customerPhone) throws SQLException {
+
+        //------------------------helper methods-------------------------tested.....
+
+        //-------Fetch payments according to customer that belongs--------tested......
+        ObservableList<Payments> payments = FXCollections.observableArrayList();
+        Statement statement = connection.createStatement();
+
+        Payments payment = null;
+        ResultSet rs = statement.executeQuery("SELECT * FROM payments LEFT JOIN box b on payments.box_fk = b.box_id " +
+                "WHERE customer_phone_fk=" + customerPhone + " AND is_online=true AND pending=false");
+
+        while (rs.next()) {
+            Box box = null;
+            if (rs.getString("box_fk") != null) {
+                box = new Box(rs.getInt("box_id"), rs.getString("box_name"), rs.getBoolean("is_ready"));
+            }
+
+            payment = new Payments(rs.getInt("payment_id"), rs.getString("payment_date"),
+                    LocalDate.parse(rs.getString("exp_date")), rs.getString("month"),
+                    rs.getString("year"), rs.getDouble("amount_paid"),
+                    rs.getString("paid_by"), rs.getDouble("discount"),
+                    rs.getBoolean("poxing"), rs.getString("customer_phone_fk"),
+                    rs.getBoolean("is_online"), rs.getBoolean("pending"));
+            payment.setBox(box);
+            payments.add(payment);
+
+        }
+        statement.close();
+        rs.close();
+
+        return payments;
+    }
+
+
+    public static ObservableList<Payments> fetchPaymentsWhereIsOffline(String customerPhone) throws SQLException {
+
+        //------------------------helper methods-------------------------tested.....
+
+        //-------Fetch payments according to customer that belongs--------tested......
+        ObservableList<Payments> payments = FXCollections.observableArrayList();
+        Statement statement = connection.createStatement();
+
+        Payments payment = null;
+        ResultSet rs = statement.executeQuery("SELECT * FROM payments LEFT JOIN box b on payments.box_fk = b.box_id " +
+                "WHERE customer_phone_fk=" + customerPhone + " AND false=true AND pending=false");
+
+        while (rs.next()) {
+            Box box = null;
+            if (rs.getString("box_fk") != null) {
+                box = new Box(rs.getInt("box_id"), rs.getString("box_name"), rs.getBoolean("is_ready"));
+            }
+
+            payment = new Payments(rs.getInt("payment_id"), rs.getString("payment_date"),
+                    LocalDate.parse(rs.getString("exp_date")), rs.getString("month"),
+                    rs.getString("year"), rs.getDouble("amount_paid"),
+                    rs.getString("paid_by"), rs.getDouble("discount"),
+                    rs.getBoolean("poxing"), rs.getString("customer_phone_fk"),
+                    rs.getBoolean("is_online"), rs.getBoolean("pending"));
+            payment.setBox(box);
+            payments.add(payment);
+
+        }
+        statement.close();
+        rs.close();
+
+        return payments;
+    }
+
+
+    public static ObservableList<Payments>
+    fetchPaymentsWhereIsOfflineANDDateBetween(String customerPhone, String fromDate, String toDate) throws SQLException {
+
+        //------------------------helper methods-------------------------tested.....
+
+        //-------Fetch payments according to customer that belongs--------tested......
+        ObservableList<Payments> payments = FXCollections.observableArrayList();
+        Statement statement = connection.createStatement();
+        String paymentQuery = "SELECT * FROM payments LEFT JOIN box b on payments.box_fk = b.box_id WHERE is_online=false AND pending=false AND\n" +
+                "exp_date BETWEEN '" + fromDate + "' AND '" + toDate + "' AND customer_phone_fk='" + customerPhone + "';";
+        Payments payment = null;
+        ResultSet rs = statement.executeQuery(paymentQuery);
+
+        while (rs.next()) {
+            Box box = null;
+            if (rs.getString("box_fk") != null) {
+                box = new Box(rs.getInt("box_id"), rs.getString("box_name"), rs.getBoolean("is_ready"));
+            }
+
+            payment = new Payments(rs.getInt("payment_id"), rs.getString("payment_date"),
+                    LocalDate.parse(rs.getString("exp_date")), rs.getString("month"),
+                    rs.getString("year"), rs.getDouble("amount_paid"),
+                    rs.getString("paid_by"), rs.getDouble("discount"),
+                    rs.getBoolean("poxing"), rs.getString("customer_phone_fk"),
+                    rs.getBoolean("is_online"), rs.getBoolean("pending"));
+            payment.setBox(box);
+            payments.add(payment);
+
+        }
+        statement.close();
+        rs.close();
+        System.out.println(paymentQuery);
+        return payments;
+    }
 
     public static void paymentOutDated(Payments payment) throws SQLException {
         connection.setAutoCommit(false);
@@ -84,7 +208,8 @@ public class PaymentDTO {
                 setTookBoxIsReadyTrue(payment.getBox());
             }
 
-            statement.executeQuery(setPaymentOff);
+            statement.executeUpdate(setPaymentOff);
+            payment.setOnline(false);
 
             connection.commit();
             System.out.println("Payment offed " + payment);
@@ -97,7 +222,7 @@ public class PaymentDTO {
     }
 
     //-----------------------Fetch customer's payments---------------------
-    public static ObservableList<Payments> fetchPayments(String phone) throws SQLException {
+    public static ObservableList<Payments> fetchPaymentsWhereOnlineOrNot(String phone) throws SQLException {
 
         //------------------------helper methods-------------------------tested.....
 
@@ -130,72 +255,9 @@ public class PaymentDTO {
         return payments;
     }
 
-    public static ObservableList<Payments> fetchPaymentsWhereIsOnline(String customerPhone) throws SQLException {
 
-        //------------------------helper methods-------------------------tested.....
+    //------------------helper methods---------------
 
-        //-------Fetch payments according to customer that belongs--------tested......
-        ObservableList<Payments> payments = FXCollections.observableArrayList();
-        Statement statement = connection.createStatement();
-
-        Payments payment = null;
-        ResultSet rs = statement.executeQuery("SELECT * FROM payments LEFT JOIN box b on payments.box_fk = b.box_id " +
-                "WHERE customer_phone_fk=" + customerPhone + " AND is_online=true AND pending=false ORDER BY exp_date DESC ");
-
-        while (rs.next()) {
-            Box box = null;
-            if (rs.getString("box_fk") != null) {
-                box = new Box(rs.getInt("box_id"), rs.getString("box_name"), rs.getBoolean("is_ready"));
-            }
-
-            payment = new Payments(rs.getInt("payment_id"), rs.getString("payment_date"),
-                    LocalDate.parse(rs.getString("exp_date")), rs.getString("month"),
-                    rs.getString("year"), rs.getDouble("amount_paid"),
-                    rs.getString("paid_by"), rs.getDouble("discount"),
-                    rs.getBoolean("poxing"), rs.getString("customer_phone_fk"),
-                    rs.getBoolean("is_online"), rs.getBoolean("pending"));
-            payment.setBox(box);
-            payments.add(payment);
-
-        }
-        statement.close();
-        rs.close();
-
-        return payments;
-    }
-
-
-    public static Payments fetchSinglePayment(int paymentId) throws SQLException {
-        Statement statement = connection.createStatement();
-
-        Payments payment = null;
-        ResultSet rs = statement.executeQuery("SELECT * FROM payments LEFT JOIN box b on payments.box_fk = b.box_id " +
-                "WHERE payment_id=" + paymentId);
-
-        while (rs.next()) {
-
-            payment = new Payments(rs.getInt("payment_id"), rs.getString("payment_date"),
-                    LocalDate.parse(rs.getString("exp_date")), rs.getString("month"),
-                    rs.getString("year"), rs.getDouble("amount_paid"),
-                    rs.getString("paid_by"), rs.getDouble("discount"),
-                    rs.getBoolean("poxing"), rs.getString("customer_phone_fk"),
-                    rs.getBoolean("is_online"), rs.getBoolean("pending"));
-
-
-            if (rs.getString("box_fk") != null) {
-                Box box = new Box(rs.getInt("box_id"), rs.getString("box_name"), rs.getBoolean("is_ready"));
-                payment.setBox(box);
-            }
-
-
-        }
-        rs.close();
-        statement.close();
-        return payment;
-    }
-
-
-    //-------------------------make report------------------------------
     private static void makeReport(Payments payment, String customerGender) throws SQLException {
         Statement st = connection.createStatement();
         if (customerGender.equals("Male") && payment.getBox() != null) {
@@ -212,19 +274,22 @@ public class PaymentDTO {
         st.close();
     }
 
-
     private static void setTookBoxIsReadyFalse(Box box) throws SQLException {
-        String boxFalseQuery = "UPDATE box SET is_ready=false WHERE box_id=" + box.boxId();
+        String boxFalseQuery = "UPDATE box SET is_ready=false WHERE box_id=" + box.getBoxId();
         Statement statement = connection.createStatement();
         statement.executeUpdate(boxFalseQuery);
-        System.out.println(box.boxName() + " made false");
+        box.setReady(false);
+        System.out.println(box.getBoxName() + " made false");
     }
 
     public static void setTookBoxIsReadyTrue(Box box) throws SQLException {
-        String boxFalseQuery = "UPDATE box SET is_ready=true WHERE box_id=" + box.boxId();
+        String boxFalseQuery = "UPDATE box SET is_ready=true WHERE box_id=" + box.getBoxId();
         Statement statement = connection.createStatement();
         statement.executeUpdate(boxFalseQuery);
-        System.out.println(box.boxName() + " made false");
+        //set the box off
+        box.setReady(true);
+        System.out.println(box.getBoxName() + " made false");
     }
+
 
 }

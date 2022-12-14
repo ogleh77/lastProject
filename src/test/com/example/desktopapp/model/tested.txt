@@ -1,9 +1,0 @@
-
-what done till now
--------------------------------------------
-.Customer insertion checking with the exception may occur
-.Payment insetion
-.Not update customer
-.Tested the fetch all method
-.I tasted fetch the payment specifically.
-.Also done the transcational method handling payment and customer insertion simutinously.

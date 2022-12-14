@@ -1,4 +1,4 @@
-package com.example.desktopapp.model;
+package com.example.desktopapp.models;
 
 import com.example.desktopapp.entity.Users;
 import com.example.desktopapp.helpers.IConnection;

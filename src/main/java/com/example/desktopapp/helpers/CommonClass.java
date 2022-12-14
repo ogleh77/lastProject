@@ -5,8 +5,6 @@ import animatefx.animation.Shake;
 import animatefx.animation.SlideInLeft;
 import animatefx.animation.SlideInRight;
 import com.example.desktopapp.HelloApplication;
-import com.example.desktopapp.controllers.DashboardController;
-import com.example.desktopapp.controllers.services.CustomerInfoController;
 import com.example.desktopapp.entity.Customers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -159,10 +157,13 @@ public abstract class CommonClass {
     protected FXMLLoader openNormalWindow(String url) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(url));
 
-
         return fxmlLoader;
     }
 
+    protected FXMLLoader openNotificationWindow(String url) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+        return loader;
+    }
 
     public Alert message(Alert.AlertType alertType, String content, String title) {
         Alert alert = new Alert(alertType);

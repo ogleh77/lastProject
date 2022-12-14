@@ -40,27 +40,25 @@ public class NotificationsController extends CommonClass implements Initializabl
 
         Platform.runLater(() -> {
             pagination.setPageFactory(this::createPage);
-            pagination.setPageCount(numbers.size());
+            pagination.setPageCount(paymentChecker.getWarningCustomers().size());
         });
     }
 
 
     private VBox createPage(int pageIndex) {
-        VBox vBox = new VBox(5);
+        VBox vBox = new VBox();
+        vBox.setSpacing(5);
+        vBox.setPrefHeight(548);
+        vBox.setPrefWidth(567);
 
-        vBox.setStyle("-fx-background-color: white;" +
-                "-fx-pref-width: 555;" +
-                "-fx-pref-height: 548;" +
-                "-fx-effect: dropshadow(gaussian, rgba(221, 202, 202, 0.3), 10, 0.0, 0.0, 0.0)");
-
+        FXMLLoader loader;
+        AnchorPane anchorPane;
         try {
 
-            for (Customers customer : paymentChecker.getOutDatedCustomers()) {
-
-                FXMLLoader loader = openWindow("/com/example/desktopapp/views/info/outdated.fxml", borderPane, null, null, null);
-                AnchorPane anchorPane = loader.load();
+            for (Customers customer : paymentChecker.getWarningCustomers()) {
+                loader = openNotificationWindow("/com/example/desktopapp/views/info/outdated.fxml");
+                anchorPane = loader.load();
                 OutDatedController controller = loader.getController();
-
                 controller.setBorderPane(borderPane);
                 controller.setPaymentChecker(paymentChecker);
                 controller.setCustomer(customer);

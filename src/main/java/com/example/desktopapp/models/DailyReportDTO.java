@@ -1,4 +1,4 @@
-package com.example.desktopapp.model;
+package com.example.desktopapp.models;
 
 import java.sql.SQLException;
 import java.sql.Statement;

@@ -157,6 +157,18 @@
                   <Font name="Arial" size="15.0" />
                </font>
             </JFXButton>
+            <JFXButton buttonType="RAISED" onAction="#outDatedHandler" styleClass="side-btn" text="out dated" textFill="#e8dcdc">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../black-Icon/icons8-card-payment-30.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </JFXButton>
             <JFXButton buttonType="RAISED" styleClass="side-btn" text="pending " textFill="#e8dcdc">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
@@ -260,7 +272,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" contentDisplay="TOP" prefHeight="105.0" prefWidth="142.0" styleClass="btn-menu" text="Payment" textFill="#544c4c">
+                  <JFXButton buttonType="RAISED" contentDisplay="TOP" onAction="#outDatedHandler" prefHeight="105.0" prefWidth="142.0" styleClass="btn-menu" text="Out dated" textFill="#544c4c">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>

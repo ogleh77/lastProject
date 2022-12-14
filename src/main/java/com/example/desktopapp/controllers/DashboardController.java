@@ -1,6 +1,10 @@
 package com.example.desktopapp.controllers;
 
+import animatefx.animation.SlideInLeft;
+import animatefx.animation.SlideOutLeft;
 import com.example.desktopapp.controllers.info.NotificationsController;
+import com.example.desktopapp.controllers.info.OutDatedController;
+import com.example.desktopapp.controllers.info.OutDatedCustomerInfoController;
 import com.example.desktopapp.entity.Users;
 import com.example.desktopapp.helpers.CommonClass;
 import com.example.desktopapp.helpers.PaymentChecker;
@@ -10,13 +14,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -56,8 +60,7 @@ public class DashboardController extends CommonClass implements Initializable {
     private VBox sidePane;
     @FXML
     private HBox topProfile;
-
-    private PaymentChecker paymentChecker;
+    private boolean visible;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -105,21 +108,46 @@ public class DashboardController extends CommonClass implements Initializable {
     @FXML
     void menuClicked(MouseEvent event) {
 
+        visible = !visible;
+
+        if (visible) {
+            SlideOutLeft slideOutLeft = new SlideOutLeft();
+            slideOutLeft.setNode(sidePane);
+            slideOutLeft.play();
+
+            slideOutLeft.setOnFinished(e -> {
+                borderPane.setLeft(null);
+
+            });
+
+        } else {
+            new SlideInLeft(sidePane).play();
+            borderPane.setLeft(sidePane);
+        }
+    }
+
+    @FXML
+    void outDatedHandler(ActionEvent event) throws IOException {
+        FXMLLoader loader = openWindow("/com/example/desktopapp/views/info/outdated-info.fxml", borderPane, sidePane, menuHbox, topProfile);
+        OutDatedCustomerInfoController controller = loader.getController();
+        controller.setBorderPane(borderPane);
+        controller.setPaymentChecker(paymentChecker);
     }
 
     @FXML
     void notificationHandler(ActionEvent event) throws IOException {
-
         FXMLLoader loader = openWindow("/com/example/desktopapp/views/info/notifications.fxml", borderPane, sidePane, menuHbox, topProfile);
-
         NotificationsController controller = loader.getController();
         controller.setPaymentChecker(paymentChecker);
         controller.setBorderPane(borderPane);
     }
 
     @FXML
-    void notificationMouseHandler(MouseEvent event) {
-
+    void notificationMouseHandler(MouseEvent event) throws IOException {
+        FXMLLoader loader = openWindow("/com/example/desktopapp/views/info/notifications.fxml", borderPane, sidePane, menuHbox, topProfile);
+        NotificationsController controller = loader.getController();
+        controller.setPaymentChecker(paymentChecker);
+        controller.setBorderPane(borderPane);
     }
 
     @FXML
@@ -138,7 +166,7 @@ public class DashboardController extends CommonClass implements Initializable {
 
     @Override
     public void setPaymentChecker(PaymentChecker paymentChecker) {
-        this.paymentChecker = paymentChecker;
+        super.paymentChecker = paymentChecker;
         System.out.println("Dashboard paymentCheker " + paymentChecker);
         Users activeUser = paymentChecker.getActiveUser();
         try {

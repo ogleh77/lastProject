@@ -62,7 +62,7 @@
                 <Font name="Arial Bold" size="16.0" />
             </font>
         </Label>
-      <Pagination fx:id="pagination" layoutX="14.0" layoutY="130.0" prefHeight="593.0" prefWidth="555.0" />
+      <Pagination fx:id="pagination" layoutX="14.0" layoutY="130.0" prefHeight="593.0" prefWidth="567.0" />
     </children>
     <effect>
         <DropShadow height="12.11" radius="5.555" spread="0.01" width="12.11">

@@ -1,12 +1,15 @@
 package com.example.desktopapp.controllers;
 
-import com.example.desktopapp.controllers.services.CustomerInfoController;
+import com.example.desktopapp.controllers.info.CustomerInfoController;
 import com.example.desktopapp.entity.Customers;
 import com.example.desktopapp.helpers.CommonClass;
 import com.example.desktopapp.helpers.PaymentChecker;
+import com.example.desktopapp.models.CustomerDTO;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,10 +18,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class HomeController extends CommonClass implements Initializable {
@@ -45,18 +48,22 @@ public class HomeController extends CommonClass implements Initializable {
 
     @FXML
     private TableView<Customers> tableView;
+    private final ObservableList<Customers> customers;
 
-    private StackPane stackPane;
-
+    public HomeController() throws SQLException {
+        customers = FXCollections.observableArrayList(CustomerDTO.fetchAllCustomer());
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
             initTable();
+            // System.out.println("All customers hashcode " + paymentChecker.getAllCustomers().hashCode());
+            //System.out.println(paymentChecker);
 
+            System.out.println(customers);
+            for (Customers customer : customers) {
 
-            for (Customers customer : paymentChecker.getAllCustomers()) {
-                System.out.println("Loaded customers..");
                 EventHandler<MouseEvent> updateHandler = event -> {
                     try {
                         FXMLLoader loader = openWindow("/com/example/desktopapp/views/registrations.fxml", borderPane, null,
@@ -65,6 +72,7 @@ public class HomeController extends CommonClass implements Initializable {
                         controller.setBorderPane(borderPane);
                         controller.setCustomer(customer);
                         controller.setPaymentChecker(paymentChecker);
+                        System.out.println("Updating " + customer.getFirstName() + " " + customer.getLastName());
                     } catch (IOException ex) {
                         Alert alert = message(Alert.AlertType.ERROR, "Error: " + ex.getMessage(), "Error occurred");
                         alert.show();
@@ -88,6 +96,7 @@ public class HomeController extends CommonClass implements Initializable {
                 customer.getInformation().addEventFilter(MouseEvent.MOUSE_CLICKED, information);
                 customer.getUpdate().addEventFilter(MouseEvent.MOUSE_CLICKED, updateHandler);
             }
+
         });
     }
 
@@ -112,11 +121,6 @@ public class HomeController extends CommonClass implements Initializable {
     @Override
     public void setPaymentChecker(PaymentChecker paymentChecker) {
         this.paymentChecker = paymentChecker;
-    }
-
-
-    public void setStackPane(StackPane stackPane) {
-        this.stackPane = stackPane;
     }
 
     @Override

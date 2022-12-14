@@ -1,12 +1,11 @@
-package com.example.desktopapp.controllers.services;
+package com.example.desktopapp.controllers.info;
 
 import com.example.desktopapp.HelloApplication;
-import com.example.desktopapp.controllers.RegistrationController;
-import com.example.desktopapp.controllers.info.PendingController;
+
 import com.example.desktopapp.entity.Customers;
 import com.example.desktopapp.entity.Payments;
 import com.example.desktopapp.helpers.CommonClass;
-import com.example.desktopapp.model.PaymentDTO;
+import com.example.desktopapp.models.PaymentDTO;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -168,12 +167,12 @@ public class CustomerInfoController extends CommonClass implements Initializable
 
 
         try {
-            payments = FXCollections.observableArrayList(PaymentDTO.fetchPayments(customer.getPhone()));
+            payments = FXCollections.observableArrayList(PaymentDTO.fetchPaymentsWhereOnlineOrNot(customer.getPhone()));
         } catch (SQLException e) {
             messageAlert("Error occur", "error " + e.getMessage(), Alert.AlertType.ERROR);
         }
 
-        System.out.println(payments);
+       // System.out.println(payments);
 
     }
 

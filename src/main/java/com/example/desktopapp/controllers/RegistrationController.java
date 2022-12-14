@@ -1,7 +1,10 @@
 package com.example.desktopapp.controllers;
 
+import com.example.desktopapp.controllers.service.PaymentController;
 import com.example.desktopapp.entity.Customers;
 import com.example.desktopapp.helpers.CommonClass;
+import com.example.desktopapp.helpers.PaymentChecker;
+import com.example.desktopapp.models.CustomerDTO;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.application.Platform;
@@ -64,7 +67,6 @@ public class RegistrationController extends CommonClass implements Initializable
     private JFXButton registerBtn;
     private Customers customer;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
@@ -72,7 +74,6 @@ public class RegistrationController extends CommonClass implements Initializable
             female.setToggleGroup(genderGroup);
             shift.setItems(super.shift);
             mandatoryFields.addAll(firstName, middleName, lastName, phone, shift);
-
 
             if (customer == null) {
                 registerBtn.setText("Step two");
@@ -100,10 +101,40 @@ public class RegistrationController extends CommonClass implements Initializable
 
     @FXML
     void stepTwoHandler(ActionEvent event) {
-        if (customer == null) {
-            System.out.println("New customer added");
-        } else {
-            System.out.println(customer);
+
+        if (isValid(mandatoryFields, genderGroup) && phoneCheck() == null) {
+            try {
+                imageForgot(selectedFile);
+                String gander = male.isSelected() ? "Male" : "Female";
+                String _address = address.getText() != null ? address.getText().trim() : null;
+                double _weight = ((!weight.getText().isEmpty() || !weight.getText().isBlank())) ? Double.parseDouble(weight.getText().trim()) : 65.0;
+                String image = selectedFile != null ? selectedFile.getAbsolutePath() : null;
+
+                //-----------------If the customer is new-----------
+                if (customer == null) {
+                    customer = new Customers(0, firstName.getText(), middleName.getText(), lastName.getText(),
+                            phone.getText(), gander, shift.getValue(), _address, image, _weight,
+                            paymentChecker.getActiveUser().getUsername());
+                    nextWindow(customer);
+
+                } else {
+                    //-----------------If the customer already exist is new-----------
+                    customer = new Customers(customer.getCustomerId(), firstName.getText(), middleName.getText(), lastName.getText(),
+                            phone.getText(), gander, shift.getValue(), _address, image, _weight,
+                            paymentChecker.getActiveUser().getUsername());
+
+                    CustomerDTO.updateCustomer(customer);
+
+                    messageAlert("Customer updated", "Updated seccesfull", Alert.AlertType.INFORMATION);
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                if (e.getClass().isInstance(FileNotFoundException.class)) {
+                    messageAlert("File not found ", "Sawirka lama heli karo ", Alert.AlertType.ERROR);
+                }
+                messageAlert("Error occur customer registration", "Error " + e, Alert.AlertType.ERROR);
+            }
         }
     }
 
@@ -112,11 +143,11 @@ public class RegistrationController extends CommonClass implements Initializable
 
 
     private void nextWindow(Customers customer) throws IOException {
-        FXMLLoader loader = openWindow("/com/example/desktopapp/views/payments.fxml", borderPane, null, null, null);
-        //PaymentController controller = loader.getController();
-//        controller.setCustomer(customer);
-//        controller.setBorderPane(borderPane);
-//        controller.setPaymentChecker(paymentChecker);
+        FXMLLoader loader = openWindow("/com/example/desktopapp/views/services/payments.fxml", borderPane, null, null, null);
+        PaymentController controller = loader.getController();
+        controller.setCustomer(customer);
+        controller.setBorderPane(borderPane);
+        controller.setPaymentChecker(paymentChecker);
     }
 
 
@@ -138,17 +169,18 @@ public class RegistrationController extends CommonClass implements Initializable
 
     }
 
-//    private void imageForgot(File file) throws FileNotFoundException {
-//        if (file == null) {
-//            Alert alert = message(Alert.AlertType.CONFIRMATION, "Sawirkii maad ilowdey mise ogaan baad u dhaftay", "Forgot images");
-//            Optional<ButtonType> config = alert.showAndWait();
-//            if (config.get().getButtonData().isDefaultButton()) {
-//                System.out.println("Ok pressed..");
-//                alert.close();
-//                imageUpload();
-//            }
-//        }
-//    }
+    private void imageForgot(File file) throws FileNotFoundException {
+        if (file == null) {
+            Alert alert = message(Alert.AlertType.CONFIRMATION, "Sawirkii maad ilowdey mise ogaan baad u dhaftay", "Forgot images");
+            Optional<ButtonType> config = alert.showAndWait();
+            if (config.get().getButtonData().isDefaultButton()) {
+                System.out.println("Ok pressed..");
+                alert.close();
+
+                imageUpload();
+            }
+        }
+    }
 
 
     private String phoneCheck() {
@@ -166,25 +198,14 @@ public class RegistrationController extends CommonClass implements Initializable
 
     }
 
-    private void imageForgot(File file, String message) throws FileNotFoundException {
-        if (file == null) {
-            Alert alert = message(Alert.AlertType.CONFIRMATION, "Sawirkii maad ilowdey mise ogaan baad u dhaftay", "Forgot images");
-            Optional<ButtonType> config = alert.showAndWait();
-            if (config.get().getButtonData().isDefaultButton()) {
-                System.out.println("Ok pressed..");
-                alert.close();
-                imageUpload();
-            }
-        }
-    }
 
     @Override
     public void setCustomer(Customers customer) {
         this.customer = customer;
 
         firstName.setText(customer.getFirstName());
-        middleName.setText(customer.getFirstName());
-        lastName.setText(customer.getFirstName());
+        middleName.setText(customer.getMiddleName());
+        lastName.setText(customer.getLastName());
 
         phone.setText(customer.getPhone());
         weight.setText(String.valueOf(customer.getWeight()));
@@ -200,11 +221,23 @@ public class RegistrationController extends CommonClass implements Initializable
         shift.setValue(customer.getShift());
         address.setText(customer.getAddress() != null ? customer.getAddress() : "No address");
 
-        if (customer.getImage() != null) {
-            imgView.setImage(new Image(customer.getImage()));
+        try {
+            if (customer.getImage() != null) {
+                imgView.setImage(new Image(new FileInputStream(customer.getImage())));
+            }
+        } catch (Exception e) {
+
+            messageAlert("image error",
+                    "error " + customer.getFirstName(), Alert.AlertType.ERROR);
         }
 
         headerInfo.setText("UPDATING EXISTED CUSTOMER INFO");
 
+        registerBtn.setText("Update Customer");
+    }
+
+    @Override
+    public void setPaymentChecker(PaymentChecker paymentChecker) {
+        super.setPaymentChecker(paymentChecker);
     }
 }
